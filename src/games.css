@@ -1,0 +1,141 @@
+.main-games {
+    width: 95%;
+    margin: 3rem auto 0 auto;
+}
+
+.card button {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card img {
+    /* width: 616px; */
+    width: 67%;
+    
+}
+
+.first {
+    grid-area: first;
+}
+
+.second {
+    grid-area: second;
+}
+
+.third {
+    grid-area: third;
+}
+
+.fourth {
+    grid-area: fourth;
+}
+
+.favorites {
+    display: grid;
+    gap: 12px;
+    grid-template-areas: 
+    'first second third'
+    'first second fourth';
+    grid-template-columns: repeat(3, 306px);
+    /* grid-template-rows: 200px 200px 143px 143px; */
+    grid-template-rows: 180px 180px;
+    /* 306 x 350 */
+}
+
+.card-imgs {
+    /* height: 250px; */
+    height: 190px;
+    object-fit: fill !important;
+}
+
+.side-card {
+    padding: .4em !important;
+}
+
+.bottom-data {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom-data p {
+    margin: 0 !important
+}
+
+.right-card {
+    /* width: 296px; */
+    width: 33%;
+    background: rgb(17, 15, 31);
+    height: 353px;
+}
+
+.right-card p {
+    color: white;
+    margin-left: 1em;
+    font-size: 1.4rem;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: minmax(100px, 140px) minmax(80px, 140px);
+    justify-content: center;
+    gap: 10px;
+}
+
+.right-card img {
+    width: 140px;
+    max-width: 100%;
+    height: 69px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+}
+
+.tabs div {
+    margin: 1rem .3rem 0 0;
+    border-radius: 3px;  
+    background: silver;
+    cursor: pointer;
+    width: 15px;
+    height: 9px;
+    opacity: .5;
+    transition: background .4s;
+}
+
+.tabs div:hover {
+    background: whitesmoke;
+}
+
+.card-data {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+
+.game-info p {
+    margin: 2rem 0 0 0;
+    align-self: flex-end;
+}
+
+.icons {
+    align-self: flex-end;
+}
+
+.steam {
+    display: grid;
+    grid-template-columns: 616px 314px;
+    justify-content: center;
+    width: 95%;
+    margin: 3rem auto;
+}
+
+.deck {
+    width: 616px;
+    height: 125px;
+}
+
+.index {
+    width: 314px;
+    height: 125px;
+}

@@ -1,0 +1,16 @@
+nav {
+    background: #242424;
+    padding: .5em 0 .3em .15em;
+    display: flex;
+}
+
+a {
+    width: 150px;
+    margin: 0 auto;
+    background: #242424;
+}
+
+img {
+    object-fit: contain;
+    width: 160px;
+}
