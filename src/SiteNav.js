@@ -45,7 +45,7 @@ const SiteNav = () => {
             </ButtonGroup>
         </div>
         <div className='textfield'>
-            <TextField   size='small' label='search' variant='filled' />
+            <input className='search' type='text' placeholder='Search' />
             <SearchIcon sx={{ background: 'lightblue' }}  />
         </div>
     </div>
