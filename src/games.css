@@ -9,26 +9,9 @@
 }
 
 .card img {
-    /* width: 616px; */
     width: 67%;
-    
 }
 
-.first {
-    grid-area: first;
-}
-
-.second {
-    grid-area: second;
-}
-
-.third {
-    grid-area: third;
-}
-
-.fourth {
-    grid-area: fourth;
-}
 
 .favorites {
     display: grid;
@@ -36,16 +19,38 @@
     grid-template-areas: 
     'first second third'
     'first second fourth';
-    grid-template-columns: repeat(3, 306px);
-    /* grid-template-rows: 200px 200px 143px 143px; */
-    grid-template-rows: 180px 180px;
+    grid-template-columns: repeat(3, 326px);
     /* 306 x 350 */
+}
+
+.first, .second {
+    background: rgb(75, 99, 117) !important
+}
+
+.third, .fourth {
+    background: rgb(182, 227, 255) !important
+}
+.first {
+    grid-area: first;
+}
+.second {
+    grid-area: second;
+}
+.third {
+    grid-area: third;
+}
+.fourth {
+    grid-area: fourth;
 }
 
 .card-imgs {
     /* height: 250px; */
-    height: 190px;
+    height: 195px;
     object-fit: fill !important;
+}
+.test-img {
+    width: 25px;
+    height: 25px;
 }
 
 .side-card {
@@ -92,6 +97,10 @@
     justify-content: center;
 }
 
+.tabs div:first-child {
+    background: whitesmoke;
+}
+
 .tabs div {
     margin: 1rem .3rem 0 0;
     border-radius: 3px;  
@@ -124,18 +133,25 @@
 
 .steam {
     display: grid;
-    grid-template-columns: 616px 314px;
+    /* grid-template-columns: 616px 314px; */
+    grid-template-columns: 580px 300px;
+    gap: 10px;
     justify-content: center;
     width: 95%;
     margin: 3rem auto;
 }
 
-.deck {
-    width: 616px;
+.deck, .index {
+    object-fit: fill;
     height: 125px;
 }
 
+.deck {
+    /* width: 616px; */
+    width: 100%;
+}
+
 .index {
-    width: 314px;
-    height: 125px;
+    /* width: 314px; */
+    width: 100%;
 }

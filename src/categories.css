@@ -12,6 +12,10 @@
     position: relative;
 }
 
+.grid a {
+    position: relative;
+}
+
 .grid img, .grid a {
     /* width: 200px; */
     width: 100%;
@@ -19,9 +23,31 @@
     object-fit: cover;
 }
 
+.name, .name p {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(to top, red, transparent);
+    width: 100%;
+    /* backdrop-filter: opacity(9); */
+}
+.name p {
+    left: 50%; 
+    transform: translate(-50%, 520%);
+    text-align: center;
+    color: white;
+    background: none;
+    font-weight: 700;
+    height: 30px;
+}
+
 .category-tabs {
     display: flex;
     justify-content: center;
+}
+
+.category-tabs div:first-child {
+    background: whitesmoke;
 }
 
 .category-tabs div {
@@ -37,4 +63,107 @@
 
 .category-tabs div:hover {
     background: whitesmoke;
+}
+
+.browse-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 229px);
+    height: 59px;
+    gap: 9px;
+    /* 229 x 58 */
+}
+
+.browse-grid button {
+    background: rgb(45 115 255);
+    color: white;
+    font-weight: 600;
+    padding: 0 !important;
+}
+
+.browse-grid button:hover {
+    background: rgb(6 191 255);
+}
+
+.price-group {
+    display: grid;
+    grid-template-columns: repeat(4, 229px);
+}
+
+.price-tag {
+    padding: .5em !important;
+    background: rgb(75, 99, 117);
+}
+
+.price-tag p {
+    margin: 0 !important;
+    color: white;
+    background: rgb(50, 66, 77);
+    width: fit-content;
+    padding: .05em .35em;
+}
+
+.price-imgs {
+    width: 229px;
+    height: 106px;
+    /* 229 x 106 */
+}
+
+.new-group {
+    display: grid;
+    grid-template-areas: 
+    'side one two three'
+    'side four five six';
+    /* grid-template-columns: 378px repeat(3, 238px); */
+    grid-template-columns: 378px repeat(3, 208px);
+    /* grid-template-rows: 198px 198px; */
+    gap: 12px;
+}
+
+.new-imgs {
+    object-fit: fill !important;
+    /* height: auto; */
+    width: 100%;
+}
+
+.new-tag {
+    padding: .4em !important;
+    display: flex;
+    justify-content: flex-end;
+    background: rgb(75, 99, 117)
+}
+
+.new-tag p {
+    margin: .5em;
+    color: white;
+    font-weight: 700;
+}
+
+.side {
+    grid-area: 'side';
+    grid-row-start: 1;
+    grid-row-end: 3;
+    /* 378 x 398  */
+}
+.side p {
+    /* height: 42px; */
+    height: 29px;
+}
+.one {
+    grid-area: 'one';
+}
+.two {
+    grid-area: 'two';
+}
+.three {
+    grid-area: 'three';
+}
+.four {
+    grid-area: 'four';
+    grid-column-start: 2;
+}
+.five {
+    grid-area: 'five';
+}
+.six {
+    grid-area: 'six';
 }

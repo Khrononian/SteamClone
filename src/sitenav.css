@@ -33,6 +33,20 @@
     align-items: center;
 }
 
+.textfield input {
+    padding: .25em;
+    background:rgb(83, 141, 160);
+    border: .5px solid rgb(72, 124, 141);
+}
+
+.textfield input::placeholder {
+    padding-left: .6em;
+    font-style: italic;
+    color: darkslategrey
+}
+
 .textfield svg {
     cursor: pointer;
+    background: rgb(111, 187, 212);
+    color: rgb(70, 70, 70);
 }
