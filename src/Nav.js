@@ -18,11 +18,13 @@ const Nav = () => {
     const [state, setState] = useState({
         left: false
     })
-    const [openNav, setOpenNav] = useState(true)
+    const [openFirstNav, setOpenFirstNav] = useState(true)
+    const [openSecondNav, setOpenSecondNav] = useState(true)
 
     const handleClick = (event) => {
-        setOpenNav(!openNav)
-        console.log(event, event.target)
+        if (event.nativeEvent.path[0].innerText === 'Store') setOpenFirstNav(!openFirstNav)
+        else setOpenSecondNav(!openSecondNav)
+        console.log(event, event.target, event.target.nativeEvent)
     }
 
     const toggleDrawer = (anchor, open) => event => {
@@ -42,11 +44,11 @@ const Nav = () => {
                 </ListItemButton>
                 <Divider />
                 <ListItemButton onClick={handleClick}>
-                    <ListItemText sx={{ color: 'grey' }} primary='Store' />
-                    {!openNav ? <KeyboardArrowUpIcon sx={{ color: '#787878' }} /> : <KeyboardArrowDownIcon sx={{ color: '#787878' }} /> }
+                    <ListItemText sx={{ color: 'grey', pointerEvents: 'none' }} primary='Store' />
+                    {!openFirstNav ? <KeyboardArrowUpIcon sx={{ color: '#787878', pointerEvents: 'none' }} /> : <KeyboardArrowDownIcon sx={{ color: '#787878', pointerEvents: 'none' }} /> }
                 </ListItemButton>
                 <Divider />
-                <Collapse in={openNav} timeout='auto' unmountOnExit>
+                <Collapse in={openFirstNav} timeout='auto' unmountOnExit>
                     <List disablePadding>
                         <ListItemButton sx={{ pl: 4 }}>
                             <ListItemText sx={{ color: 'grey' }} primary='Home' />
@@ -68,11 +70,11 @@ const Nav = () => {
                 </Collapse>
 
                 <ListItemButton onClick={handleClick}>
-                    <ListItemText sx={{ color: 'grey' }} primary='Community' />
-                    {!openNav ? <KeyboardArrowUpIcon sx={{ color: '#787878' }} /> : <KeyboardArrowDownIcon sx={{ color: '#787878' }} />}
+                    <ListItemText sx={{ color: 'grey', pointerEvents: 'none' }} primary='Community' />
+                    {!openSecondNav ? <KeyboardArrowUpIcon sx={{ color: '#787878', pointerEvents: 'none' }} /> : <KeyboardArrowDownIcon sx={{ color: '#787878', pointerEvents: 'none' }} />}
                 </ListItemButton>
                 <Divider />
-                <Collapse in={openNav} timeout='auto' unmountOnExit>
+                <Collapse in={openSecondNav} timeout='auto' unmountOnExit>
                     <List disablePadding>
                         <ListItemButton sx={{ pl: 4 }}>
                             <ListItemText sx={{ color: 'grey' }} primary='Home' />
