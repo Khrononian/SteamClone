@@ -1,0 +1,64 @@
+h1 {
+    color: white;
+    font-weight: 300;
+    letter-spacing: 3px;
+}
+
+.sign-in {
+    width: 75%;
+    margin: 6rem auto 0 auto;
+}
+
+.sign-form {
+    background: #202020;
+    display: flex;
+    justify-content: space-between;
+    padding: 2em;
+}
+
+.sign-form div:first-child {
+    width: 350px;
+}
+.sign-form div p:first-child {
+    margin: .5rem 0 0 0;
+}
+.sign-form div:nth-child(2) p {
+    color: gray;
+}
+.sign-form div p.colors {
+    color: rgb(45 115 255);
+}
+.sign-form div:nth-child(3) {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.sign-form div:nth-child(3) p {
+    margin: 0;
+    text-align: center;
+    color: gray;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: .9rem;
+}
+
+input {
+    background: #383838;
+    border: transparent;
+    border-radius: 1px;
+    padding: .8em .5em;
+    color: white;
+    width: 100%;
+}
+
+.sign-form button {
+    background: rgb(6 191 255) !important;
+    padding: .8em 5em !important;
+    width: 240px;
+    color: white;
+    margin: 1.5rem auto 2rem auto; 
+    text-transform: inherit;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: .05em;
+}
