@@ -6,6 +6,7 @@ import { CardActionArea } from '@mui/material'
 import { Typography } from '@mui/material'
 import AppleIcon from '@mui/icons-material/Apple';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { WindowSharp } from '@mui/icons-material'
 
 import './games.css'
 
@@ -55,8 +56,7 @@ const Games = () => {
                             <p>Price Here</p>
                         </div>    
                         <div className='icons'>
-                            <FontAwesomeIcon icon="fa-brands fa-windows" />
-                            <FontAwesomeIcon icon="fa-solid fa-mustache" />
+                            <WindowSharp />
                             <AppleIcon />
                         </div>
                     </CardContent>
@@ -97,6 +97,9 @@ const Games = () => {
                             RIMWORLD
                         </Typography>
                         <p>Price</p>
+                        
+                        {/* <FontAwesomeIcon icon="fa-brands fa-windows" /> */}
+                        <p>SHORT DESC HERE</p>
                     </CardContent>
                 </Card>
                 <Card className='second'>
@@ -128,6 +131,7 @@ const Games = () => {
                         </div>
                         
                     </CardContent>
+                    
                 </Card>
                 <Card className='fourth'>
                     <CardActionArea>
@@ -143,6 +147,10 @@ const Games = () => {
                         </div>
                     </CardContent>
                 </Card>
+            </div>
+            <div className='tabs'>
+                <div></div>
+                <div></div>
             </div>
         </div>
     </div>
