@@ -3,6 +3,10 @@
     margin: 3rem auto 0 auto;
 }
 
+.route-links {
+    text-decoration: unset;
+}
+
 .card button {
     display: flex;
     justify-content: space-between;
