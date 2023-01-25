@@ -2,6 +2,17 @@ nav {
     background: #242424;
     padding: .5em 0 .3em .15em;
     display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.store-link {
+    text-decoration: none;
+    padding: unset;
+    margin: unset;
 }
 
 a {
