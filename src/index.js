@@ -4,12 +4,17 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import Login from './Routes/Login';
+import GamePage from './Routes/GamePage';
+import Category from './Routes/Category';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
       <Route path='/' element={<App />}/>
       <Route path='/login' element={<Login />}/>
+      <Route path='/app/:id' element={<GamePage />}/>
+      <Route path='/category/:name' element={<Category />}/>
     </Routes>
   </BrowserRouter>
 );
