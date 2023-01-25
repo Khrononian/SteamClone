@@ -2,6 +2,9 @@ h1 {
     color: white;
     font-weight: 300;
     letter-spacing: 3px;
+    max-width: 716.25px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .sign-in {
@@ -14,19 +17,23 @@ h1 {
     display: flex;
     justify-content: space-between;
     padding: 2em;
+    max-width: 716.25px;
+    margin: 0 auto;
 }
 
 .sign-form div:first-child {
-    width: 350px;
+    width: 380px;
 }
 .sign-form div p:first-child {
     margin: .5rem 0 0 0;
 }
 .sign-form div:nth-child(2) p {
     color: gray;
+    font-size: .8rem;
 }
 .sign-form div p.colors {
     color: rgb(45 115 255);
+    font-size: .8rem;
 }
 .sign-form div:nth-child(3) {
     display: flex;
@@ -61,4 +68,23 @@ input {
     font-size: 1.05rem;
     font-weight: 700;
     letter-spacing: .05em;
+}
+
+.sign-form button:hover {
+    background: rgb(60, 206, 255) !important
+}
+
+.sign-form img {
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.sign-form div p:last-child {
+    margin: 0;
+}
+.sign-form span {
+    text-decoration: underline;
+    cursor: pointer;
 }
