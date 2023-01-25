@@ -22,9 +22,9 @@ const Nav = () => {
     const [openSecondNav, setOpenSecondNav] = useState(true)
 
     const handleClick = (event) => {
-        if (event.nativeEvent.path[0].innerText === 'Store') setOpenFirstNav(!openFirstNav)
+        if (event.nativeEvent.target.outerText === 'Store') setOpenFirstNav(!openFirstNav)
         else setOpenSecondNav(!openSecondNav)
-        console.log(event, event.target, event.target.nativeEvent)
+        console.log(event, event.target, event.nativeEvent.path)
     }
 
     const toggleDrawer = (anchor, open) => event => {
@@ -40,7 +40,7 @@ const Nav = () => {
         >
             <List disablePadding>
                 <ListItemButton>
-                    <ListItemText sx={{ color: 'grey' }} primary='Login' />
+                    <Link className='store-link' to='/login'><ListItemText sx={{ color: 'grey' }} primary='Login' /></Link>
                 </ListItemButton>
                 <Divider />
                 <ListItemButton onClick={handleClick}>
