@@ -1,0 +1,156 @@
+/* .main-game div:nth-child(1), .main-game div:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-game div:nth-child(2) {
+    flex-direction: column;
+} */
+
+.main-game {
+    /* background: red; */
+    background: linear-gradient(to right bottom, transparent, rgb(21, 49, 65));
+    margin-top: 2rem;
+}
+
+.main-game div:nth-child(1) {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.main-img {
+    width: 600px;
+    height: 337px
+}
+.side-img {
+    width: 324px;
+    height: 151px;
+}
+
+.top {
+    font-size: .9rem;
+    margin: .2em 0;
+    color: white;
+}
+
+.bottom {
+    position: relative;
+}
+.reviews, .date, .dev-pub {
+    width: 230px;
+}
+
+.bottom p, .tag-grid {
+    font-size: .68rem;
+}
+
+.bottom p {
+    color: rgb(90, 90, 90);
+}
+.bottom span {
+    color: rgb(102 192 244);
+}
+.bottom p:first-child {
+    margin-bottom: .3em;
+}
+.bottom p:last-child {
+    margin-top: .3em;
+}
+.tags {
+    font-size: .7rem;
+}
+
+.bottom span {
+    /* margin-left: .8rem; */
+    width: auto;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+}
+
+.tag-grid {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    color: rgb(102 192 244);
+    gap: 2px;
+}
+.tag-grid p {
+    background: rgb(103 193 245 / 20%);
+    border-radius: 2px;
+    text-align: center;
+    padding: .1em 0;
+    cursor: pointer;
+}
+
+.tag-grid p:hover {
+    background: rgb(102 192 244);
+    color: white;
+}
+
+.bottom-grid {
+    display: grid;
+
+    margin-top: 3rem;
+}
+
+.purchase {
+    position: relative;
+    width: 616px;
+    /* grid-area: 'top'; */
+}
+.purchase div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* width: 616px; */
+    background: linear-gradient(to right, transparent, rgba(192, 192, 192, 0.479));
+    border-radius: 6px;
+    padding: .8em;
+    color: white;
+}
+.purchase div:last-child {
+    display: flex;
+    background: black;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: .1em;
+    transform: translate(-9%, 50%);
+}
+.purchase div:last-child p {
+    color: gray;
+    margin: 0;
+    padding: .5em .9em;
+    font-size: .9rem;
+}
+.purchase div:last-child button {
+    background: rgb(88 138 27);
+    padding: .08em 1.2em;
+    color: white;
+    text-transform: inherit;
+}
+
+.categories, .desc {
+    /* grid-area: side; */
+    display: flex;
+    flex-direction: column;
+    width: 308px;
+    background: linear-gradient(to right, rgb(0 0 0 / 20%) 0%, rgb(0 0 0 / 50%) 100%);
+    padding: 1.2em .3em 1.2em 1.7em;
+}
+.categories button {
+    background: rgb(103 193 245 / 10%);
+    justify-content: flex-start;
+    color: rgb(102 192 244);
+    font-size: .77rem;
+    text-transform: inherit;
+}
+.categories button:hover {
+    background: rgb(103 193 245 / 30%)
+}
