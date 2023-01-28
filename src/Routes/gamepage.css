@@ -1,19 +1,19 @@
-/* .main-game div:nth-child(1), .main-game div:nth-child(2) {
-    display: flex;
-    justify-content: space-between;
+.section {
+    width: 940px;
+    margin: 0 auto;
 }
-
-.main-game div:nth-child(2) {
-    flex-direction: column;
-} */
 
 .main-game {
-    /* background: red; */
-    background: linear-gradient(to right bottom, transparent, rgb(21, 49, 65));
-    margin-top: 2rem;
+    background: linear-gradient(to right, transparent, rgb(18, 41, 54));
+    width: 940px;
+    margin: 2rem auto 0 auto;
 }
 
-.main-game div:nth-child(1) {
+h2 {
+    color: silver;
+}
+
+.main-game .first-div {
     display: flex;
     justify-content: space-between;
 }
@@ -22,6 +22,9 @@
     display: flex;
     justify-content: space-between;
     gap: 16px;
+}
+.main-section div:nth-child(2) {
+    width: 324px;
 }
 
 .main-img {
@@ -32,11 +35,21 @@
     width: 324px;
     height: 151px;
 }
+.img-grid {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    gap: 6px;
+}
+.img-grid img {
+    width: 115px;
+    height: 65px;
+    margin-top: .15rem;
+}
 
 .top {
-    font-size: .9rem;
+    font-size: .85rem;
     margin: .2em 0;
-    color: white;
+    color: silver;
 }
 
 .bottom {
@@ -62,8 +75,8 @@
 .bottom p:last-child {
     margin-top: .3em;
 }
-.tags {
-    font-size: .7rem;
+.tags p {
+    font-size: .78rem;
 }
 
 .bottom span {
@@ -86,23 +99,32 @@
     text-align: center;
     padding: .1em 0;
     cursor: pointer;
+    margin-top: 0;
 }
 
-.tag-grid p:hover {
+.tag-grid p:hover,
+.categories button:hover,
+.desc-btns button:hover,
+.bottom-review button:hover {
     background: rgb(102 192 244);
     color: white;
 }
 
 .bottom-grid {
     display: grid;
-
+    grid-template-columns: 600px 315px;
     margin-top: 3rem;
+    gap: 14px;
+    grid-template-areas: 
+    'first side-top'
+    'about side-middle';
 }
 
 .purchase {
     position: relative;
-    width: 616px;
-    /* grid-area: 'top'; */
+    grid-area: first;
+    /* background: green; */
+    height: 80px;
 }
 .purchase div:first-child {
     display: flex;
@@ -111,17 +133,17 @@
     /* width: 616px; */
     background: linear-gradient(to right, transparent, rgba(192, 192, 192, 0.479));
     border-radius: 6px;
-    padding: .8em;
+    padding: .8em .8em 1.6em .8em;
     color: white;
 }
 .purchase div:last-child {
     display: flex;
     background: black;
     position: absolute;
-    bottom: 0;
+    top: 0;
     right: 0;
     padding: .1em;
-    transform: translate(-9%, 50%);
+    transform: translate(-9%, 190%);
 }
 .purchase div:last-child p {
     color: gray;
@@ -137,20 +159,162 @@
 }
 
 .categories, .desc {
-    /* grid-area: side; */
+    grid-area: side-top;
     display: flex;
     flex-direction: column;
-    width: 308px;
+    height: fit-content;
+    gap: 2px;
     background: linear-gradient(to right, rgb(0 0 0 / 20%) 0%, rgb(0 0 0 / 50%) 100%);
     padding: 1.2em .3em 1.2em 1.7em;
 }
-.categories button {
+.categories button, .desc-btns button {
     background: rgb(103 193 245 / 10%);
     justify-content: flex-start;
     color: rgb(102 192 244);
     font-size: .77rem;
+    border-radius: 2px;
+    padding: .25em 0 .25em .8em;
     text-transform: inherit;
 }
-.categories button:hover {
-    background: rgb(103 193 245 / 30%)
+
+.desc {
+    grid-area: side-middle;
+}
+.desc-info > * {
+    letter-spacing: .065em;
+}
+.desc-info p {
+    color: rgb(85 103 114);
+    margin: .5rem 0;
+    font-size: .7rem;
+}
+.desc-info span {
+    color: rgb(102 192 244);
+    font-size: .75rem;
+}
+
+.desc-btns {
+    display: flex;
+    flex-direction: column; 
+    gap: 2px;
+    margin-top: .8rem;
+}
+
+.about {
+    grid-area: about;
+}
+.about p:first-child {
+    border-bottom: 1px solid silver;
+    padding-bottom: .3rem;
+    color: silver;
+}
+.about img {
+    width: 100%;
+    margin: .5rem 0 .8rem 0;
+}
+.about div p {
+    color: rgb(155, 161, 167);
+}
+
+p.review-heading {
+    color: silver;
+    letter-spacing: .09em;
+    font-weight: 700;
+}
+.review-block {
+    display: grid;
+    grid-template-columns: 600px 308px;
+    gap: 24px;
+}
+
+.review-card {
+    background: rgb(0 0 0 / 20%);
+    display: grid;
+    grid-template-columns: 200px auto;
+    width: 600px;
+    padding: .2em 0 .25em .3em;
+}
+
+.avatar span {
+    color: silver;
+}
+.review-info div:first-child {
+    display: flex;
+    align-items: center;
+    background: rgb(0 0 0 / 20%);
+}
+.review-info div:first-child p {
+    margin: .3rem .6rem;
+}
+.top-review p:last-child {
+    color: silver
+}
+.review-info div:first-child svg {
+    font-size: 2rem;
+}
+.review-info div:first-child svg,
+.side-review svg {
+    background: rgb(103 193 245 / 20%); 
+    color: rgb(102 192 244); 
+    padding: .2em;
+}
+
+.middle-review {
+    border-bottom: 1px solid silver;
+    padding-bottom: .3rem;
+}
+.middle-review p, .middle-side-review p:last-child {
+    margin: .55rem 0;
+    font-size: .85rem;
+    color: silver;
+}
+
+.middle-review p:first-child, .bottom-review p, 
+.middle-side-review p:first-child,
+.bottom-side-review p:first-child {
+    font-size: .8rem;
+    color: rgb(85 103 114) !important
+}
+.bottom-review button, .side-review,
+.bottom-side-review button {
+    background: rgb(103 193 245 / 5%);
+    color: rgb(102 192 244);
+    text-transform: inherit;
+    font-size: .8rem;
+    padding: .25em .5em;
+    margin-right: .25rem;
+}
+.bottom-review button svg,
+.bottom-side-review button svg {
+    margin-right: .3rem;
+    font-size: 1.3rem;
+}
+
+.main-background {
+    background: linear-gradient(to right, rgb(103 193 245 / 15%), transparent);
+
+}
+.side-review {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    background: rgb(0 0 0 / 40%);
+}
+.side-review p {
+    margin: 0;
+    padding: .4em;
+    color: silver;
+}
+.middle-side-review {
+    padding: .4em;
+    border-bottom: 1px solid black;
+}
+.middle-side-review p:first-child {
+    margin: 0
+}
+.bottom-side-review p:first-child {
+    margin: 0 0 .45rem 0;
+}
+.bottom-side-review {
+    padding: .4em;
 }
