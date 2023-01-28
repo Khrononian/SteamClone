@@ -1,0 +1,59 @@
+html, body {
+    background: #181818;
+}
+
+.main-cat {
+    width: 940px;
+    margin: 2.5rem auto;  
+}
+
+h2 {
+    font-size: 1.7rem;
+    color: white;
+}
+.top {
+    display: flex;
+    background: rgb(0 0 0 / 21%);
+}
+.top-left img {
+    width: 259px;
+    height: 310.23px;
+}
+.bot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: black;
+    color: white;
+}
+.bot p {
+    margin: .4rem 0;
+}
+.top-right {
+    padding: 1em 1.5em;
+    width: 100%;
+    justify-content: flex-start;
+}
+.top-right h2, .top-right p {
+    margin: 0 0 .6rem 0;
+}
+.r-date {
+    font-size: 1.2rem;
+    color: rgb(211, 211, 211);
+}
+.cat-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+.cat-grid p {
+    background: rgb(198 212 223 / 15%);
+    color: rgb(198 212 223);
+    text-align: center;
+    padding: .25em .5em;
+    border-radius: 2px;
+    margin-bottom: 0;
+}
+.short-desc {
+    margin-top: 1rem !important;
+}
