@@ -1,5 +1,6 @@
 .main-games {
-    width: 95%;
+    /* width: 95%; */
+    width: 940px;
     margin: 3rem auto 0 auto;
 }
 
@@ -23,7 +24,7 @@
     grid-template-areas: 
     'first second third'
     'first second fourth';
-    grid-template-columns: repeat(3, 326px);
+    grid-template-columns: repeat(3, 305px);
     /* 306 x 350 */
 }
 
@@ -137,8 +138,7 @@
 
 .steam {
     display: grid;
-    /* grid-template-columns: 616px 314px; */
-    grid-template-columns: 580px 300px;
+    grid-template-columns: 610px 315px;
     gap: 10px;
     justify-content: center;
     width: 95%;

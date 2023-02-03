@@ -19,12 +19,14 @@ h2 {
     width: 259px;
     height: 310.23px;
 }
+
 .bot {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: black;
     color: white;
+    padding: .5em !important;
 }
 .bot p {
     margin: .4rem 0;
@@ -56,4 +58,31 @@ h2 {
 }
 .short-desc {
     margin-top: 1rem !important;
+}
+
+
+.titles div {
+    display: flex;
+    justify-content: space-between;
+}
+.title-card {
+    margin-bottom: 1rem;
+}
+.first-title img {
+    width: 462px;
+    height: 215.92px;
+}
+.third-title img {
+    width: 223px;
+}
+
+.new-titles {
+    display: flex;
+    justify-content: space-between;
+}
+.comimg-soon {
+    display: flex;
+}
+.coming-soon img {
+    width: 286px;
 }
