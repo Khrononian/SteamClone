@@ -1,12 +1,13 @@
 .category {
-    width: 95%;
+    /* width: 95%; */
+    width: 940px;
     margin: 0 auto;
 }
 
 .grid {
     display: grid;
     /* grid-template-columns: repeat(4, minmax(150px, 250px)); */
-    grid-template-columns: repeat(4, 212px);
+    grid-template-columns: repeat(4, 222px);
     gap: 15px;
     justify-content: center;
     position: relative;
@@ -67,7 +68,7 @@
 
 .browse-grid {
     display: grid;
-    grid-template-columns: repeat(4, 229px);
+    grid-template-columns: repeat(4, 228px);
     height: 59px;
     gap: 9px;
     /* 229 x 58 */
@@ -114,7 +115,7 @@
     'side one two three'
     'side four five six';
     /* grid-template-columns: 378px repeat(3, 238px); */
-    grid-template-columns: 378px repeat(3, 208px);
+    grid-template-columns: 358px repeat(3, 181px);
     /* grid-template-rows: 198px 198px; */
     gap: 12px;
 }
