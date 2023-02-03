@@ -3,6 +3,7 @@ import Nav from '../Nav'
 import SiteNav from '../SiteNav'
 import { WindowSharp } from '@mui/icons-material'
 import AppleIcon from '@mui/icons-material/Apple';
+import { Card, CardMedia, CardActionArea, CardContent } from '@mui/material';
 import './category.css'
 
 const Category = () => {
@@ -47,7 +48,261 @@ const Category = () => {
             </p>
           </div>
         </div>
-        
+        <h2>TITLES</h2>
+        <div className='titles'>
+          <div className='first-title'>
+            <Card className='title-card'>
+              <CardActionArea>
+                <CardMedia
+                  className='title-img'
+                  component='img'
+                  height='140' 
+                  image='https://cdn.cloudflare.steamstatic.com/steam/apps/1693980/header.jpg?t=1675106922'
+                />
+                <CardContent className='bot'>
+                  <WindowSharp />
+                  <p></p>
+                </CardContent>
+              </CardActionArea>  
+            </Card>
+            <Card className='title-card'>
+              <CardActionArea>
+                <CardMedia
+                  className='title-img'
+                  component='img'
+                  height='140' 
+                  image='https://cdn.cloudflare.steamstatic.com/steam/apps/1693980/header.jpg?t=1675106922'
+                />
+                <CardContent className='bot'>
+                  <WindowSharp />
+                  <p></p>
+                </CardContent>
+              </CardActionArea>  
+            </Card>
+          </div>
+          <div className='second-title'>
+            <Card className='title-card'>
+              <CardActionArea>
+                <CardMedia
+                  className='title-img'
+                  component='img'
+                  height='140' 
+                  image='https://cdn.cloudflare.steamstatic.com/steam/apps/1693980/header.jpg?t=1675106922'
+                />
+                <CardContent className='bot'>
+                  <WindowSharp />
+                  <p></p>
+                </CardContent>
+              </CardActionArea>  
+            </Card>
+            <Card className='title-card'>
+              <CardActionArea>
+                <CardMedia
+                  className='title-img'
+                  component='img'
+                  height='140' 
+                  image='https://cdn.cloudflare.steamstatic.com/steam/apps/1693980/header.jpg?t=1675106922'
+                />
+                <CardContent className='bot'>
+                  <WindowSharp />
+                  <p></p>
+                </CardContent>
+              </CardActionArea>  
+            </Card>
+            <Card className='title-card'>
+              <CardActionArea>
+                <CardMedia
+                  className='title-img'
+                  component='img'
+                  height='140' 
+                  image='https://cdn.cloudflare.steamstatic.com/steam/apps/1693980/header.jpg?t=1675106922'
+                />
+                <CardContent className='bot'>
+                  <WindowSharp />
+                  <p></p>
+                </CardContent>
+              </CardActionArea>  
+            </Card>
+          </div>
+          <div className='third-title'>
+            <Card className='title-card'>
+              <CardActionArea>
+                <CardMedia
+                  className='title-img'
+                  component='img'
+                  height='140' 
+                  image='https://cdn.cloudflare.steamstatic.com/steam/apps/1693980/header.jpg?t=1675106922'
+                />
+                <CardContent className='bot'>
+                  <WindowSharp />
+                  <p></p>
+                </CardContent>
+              </CardActionArea>  
+            </Card>
+            <Card className='title-card'>
+              <CardActionArea>
+                <CardMedia
+                  className='title-img'
+                  component='img'
+                  height='140' 
+                  image='https://cdn.cloudflare.steamstatic.com/steam/apps/1693980/header.jpg?t=1675106922'
+                />
+                <CardContent className='bot'>
+                  <WindowSharp />
+                  <p></p>
+                </CardContent>
+              </CardActionArea>  
+            </Card>
+            <Card className='title-card'>
+              <CardActionArea>
+                <CardMedia
+                  className='title-img'
+                  component='img'
+                  height='140' 
+                  image='https://cdn.cloudflare.steamstatic.com/steam/apps/1693980/header.jpg?t=1675106922'
+                />
+                <CardContent className='bot'>
+                  <WindowSharp />
+                  <p></p>
+                </CardContent>
+              </CardActionArea>  
+            </Card>
+            <Card className='title-card'>
+              <CardActionArea>
+                <CardMedia
+                  className='title-img'
+                  component='img'
+                  height='140' 
+                  image='https://cdn.cloudflare.steamstatic.com/steam/apps/1693980/header.jpg?t=1675106922'
+                />
+                <CardContent className='bot'>
+                  <WindowSharp />
+                  <p></p>
+                </CardContent>
+              </CardActionArea>  
+            </Card>
+          </div>
+          <div className='second-title'>
+            <Card className='title-card'>
+              <CardActionArea>
+                <CardMedia
+                  className='title-img'
+                  component='img'
+                  height='140' 
+                  image='https://cdn.cloudflare.steamstatic.com/steam/apps/1693980/header.jpg?t=1675106922'
+                />
+                <CardContent className='bot'>
+                  <WindowSharp />
+                  <p></p>
+                </CardContent>
+              </CardActionArea>  
+            </Card>
+            <Card className='title-card'>
+              <CardActionArea>
+                <CardMedia
+                  className='title-img'
+                  component='img'
+                  height='140' 
+                  image='https://cdn.cloudflare.steamstatic.com/steam/apps/1693980/header.jpg?t=1675106922'
+                />
+                <CardContent className='bot'>
+                  <WindowSharp />
+                  <p></p>
+                </CardContent>
+              </CardActionArea>  
+            </Card>
+            <Card className='title-card'>
+              <CardActionArea>
+                <CardMedia
+                  className='title-img'
+                  component='img'
+                  height='140' 
+                  image='https://cdn.cloudflare.steamstatic.com/steam/apps/1693980/header.jpg?t=1675106922'
+                />
+                <CardContent className='bot'>
+                  <WindowSharp />
+                  <p></p>
+                </CardContent>
+              </CardActionArea>  
+            </Card>
+          </div>
+          <div className='first-title'>
+            <Card className='title-card'>
+              <CardActionArea>
+                <CardMedia
+                  className='title-img'
+                  component='img'
+                  height='140' 
+                  image='https://cdn.cloudflare.steamstatic.com/steam/apps/1693980/header.jpg?t=1675106922'
+                />
+                <CardContent className='bot'>
+                  <WindowSharp />
+                  <p></p>
+                </CardContent>
+              </CardActionArea>  
+            </Card>
+            <Card className='title-card'>
+              <CardActionArea>
+                <CardMedia
+                  className='title-img'
+                  component='img'
+                  height='140' 
+                  image='https://cdn.cloudflare.steamstatic.com/steam/apps/1693980/header.jpg?t=1675106922'
+                />
+                <CardContent className='bot'>
+                  <WindowSharp />
+                  <p></p>
+                </CardContent>
+              </CardActionArea>  
+            </Card>
+          </div>
+        </div>
+        <h2>COMING SOON</h2>
+        <div className='new-titles'>
+          <Card className='coming-soon'>
+            <CardActionArea>
+              <CardMedia 
+                className='soon-img'
+                component='img'
+                // height='133.97'
+                image='https://cdn.cloudflare.steamstatic.com/steam/apps/1326470/header.jpg?t=1675195445'
+              />
+              <CardContent className='bot'>
+                <WindowSharp />
+                <p>Coming Soon</p>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          <Card className='coming-soon'>
+            <CardActionArea>
+              <CardMedia 
+                className='soon-img'
+                component='img'
+                // height='133.97'
+                image='https://cdn.cloudflare.steamstatic.com/steam/apps/1326470/header.jpg?t=1675195445'
+              />
+              <CardContent className='bot'>
+                <WindowSharp />
+                <p>Coming Soon</p>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          <Card className='coming-soon'>
+            <CardActionArea>
+              <CardMedia 
+                className='soon-img'
+                component='img'
+                // height='133.97'
+                image='https://cdn.cloudflare.steamstatic.com/steam/apps/1326470/header.jpg?t=1675195445'
+              />
+              <CardContent className='bot'>
+                <WindowSharp />
+                <p>Coming Soon</p>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          
+        </div>
       </div>
     </div>
   )
