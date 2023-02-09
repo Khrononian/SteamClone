@@ -25,3 +25,19 @@ img {
     object-fit: contain;
     width: 160px;
 }
+
+.avatar-block {
+    cursor: auto !important;
+}
+.avatar-block h4 {
+    margin-left: 1rem;
+    color: silver;
+    font-size: 1.1rem;
+}
+.avatar-block h4:hover {
+    color: rgb(6 191 255);
+    cursor: pointer;
+}
+.avatar-block:hover {
+    background: none !important;
+}
