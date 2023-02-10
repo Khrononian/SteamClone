@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './index.css';
 import App from './App';
+import ContextData from './ContextData';
 import Login from './Routes/Login';
 import GamePage from './Routes/GamePage';
 import Category from './Routes/Category';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path='/' element={<App />}/>
-      <Route path='/login' element={<Login />}/>
-      <Route path='/app/:id' element={<GamePage />}/>
-      <Route path='/category/:name' element={<Category />}/>
-    </Routes>
-  </BrowserRouter>
+  <ContextData>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<App />}/>
+        <Route path='/login' element={<Login />}/>
+        <Route path='/app/:id' element={<GamePage />}/>
+        <Route path='/category/:name' element={<Category />}/>
+      </Routes>
+    </BrowserRouter>
+  </ContextData>
 );
 
 // If you want to start measuring performance in your app, pass a function
