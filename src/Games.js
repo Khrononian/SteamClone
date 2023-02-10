@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card } from '@mui/material'
 import { CardMedia } from '@mui/material'
 import { CardContent } from '@mui/material'
@@ -13,9 +13,40 @@ import './games.css'
 
 const Games = () => {
     const [mainData, setMainData] = useState([])
-    const [games, setGames] = useState([])
     const [favorites, setFavorites] = useState([])
+    const [currentColor, setCurrentColor] = useState()
+    const [tabCount, setTabCount] = useState([{
+        name: 'Fallout',
+        id: 0
+    }, {
+        name: 'RimWorld',
+        id: 1
+    }, {
+        name: 'Dark Souls',
+        id: 2
+    }])
+    const [tabTest, setTabTest] = useState([{
+        id: 0
+    }, {id: 0,}, {id: 0}, {id: 0}, {id: 0}])
 
+    // Four other fav games: Elden Ring, Dark Souls 3, Unturned, Detroit Become Human
+    console.log('Counts', tabCount)
+
+    // SET TABS FUNCTION WORKS
+    const setTabs = event => {
+        console.log('Test', event.target, event.target.dataset)
+        for (const tab of tabCount) {
+            if (Number(event.target.dataset.count) === tab.id) console.log('Tab Name', tab.name)
+        }
+    }
+    // USE THIS BELOW TO SET THE APP ID TO THE INDEX IN ARRAY
+    useEffect(() => {
+        setTabTest(prevTab => {
+            console.log(prevTab)
+            prevTab.map((tab, index) => tab.id = index)
+            console.log('New', prevTab)
+        })
+    }, [])
     return (
         <div className='main-games'>
             <h4>FEATURED & RECOMMENDED</h4>
@@ -71,8 +102,8 @@ const Games = () => {
                 </Link>
             </Card>
             <div className='tabs'>
-                <div></div>
-                <div></div>
+                <div onClick={setTabs} data-count='0'></div>
+                <div onClick={setTabs} data-count='1'></div>
                 <div></div>
                 <div></div>
                 <div></div>
