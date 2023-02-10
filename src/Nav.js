@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material'
 import { Drawer } from '@mui/material'
@@ -12,21 +12,25 @@ import { Divider } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import MenuIcon  from '@mui/icons-material/Menu';
+import { Avatar } from '@mui/material';
+import { red } from '@mui/material/colors'
+import { Context } from './ContextData';
 import './nav.css'
 
-const Nav = () => {
+const Nav = ({ status }) => {
     const [state, setState] = useState({
         left: false
     })
     const [openFirstNav, setOpenFirstNav] = useState(true)
     const [openSecondNav, setOpenSecondNav] = useState(true)
+    const loggedData = useContext(Context)
 
     const handleClick = (event) => {
         if (event.nativeEvent.target.outerText === 'Store') setOpenFirstNav(!openFirstNav)
         else setOpenSecondNav(!openSecondNav)
         console.log(event, event.target, event.nativeEvent.path)
     }
-
+    console.log('Nav', status, loggedData)
     const toggleDrawer = (anchor, open) => event => {
         // if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) return
         
@@ -39,9 +43,17 @@ const Nav = () => {
             role='presentation'
         >
             <List disablePadding>
-                <ListItemButton>
-                    <Link className='store-link' to='/login'><ListItemText sx={{ color: 'grey' }} primary='Login' /></Link>
+                {loggedData.log === false ? <ListItemButton>
+                    <Link 
+                    className='store-link' 
+                    to='/login' 
+                    state={{ data: 'logData' }}><ListItemText sx={{ color: 'grey' }} primary='Login' /></Link>
                 </ListItemButton>
+                :
+                <ListItemButton className='avatar-block'>
+                    <Avatar sx={{ bgcolor: red[500], padding: '.15em' }} variant='square'>M</Avatar>
+                    <h4>UserName</h4>
+                </ListItemButton>}
                 <Divider />
                 <ListItemButton onClick={handleClick}>
                     <ListItemText sx={{ color: 'grey', pointerEvents: 'none' }} primary='Store' />
@@ -95,6 +107,10 @@ const Nav = () => {
                 <ListItemButton>
                     <ListItemText sx={{ color: 'grey' }} primary='Support' />
                 </ListItemButton>
+                <Divider />
+                {loggedData.log === true ? <ListItemButton>
+                    <ListItemText sx={{ color: 'grey' }} primary='Logout' />
+                </ListItemButton> : null}
                 <Divider />
             </List>
         </Box>
