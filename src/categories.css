@@ -24,11 +24,14 @@
     object-fit: cover;
 }
 
+/* .name {
+    background: linear-gradient(to top, red, transparent);
+} */
 .name, .name p {
     position: absolute;
     top: 0;
     bottom: 0;
-    background: linear-gradient(to top, red, transparent);
+    /* background: linear-gradient(to top, red, transparent); */
     width: 100%;
     /* backdrop-filter: opacity(9); */
 }
@@ -47,8 +50,8 @@
     justify-content: center;
 }
 
-.category-tabs div:first-child {
-    background: whitesmoke;
+.active-tab {
+    background: rgb(255, 255, 255) !important;
 }
 
 .category-tabs div {
@@ -63,7 +66,7 @@
 }
 
 .category-tabs div:hover {
-    background: whitesmoke;
+    background: rgba(255, 255, 255, 0.87);
 }
 
 .browse-grid {

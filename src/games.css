@@ -102,8 +102,8 @@
     justify-content: center;
 }
 
-.tabs div:first-child {
-    background: whitesmoke;
+.active-tab {
+    background: rgb(255, 255, 255) !important;
 }
 
 .tabs div {
@@ -118,7 +118,7 @@
 }
 
 .tabs div:hover {
-    background: whitesmoke;
+    background: rgba(255, 255, 255, 0.87);
 }
 
 .card-data {
