@@ -15,6 +15,7 @@ const Games = () => {
     const [mainData, setMainData] = useState([])
     const [favorites, setFavorites] = useState([])
     const [currentColor, setCurrentColor] = useState()
+    const [tabName, setTabName] = useState('')
     const [tabCount, setTabCount] = useState([{
         name: 'Fallout',
         id: 0
@@ -34,19 +35,31 @@ const Games = () => {
 
     // SET TABS FUNCTION WORKS
     const setTabs = event => {
+        const childTabs = event.target.parentElement.children
         console.log('Test', event.target, event.target.dataset)
-        for (const tab of tabCount) {
-            if (Number(event.target.dataset.count) === tab.id) console.log('Tab Name', tab.name)
+        for (const child of childTabs) {
+            child.classList.remove('active-tab')
         }
+        for (const tab of tabCount) {
+            if (Number(event.target.dataset.count) === tab.id) {
+                console.log('Tab Name', tab.name)
+                setTabName(tab.name)
+            }
+        }
+        event.target.classList.add('active-tab')
+    }
+
+    const setSingleGame = () => {
+        // USE THIS TO SET THE GAME CLICKED ON(LINK) TO THE SINGLE GAME STATE
     }
     // USE THIS BELOW TO SET THE APP ID TO THE INDEX IN ARRAY
-    useEffect(() => {
-        setTabTest(prevTab => {
-            console.log(prevTab)
-            prevTab.map((tab, index) => tab.id = index)
-            console.log('New', prevTab)
-        })
-    }, [])
+    // useEffect(() => {
+    //     setTabTest(prevTab => {
+    //         console.log(prevTab)
+    //         prevTab.map((tab, index) => tab.id = index)
+    //         console.log('New', prevTab)
+    //     })
+    // }, [])
     return (
         <div className='main-games'>
             <h4>FEATURED & RECOMMENDED</h4>
@@ -85,10 +98,10 @@ const Games = () => {
                             <CardContent className='card-data'>
                                 <div className='game-info'>
                                     <Typography variant='h5'>
-                                        Game Title Here
+                                        Now Available
                                     </Typography>
                                     <Typography variant='h6' fontSize='medium'>
-                                        Tags here
+                                        Top Seller
                                     </Typography>
                                     <p>Price Here</p>
                                 </div>    
@@ -102,18 +115,18 @@ const Games = () => {
                 </Link>
             </Card>
             <div className='tabs'>
-                <div onClick={setTabs} data-count='0'></div>
+                <div onClick={setTabs} className='active-tab' data-count='0'></div>
                 <div onClick={setTabs} data-count='1'></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <div onClick={setTabs} data-count='2'></div>
+                <div onClick={setTabs} data-count='3'></div>
+                <div onClick={setTabs} data-count='4'></div>
+                <div onClick={setTabs} data-count='5'></div>
+                <div onClick={setTabs} data-count='6'></div>
+                <div onClick={setTabs} data-count='7'></div>
+                <div onClick={setTabs} data-count='8'></div>
+                <div onClick={setTabs} data-count='9'></div>
+                <div onClick={setTabs} data-count='10'></div>
+                <div onClick={setTabs} data-count='11'></div>
             </div>
             <div className='steam'>
                 <img className='deck' src='https://cdn.akamai.steamstatic.com/steam/clusters/sale_autumn2019_assets/54b5034d397baccb93181cc6/deck_banner_desktop_english.gif?t=1672461895' alt='Deck'/>
@@ -187,8 +200,8 @@ const Games = () => {
                     </Card>
                 </div>
                 <div className='tabs'>
-                    <div></div>
-                    <div></div>
+                    <div onClick={setTabs} className='active-tab'></div>
+                    <div onClick={setTabs}></div>
                 </div>
             </div>
         </div>
