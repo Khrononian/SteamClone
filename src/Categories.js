@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, CardActionArea } from '@mui/material'
 import { Card } from '@mui/material'
@@ -7,10 +7,52 @@ import { CardMedia } from '@mui/material'
 import './categories.css'
 
 const Categories = () => {
+    useEffect(() => {
+        
+        getRandomColor()
+    }, [])
+
+    const [blockColors, setBlockColors] = useState([])
+
     const getRandomColor = () => {
         const colors = ['blue', 'red', 'yellow', 'purple', 'green', 'cyan'];
+        const shuffled = colors.map(color => ({ color, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ color }) => color).splice(2, 4)
 
-        return colors[Math.floor(Math.random() * colors.length)]
+        setBlockColors(prev => prev.concat(shuffled))
+        
+        // return colors[Math.floor(Math.random() * colors.length)]
+    }
+    console.log(blockColors)
+    const [tabCount, setTabCount] = useState([{
+        name: 'Fallout',
+        id: 0
+    }, {
+        name: 'RimWorld',
+        id: 1
+    }, {
+        name: 'Dark Souls',
+        id: 2
+    }])
+
+    const BackgroundStyle = {
+        background: `linear-gradient(to top, ${blockColors[Math.floor(Math.random() * blockColors.length)]}, transparent)`
+    }
+
+    const setTabs = event => {
+        const childTabs = event.target.parentElement.children
+        console.log('Test', event.target, event.target.dataset)
+        for (const child of childTabs) {
+            child.classList.remove('active-tab')
+        }
+        for (const tab of tabCount) {
+            if (Number(event.target.dataset.count) === tab.id) {
+                console.log('Tab Name', tab.name)
+                // setTabName(tab.name)
+            }
+        }
+        event.target.classList.add('active-tab')
     }
 
     return (
@@ -19,24 +61,24 @@ const Categories = () => {
             <div className='grid'>
                 <Link>
                     <img alt='City & Settlement' src='https://store.steampowered.com/categories/homepageimage/category/horror?cc=us&l=english' />
-                    <div className='name'>
+                    <div style={BackgroundStyle} className='name'>
                         <p>HORROR</p>
                     </div>
                 </Link>
                 <Link>
                     <img alt='City & Settlement' src='https://store.steampowered.com/categories/homepageimage/category/action?cc=us&l=english' />
-                    <div className='name'>
+                    <div style={BackgroundStyle} className='name'>
                         <p>ACTION</p>
                     </div>
                 </Link>
                 <Link>
                     <img alt='City & Settlement' src='https://store.steampowered.com/categories/homepageimage/category/rogue_like_rogue_lite?cc=us&l=english' />
-                    <div className='name'>
+                    <div style={BackgroundStyle} className='name'>
                         <p>FREE TO PLAY</p> 
                     </div>
                 </Link><Link>
                     <img alt='City & Settlement' src='https://store.steampowered.com/categories/homepageimage/greatondeck?cc=us&l=english' />
-                    <div className='name'>
+                    <div style={BackgroundStyle} className='name'>
                         <p>ADVENTURE</p>
                     </div>
                 </Link>
@@ -58,11 +100,11 @@ const Categories = () => {
                 </Link> */}
             </div>
             <div className='category-tabs'>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <div onClick={setTabs} className='active-tab'></div>
+                <div onClick={setTabs}></div>
+                <div onClick={setTabs}></div>
+                <div onClick={setTabs}></div>
+                <div onClick={setTabs}></div>
             </div>
             <div className='browse'>
                 <h4>BROWSE STEAM</h4>
