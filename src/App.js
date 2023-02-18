@@ -9,14 +9,6 @@ import './App.css';
 const App = () => {
   const newContext = useContext(Context)
 
-  // useEffect(() => {
-  //   fetch()
-  //   .then(response => response.json())
-  //   .then(data => {
-
-  //   })
-  // }, [])
-  
   console.log('Cont', newContext)
   return (
       <main>
