@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { Context } from './ContextData'
 import { Card } from '@mui/material'
 import { CardMedia } from '@mui/material'
 import { CardContent } from '@mui/material'
@@ -12,7 +13,7 @@ import './games.css'
 
 
 const Games = () => {
-    const [mainData, setMainData] = useState([])
+    const [featuredGames, setFeaturedGames] = useState([])
     const [favorites, setFavorites] = useState([])
     const [currentColor, setCurrentColor] = useState()
     const [tabName, setTabName] = useState('')
@@ -30,8 +31,28 @@ const Games = () => {
         id: 0
     }, {id: 0,}, {id: 0}, {id: 0}, {id: 0}])
 
+    const topGames = useContext(Context)
+
+    // useEffect(() => {
+    //     console.log('Page', topGames, topGames.games[Math.floor(Math.random() * topGames.games.length)])
+    //     // setFeaturedGames(topGames)
+    //     // for (let i = 0; i < 12; i++) {
+    //     //     setFeaturedGames(prev => prev.concat(topGames.games[Math.floor(Math.random() * topGames.games.length)]))
+    //     // }
+    //     setFeaturedGames(prev => prev.concat(topGames.games[Math.floor(Math.random() * topGames.games.length)]))
+    //     console.log('Yes', featuredGames)
+    // }, [])
+    useEffect(() => {
+        console.log('Gamer', topGames )
+        
+        // if (!topGames.games) return
+        // else setFavorites(prev => prev.concat(
+        //     topGames.games.filter(name => name === topGames.games.find(item => item['Rimworld']))
+        // ))
+
+    }, [topGames])
     // Four other fav games: Elden Ring, Dark Souls 3, Unturned, Detroit Become Human
-    console.log('Counts', tabCount)
+    console.log('Counts', tabCount, topGames, favorites)
 
     // SET TABS FUNCTION WORKS
     const setTabs = event => {
@@ -51,6 +72,7 @@ const Games = () => {
 
     const setSingleGame = () => {
         // USE THIS TO SET THE GAME CLICKED ON(LINK) TO THE SINGLE GAME STATE
+
     }
     // USE THIS BELOW TO SET THE APP ID TO THE INDEX IN ARRAY
     // useEffect(() => {
@@ -61,6 +83,8 @@ const Games = () => {
     //     })
     // }, [])
     return (
+        topGames.featuredGames[0] !== undefined ?
+
         <div className='main-games'>
             <h4>FEATURED & RECOMMENDED</h4>
             <Card className='card'>
@@ -69,31 +93,21 @@ const Games = () => {
                         <CardMedia 
                             component='img'
                             height='353'
-                            image='https://steamcdn-a.akamaihd.net/steam/apps/730/header.jpg?t=1592263625'
+                            image={topGames.featuredGames[0].header_image}
                         />
                         <div className='right-card'>
-                            <p>Game</p>
+                            <p>{topGames.featuredGames[0].name}</p>
                             <div className='card-grid'>
-                                <CardMedia
-                                    component='img'
+                                {topGames.featuredGames[0].screenshots.filter(item => item.id < 4)
+                                .map((image, key) => (
+                                    <CardMedia
+                                        component='img'
                                     // height='50'
-                                    image='https://cdn.akamai.steamstatic.com/steam/spotlights/dc7c7e8e9f1f1dc7085cf059/spotlight_image_english.jpg?t=1671755026'
-                                />
-                                <CardMedia
-                                    component='img'
-                                    // height='50'
-                                    image='https://cdn.akamai.steamstatic.com/steam/spotlights/dc7c7e8e9f1f1dc7085cf059/spotlight_image_english.jpg?t=1671755026'
-                                />
-                                <CardMedia
-                                    component='img'
-                                    // height='50'
-                                    image='https://cdn.akamai.steamstatic.com/steam/spotlights/dc7c7e8e9f1f1dc7085cf059/spotlight_image_english.jpg?t=1671755026'
-                                />
-                                <CardMedia
-                                    component='img'
-                                    // height='50'
-                                    image='https://cdn.akamai.steamstatic.com/steam/spotlights/dc7c7e8e9f1f1dc7085cf059/spotlight_image_english.jpg?t=1671755026'
-                                />
+                                        key={key}
+                                        image={image.path_full}
+                                    />
+                                ))
+                                }
                             </div>
                             <CardContent className='card-data'>
                                 <div className='game-info'>
@@ -103,7 +117,8 @@ const Games = () => {
                                     <Typography variant='h6' fontSize='medium'>
                                         Top Seller
                                     </Typography>
-                                    <p>Price Here</p>
+                                    <p>{topGames.featuredGames[0].is_free === true ? 'Free to Play'
+                                    : topGames.featuredGames[0].price_overview.final_formatted}</p>
                                 </div>    
                                 <div className='icons'>
                                     <WindowSharp />
@@ -145,12 +160,11 @@ const Games = () => {
                         </CardActionArea>
                         <CardContent>
                             <Typography variant='h5'>
-                                RIMWORLD
+                                7 Days to Die
                             </Typography>
                             <p>Price</p>
                             
-                            {/* <FontAwesomeIcon icon="fa-brands fa-windows" /> */}
-                            <p>SHORT DESC HERE</p>
+                            {/* APP ID 251570 */}
                         </CardContent>
                     </Card>
                     <Card className='second'>
@@ -166,6 +180,7 @@ const Games = () => {
                                 FALLOUT 4
                             </Typography>
                             <p>Price</p>
+                            {/* APP ID 377160 */}
                         </CardContent>
                     </Card>
                     <Card className='third'>
@@ -177,8 +192,9 @@ const Games = () => {
                         </CardActionArea>
                         <CardContent className='side-card'>
                             <div className='bottom-data'>
-                                <p>FALLOUT NEW VEGAS</p>
+                                <p>Unturned</p>
                                 <p>Price</p>
+                                {/* APP ID 304930 */}
                             </div>
                             
                         </CardContent>
@@ -195,16 +211,18 @@ const Games = () => {
                             <div className='bottom-data'>
                                 <p>SALT & SANCTUARY</p>
                                 <p>Price</p>
+                                {/* APP ID 283640 */}
                             </div>
                         </CardContent>
                     </Card>
                 </div>
-                <div className='tabs'>
+                {/* <div className='tabs'>
                     <div onClick={setTabs} className='active-tab'></div>
                     <div onClick={setTabs}></div>
-                </div>
+                </div> */}
             </div>
         </div>
+        : null
     )
 }
 
