@@ -1,7 +1,7 @@
 .category {
     /* width: 95%; */
     width: 940px;
-    margin: 0 auto;
+    margin: 3rem auto;
 }
 
 .grid {
@@ -69,6 +69,10 @@
     background: rgba(255, 255, 255, 0.87);
 }
 
+.browse {
+    margin: 3rem 0;
+}
+
 .browse-grid {
     display: grid;
     grid-template-columns: repeat(4, 228px);
@@ -86,6 +90,10 @@
 
 .browse-grid button:hover {
     background: rgb(6 191 255);
+}
+
+.price {
+    margin: 3rem 0;
 }
 
 .price-group {
