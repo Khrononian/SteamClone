@@ -98,6 +98,7 @@
 
 .price-group {
     display: grid;
+    gap: 8px;
     grid-template-columns: repeat(4, 229px);
 }
 
@@ -126,7 +127,7 @@
     'side one two three'
     'side four five six';
     /* grid-template-columns: 378px repeat(3, 238px); */
-    grid-template-columns: 358px repeat(3, 181px);
+    grid-template-columns: 385px repeat(3, 173px);
     /* grid-template-rows: 198px 198px; */
     gap: 12px;
 }

@@ -6,7 +6,20 @@
 
 .route-links {
     text-decoration: unset;
+    height: inherit
 }
+
+.route-links > * {
+    pointer-events: none;
+}
+
+.card {
+    cursor: pointer;
+}
+
+/* .card a {
+    pointer-events: none;
+} */
 
 .card button {
     display: flex;
@@ -47,6 +60,17 @@
 .fourth {
     grid-area: fourth;
 }
+.card-favs {
+    cursor: pointer;
+}
+.card-favs a {
+    text-decoration: unset;
+    color: unset;
+}
+.card-favs a > * {
+    pointer-events: none;
+    width: 100%;
+}
 
 .card-imgs {
     /* height: 250px; */
@@ -68,7 +92,9 @@
 }
 
 .bottom-data p {
-    margin: 0 !important
+    margin: 0 !important;
+    background: rgba(20, 31, 44, .2);
+    padding: .1em .4em;
 }
 
 .right-card {
@@ -80,7 +106,7 @@
 
 .right-card p {
     color: white;
-    margin-left: 1em;
+    margin: .7em;
     font-size: 1.4rem;
 }
 

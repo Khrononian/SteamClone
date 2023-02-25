@@ -46,7 +46,7 @@ h2 {
     margin-top: .15rem;
 }
 
-.top {
+.top-desc {
     font-size: .85rem;
     margin: .2em 0;
     color: silver;
@@ -89,7 +89,8 @@ h2 {
 
 .tag-grid {
     display: grid;
-    grid-template-columns: repeat(5, auto);
+    /* grid-template-columns: repeat(5, minmax(62px, 100px)); */
+    grid-template-columns: repeat(6, min-content);
     color: rgb(102 192 244);
     gap: 2px;
 }
@@ -97,9 +98,10 @@ h2 {
     background: rgb(103 193 245 / 20%);
     border-radius: 2px;
     text-align: center;
-    padding: .1em 0;
+    padding: .1em .5em;
     cursor: pointer;
     margin-top: 0;
+    width: fit-content
 }
 
 .tag-grid p:hover,
@@ -185,7 +187,7 @@ h2 {
 }
 .desc-info p {
     color: rgb(85 103 114);
-    margin: .5rem 0;
+    margin: .35rem 0;
     font-size: .7rem;
 }
 .desc-info span {
@@ -202,6 +204,7 @@ h2 {
 
 .about {
     grid-area: about;
+    margin-bottom: 4rem;
 }
 .about p:first-child {
     border-bottom: 1px solid silver;
