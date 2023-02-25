@@ -52,7 +52,7 @@ const Games = () => {
 
     }, [topGames])
     // Four other fav games: Elden Ring, Dark Souls 3, Unturned, Detroit Become Human
-    console.log('Counts', tabCount, topGames, favorites)
+    console.log('Counts', tabCount, topGames, topGames.games.find((item, index, array) => Number(item.price_overview.final_formatted.substring(1)) < 10 ), topGames.games.filter((item, index, array) => item.is_free === false ).filter(game => game.price_overview !== undefined ).filter(single => single.price_overview.final_formatted  ).filter(single => Number(single.price_overview.final_formatted.substring(1)) < 10 )[Math.floor(Math.random() * 50)] )
 
     // SET TABS FUNCTION WORKS
     const setTabs = event => {
@@ -70,10 +70,14 @@ const Games = () => {
         event.target.classList.add('active-tab')
     }
 
-    const setSingleGame = () => {
-        // USE THIS TO SET THE GAME CLICKED ON(LINK) TO THE SINGLE GAME STATE
-
-    }
+    // const setGamePage =  (event) => {
+    //     // USE THIS TO SET THE GAME CLICKED ON(LINK) TO THE SINGLE GAME STATE
+    //     console.log('Event', event, event.target.dataset.appid)
+    //     if (topGames.singleGame.length > 1) topGames.setSingleGame(current => current.filter(game => game.appID === event.target.dataset.appid))
+    //     fetch(`https://api.steamapis.com/market/app/${ event.target.dataset.appid }?api_key=USh9nTgdKcpomNdTTl-Iok0OjDA`)
+    //     .then(response => response.json())
+    //     .then(data => topGames.setSingleGame(prev => prev.concat(data)))
+    // }
     // USE THIS BELOW TO SET THE APP ID TO THE INDEX IN ARRAY
     // useEffect(() => {
     //     setTabTest(prevTab => {
@@ -88,7 +92,7 @@ const Games = () => {
         <div className='main-games'>
             <h4>FEATURED & RECOMMENDED</h4>
             <Card className='card'>
-                <Link className='route-links' to={`/app/rferer`}>
+                <Link className='route-links' onClick={topGames.setGamePage} to={`/app/rferer`} data-appid={topGames.featuredGames[0].appID} >
                     <CardActionArea>
                         <CardMedia 
                             component='img'
@@ -150,70 +154,77 @@ const Games = () => {
             <div>
                 <h4>FAVORITE GAMES</h4>
                 <div className='favorites'>
-                    <Card className='first'>
-                        <CardActionArea>
-                            <CardMedia
-                                className='card-imgs'
-                                component='img'
-                                image='https://cdn.akamai.steamstatic.com/steam/apps/294100/header.jpg?t=1666905455'
-                            />
-                        </CardActionArea>
-                        <CardContent>
-                            <Typography variant='h5'>
-                                7 Days to Die
-                            </Typography>
-                            <p>Price</p>
-                            
-                            {/* APP ID 251570 */}
-                        </CardContent>
+                    <Card className='first card-favs'>
+                        <Link to={`/app/rferer`} onClick={topGames.setGamePage} data-appid='251570'> 
+                            <CardActionArea>
+                                <CardMedia
+                                    className='card-imgs'
+                                    component='img'
+                                    image='https://cdn.akamai.steamstatic.com/steam/apps/251570/header.jpg?t=1650477344'
+                                />
+                            </CardActionArea>
+                            <CardContent>
+                                <Typography variant='h5'>
+                                    7 Days to Die
+                                </Typography>
+                                <p>$24.99</p>
+                                
+                                {/* APP ID 251570 */}
+                            </CardContent>
+                        </Link>
                     </Card>
-                    <Card className='second'>
-                        <CardActionArea>
-                            <CardMedia
-                                className='card-imgs'
-                                component='img'
-                                image='https://cdn.akamai.steamstatic.com/steam/apps/377160/header.jpg?t=1650909928'
-                            />
-                        </CardActionArea>
-                        <CardContent>
-                            <Typography variant='h5'>
-                                FALLOUT 4
-                            </Typography>
-                            <p>Price</p>
-                            {/* APP ID 377160 */}
-                        </CardContent>
+                    <Card className='second card-favs'>
+                        <Link to={`/app/rferer`} onClick={topGames.setGamePage} data-appid='377160'> 
+                            <CardActionArea>
+                                <CardMedia
+                                    className='card-imgs'
+                                    component='img'
+                                    image='https://cdn.akamai.steamstatic.com/steam/apps/377160/header.jpg?t=1650909928'
+                                />
+                            </CardActionArea>
+                            <CardContent>
+                                <Typography variant='h5'>
+                                    Fallout 4
+                                </Typography>
+                                <p>$29.99</p>
+                                {/* APP ID 377160 */}
+                            </CardContent>
+                        </Link>
                     </Card>
-                    <Card className='third'>
-                        <CardActionArea>
-                            <CardMedia
-                                component='img'
-                                image='https://cdn.akamai.steamstatic.com/steam/apps/22380/header.jpg?t=1665072891'
-                            />
-                        </CardActionArea>
-                        <CardContent className='side-card'>
-                            <div className='bottom-data'>
-                                <p>Unturned</p>
-                                <p>Price</p>
-                                {/* APP ID 304930 */}
-                            </div>
-                            
-                        </CardContent>
-                        
+                    <Card className='third card-favs'>
+                        <Link to={`/app/rferer`} onClick={topGames.setGamePage} data-appid='304930'> 
+                            <CardActionArea>
+                                <CardMedia
+                                    component='img'
+                                    image='https://cdn.akamai.steamstatic.com/steam/apps/304930/header.jpg?t=1673402489'
+                                />
+                            </CardActionArea>
+                            <CardContent className='side-card'>
+                                <div className='bottom-data'>
+                                    <p>Unturned</p>
+                                    <p>Free to Play</p>
+                                    {/* APP ID 304930 */}
+                                </div>
+                                
+                            </CardContent>
+                        </Link>
                     </Card>
-                    <Card className='fourth'>
-                        <CardActionArea>
-                            <CardMedia
-                                component='img'
-                                image='https://cdn.akamai.steamstatic.com/steam/apps/283640/header.jpg?t=1641520718'
-                            />
-                        </CardActionArea>
-                        <CardContent className='side-card'>
-                            <div className='bottom-data'>
-                                <p>SALT & SANCTUARY</p>
-                                <p>Price</p>
-                                {/* APP ID 283640 */}
-                            </div>
-                        </CardContent>
+                    <Card className='fourth card-favs'>
+                        <Link to={`/app/rferer`} onClick={topGames.setGamePage} data-appid='283640'> 
+                            <CardActionArea>
+                                <CardMedia
+                                    component='img'
+                                    image='https://cdn.akamai.steamstatic.com/steam/apps/283640/header.jpg?t=1641520718'
+                                />
+                            </CardActionArea>
+                            <CardContent className='side-card'>
+                                <div className='bottom-data'>
+                                    <p>SALT & SANCTUARY</p>
+                                    <p>$17.99</p>
+                                    {/* APP ID 283640 */}
+                                </div>
+                            </CardContent>
+                        </Link>
                     </Card>
                 </div>
                 {/* <div className='tabs'>
