@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, CardActionArea } from '@mui/material'
 import { Card } from '@mui/material'
 import { CardContent } from '@mui/material'
 import { CardMedia } from '@mui/material'
+import { Context } from './ContextData'
 import './categories.css'
 
 const Categories = () => {
@@ -13,6 +14,7 @@ const Categories = () => {
     }, [])
 
     const [blockColors, setBlockColors] = useState([])
+    const categoryGames = useContext(Context)
 
     const getRandomColor = () => {
         const colors = ['blue', 'red', 'yellow', 'purple', 'green', 'cyan'];
@@ -118,24 +120,46 @@ const Categories = () => {
             <div className='price'>
                 <h4>UNDER $10</h4>
                 <div className='price-group'>
-                    <Card>
-                        <CardActionArea>
-                            <CardMedia
-                                className='price-imgs'
-                                component='img'
-                                image='https://cdn.akamai.steamstatic.com/steam/apps/397540/header_292x136.jpg?t=1657214217'
-                            />
-                            <CardContent className='price-tag'>
-                                <p>Price</p>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
+                    {categoryGames.belowGames.map((game, index) => (
+                        <Card key={index}>
+                            <Link className='route-links' onClick={categoryGames.setGamePage} to={`/app/rferer`} data-appid={categoryGames.belowGames[index].appID}>
+                                <CardActionArea>
+                                    <CardMedia
+                                        className='price-imgs'
+                                        component='img'
+                                        image={game.header_image}
+                                    />
+                                    <CardContent className='price-tag'>
+                                        <p>{game.price_overview.final_formatted}</p>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Link>    
+                        </Card>
+                    ))}
+                    
                 </div>
             </div>
             <div className='new'>
-                <h4>NEW GAMES</h4>
+                <h4>Updates and Offers</h4>
                 <div className='new-group'>
-                    <Card className='side'>
+                    {categoryGames.updatedGames.map((game, index) => (
+                        <Card key={index} className={index === 0 ? `side` : index }>
+                            <Link className='route-links' onClick={categoryGames.setGamePage} to={`/app/rferer`} data-appid={categoryGames.updatedGames[index].appID}>
+                                <CardActionArea>
+                                    <CardMedia
+                                        className='new-imgs'
+                                        height={index === 0 ? `401px` : `182px`}
+                                        component='img'
+                                        image={game.header_image}
+                                    />
+                                    <CardContent className='new-tag'>
+                                        <p>{game.price_overview.final_formatted}</p>
+                                    </CardContent>
+                                </CardActionArea>
+                            </Link>    
+                        </Card>
+                    ))}
+                    {/* <Card className='side'>
                         <CardActionArea>
                             <CardMedia
                                 className='new-imgs'
@@ -225,7 +249,7 @@ const Categories = () => {
                                 <p>Price</p>
                             </CardContent>
                         </CardActionArea>
-                    </Card>
+                    </Card> */}
                 </div>
             </div>
         </div>
