@@ -11,55 +11,75 @@ import { ThumbDownAltSharp } from '@mui/icons-material'
 import './gamepage.css'
 
 const GamePage = () => {
-    useEffect(() => {
-        console.log('Game', singleGameData)
-    })
-
     const singleGameData = useContext(Context)
 
+    useEffect(() => {
+        console.log('Single Game', singleGameData)
+
+        singleGameData.setSingleGame(current => current.filter(game => game.name === ''))
+    }, [])
+
+    
+    // const gameInfo = singleGameData.singleGameData.singleGame
+
     return (
+        singleGameData.singleGame[0] !== undefined ?
+        
         <div className='section'>
             <Nav />
             <SiteNav />
             <div className='main-game'>
                 <div className='first-div'>
-                    <h2>Rain World</h2>
+                    <h2>{singleGameData.singleGame[0].name}</h2>
                     <Button>Community Hub</Button>
                 </div>
                 <div className='main-section'>
                     <div>
                         <img className='main-img' src='https://cdn.cloudflare.steamstatic.com/steam/apps/312520/ss_cbd4e647d6b3bb3b311cb68fdf0cd8835d5919d7.600x338.jpg?t=1674137018' alt='Game Name' />
                         <div className='img-grid'>
-                            <img src='https://cdn.cloudflare.steamstatic.com/steam/apps/312520/ss_ac9c5296916330c54c69302963d151ad261d6c14.116x65.jpg?t=1674137018' alt='Rain' />
-                            <img src='https://cdn.cloudflare.steamstatic.com/steam/apps/312520/ss_628274c84b196e270733f540139062f2787c4423.116x65.jpg?t=1674137018' alt='Rain' />
-                            <img src='https://cdn.cloudflare.steamstatic.com/steam/apps/312520/ss_cbd4e647d6b3bb3b311cb68fdf0cd8835d5919d7.116x65.jpg?t=1674137018' alt='Rain' />
-                            <img src='https://cdn.cloudflare.steamstatic.com/steam/apps/312520/ss_732dcfeade41f17e5404bc528bd9f44b53a51d5f.116x65.jpg?t=1674137018' alt='Rain' />
-                            <img src='https://cdn.cloudflare.steamstatic.com/steam/apps/312520/ss_467f33ca196cdc545d5ae7aeb0c5d55c1aa8e134.116x65.jpg?t=1674137018' alt='Rain' />
+                            {singleGameData.singleGame[0].screenshots.filter(item => item.id < 5)
+                            .map(image => (
+                                <img src={image.path_full} alt='Name of game' />
+                            ))}
+                            {/* <img src={singleGameData.singleGame[0]} alt='Rain' />
+                            <img src={singleGameData.singleGame[0]} alt='Rain' />
+                            <img src={singleGameData.singleGame[0]} alt='Rain' />
+                            <img src={singleGameData.singleGame[0]} alt='Rain' />
+                            <img src={singleGameData.singleGame[0]} alt='Rain' /> */}
                         </div>
                     </div>
                     <div>
-                        <img className='side-img' src='https://cdn.cloudflare.steamstatic.com/steam/apps/312520/header.jpg?t=1674137018' alt='Main pic' />
-                        <p className='top'>You are a nomadic slugcat, both predator and prey in a broken ecosystem. Grab your spear and brave the industrial wastes, hunting enough food to survive, but be wary— other, bigger creatures have the same plan... and slugcats look delicious.</p>
+                        <img className='side-img' src={singleGameData.singleGame[0].header_image} alt='Main pic' />
+                        <p className='top-desc'>{singleGameData.singleGame[0].short_description}</p>
                         <div className='reviews bottom'>
                             <p>RECENT REVIEWS: <span>VERY POSITIVE</span></p>
                             <p>ALL REVIEWS: <span>VERY POSITIVE</span></p>
                         </div>
                         <div className='date bottom'>
-                            <p>RELEASE DATE: <span>Mar 28, 2017</span></p>
+                            <p>RELEASE DATE: <span>{singleGameData.singleGame[0].release_date.date}</span></p>
                         </div>
                         <div className='dev-pub bottom'>
-                            <p>DEVELOPER: <span>Videocult</span></p>
-                            <p>PUBLISHER: <span>Akupara Games</span></p>
+                            <p>DEVELOPER: <span>{singleGameData.singleGame[0].developers[0]}</span></p>
+                            {/* {singleGameData.singleGame[0].publishers.map((name, index) => (
+                                <p>PUBLISHER: <span>{name}</span></p>
+                            ))} */}
+                            <p>PUBLISHER: <span>{singleGameData.singleGame[0].publishers.length > 1 ? `${singleGameData.singleGame[0].publishers[0]}, ${singleGameData.singleGame[0].publishers[1]}` : singleGameData.singleGame[0].publishers[0]}</span></p>
                         </div>
                         <div className='tags bottom'>
                             <p>Popular user-defined tags for this proudct:</p>
                         </div>
                         <div className='tag-grid'>
-                            <p>Atmospheric</p>
+                            {singleGameData.singleGame[0].genres.filter((_, index) => index !== 6 )
+                            .map(genre => (
+                                <p>{genre.description}</p>
+                            ))}
+                            
+                            
+                            {/* <p>Atmospheric</p>
                             <p>Difficult</p>
                             <p>Survival</p>
                             <p>Platformer</p>
-                            <p>2D</p>
+                            <p>2D</p> */}
                         </div>
                     </div>
 
@@ -68,30 +88,33 @@ const GamePage = () => {
             <div className='bottom-grid'>
                 <div className='purchase'>
                     <div>
-                        <p>Buy Rain World</p>
+                        <p>Buy {singleGameData.singleGame[0].name}</p>
                         <WindowSharp />
                     </div>
                     <div>
-                        <p>$19.99</p>
+                        <p>{singleGameData.singleGame[0].price_overview.final_formatted}</p>
                         <Button>Add to Cart</Button>
                     </div>
                 </div>
                 <div className='categories'>
-                    <Button>Single-player</Button>
+                    {singleGameData.singleGame[0].categories.map((category, key) => (
+                        <Button key={key}>{category.description}</Button>
+                    ))}
+                    {/* <Button>Single-player</Button>
                     <Button>Steam Achievements</Button>
                     <Button>Full controller support</Button>
                     <Button>Steam Trading Cards</Button>
-                    <Button>Steam Workshop</Button>
+                    <Button>Steam Workshop</Button> */}
                 </div>
 
                 <div className='desc'>
                     <div className='desc-info'>
-                        <p>TITLE: <span>Rain World</span></p>
-                        <p>GENRE: <span>Action, Adventure, Indie</span></p>
-                        <p>DEVELOPER: <span>Video cult</span></p>
-                        <p>PUBLISHER: <span>Akupra Games</span></p>
-                        <p>FRANCHISE: <span>Rain World, Akupara Games</span></p>
-                        <p>RELEASE DATE: <span>Date</span></p>
+                        <p>TITLE: <span>{singleGameData.singleGame[0].name}</span></p>
+                        <p>GENRE: <span>{Object.values(singleGameData.singleGame[0].genres.map(item => item.description)).join(', ')}</span></p>
+                        <p>DEVELOPER: <span>{singleGameData.singleGame[0].developers[0]}</span></p>
+                        <p>PUBLISHER: <span>{singleGameData.singleGame[0].publishers.length > 1 ? Object.values(singleGameData.singleGame[0].publishers.map(item => item.description)).join(', ') : singleGameData.singleGame[0].publishers[0]}</span></p>
+                        <p>FRANCHISE: <span>{`${singleGameData.singleGame[0].name}, ${singleGameData.singleGame[0].publishers.length > 1 ? Object.values(singleGameData.singleGame[0].publishers.map(item => item.description)).join(', ') : singleGameData.singleGame[0].publishers[0]}`}</span></p>
+                        <p>RELEASE DATE: <span>{singleGameData.singleGame[0].release_date.date}</span></p>
                     </div>
                     <div className='desc-btns'>
                         <Button href={``}>Visit the website</Button>
@@ -105,8 +128,9 @@ const GamePage = () => {
                     <p className='review-heading'>ABOUT THIS GAME</p>
                     <div>
                         <img src='https://cdn.cloudflare.steamstatic.com/steam/apps/312520/extras/RW_SteamGIF_02.jpg?t=1674137018' alt='Game' />
-                        <p>You are a slugcat. The world around you is full of danger, and you must face it – alone. Separated from your family in a devastating flood, you will need to find food and shelter between terrifying torrential downpours which threaten to drown all life. Climb through the ruins of an ancient civilization, evade the jaws of vicious predators, and discover new lands teeming with strange creatures and buried mysteries. Find your family before something makes a meal of you!</p>
-                        <p>Inspired by the simplicity and aesthetics of 16-bit classics, this survival platformer requires clever decision-making, both to catch your own prey and to avoid the jaws of hungry predators. Each ravenous foe in your path will be cunning, vicious and always on the hunt – eager to sink their teeth into you, or even each other. As a small, soft slugcat you must rely on stealth and wit rather than force: learn the ecosystem and turn their strengths to your advantage. Maybe then you can survive… Rain World!</p>
+                        {/* {singleGameData.singleGame[0].about_the_game.split(/[\r\n]+/g).map(line => <p>{line.replace(/^( ?<br( \/)?> ?)+|( ?<br( \/)?> ?)+$/, '')}</p>)} */}
+                        {/* {singleGameData.singleGame[0].about_the_game.split(/[\r\n]+/g).map(line => <p>{line.replace(/(<([^>]+)>)/ig, '')}</p>)} */}
+                        <p dangerouslySetInnerHTML={{__html: singleGameData.singleGame[0].about_the_game}} />
                     </div>
                 </div>
                 <div className='reviews'>
@@ -164,6 +188,7 @@ const GamePage = () => {
                 </div>
             </div>    
         </div>
+        : null
     )
 }
 
