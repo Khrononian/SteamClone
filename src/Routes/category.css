@@ -10,6 +10,7 @@ html, body {
 h2 {
     font-size: 1.7rem;
     color: white;
+    margin: 3rem 0;
 }
 .top {
     display: flex;
@@ -58,6 +59,7 @@ h2 {
 }
 .short-desc {
     margin-top: 1rem !important;
+    color: #A7BACC;
 }
 
 
@@ -68,11 +70,20 @@ h2 {
 .title-card {
     margin-bottom: 1rem;
 }
-.first-title img {
+.title-card a > * {
+    pointer-events: none;
+}
+.first-title a,
+.second-title a,
+.third-title a, 
+.coming-soon a {
+    width: inherit;
+}
+.first-title a img {
     width: 462px;
     height: 215.92px;
 }
-.third-title img {
+.third-title a img {
     width: 223px;
 }
 
