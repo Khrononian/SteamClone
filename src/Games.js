@@ -227,10 +227,6 @@ const Games = () => {
                         </Link>
                     </Card>
                 </div>
-                {/* <div className='tabs'>
-                    <div onClick={setTabs} className='active-tab'></div>
-                    <div onClick={setTabs}></div>
-                </div> */}
             </div>
         </div>
         : null
