@@ -14,6 +14,7 @@ const ContextData = ({ children }) => {
         // USE THIS TO SET THE GAME CLICKED ON(LINK) TO THE SINGLE GAME STATE
         console.log('Event', event, event.target.dataset.appid)
         if (singleGame.length > 1) setSingleGame(current => current.filter(game => game.appID === event.target.dataset.appid))
+        
         fetch(`https://api.steamapis.com/market/app/${ event.target.dataset.appid }?api_key=USh9nTgdKcpomNdTTl-Iok0OjDA`)
         .then(response => response.json())
         .then(data => setSingleGame(prev => prev.concat(data)))
@@ -23,7 +24,7 @@ const ContextData = ({ children }) => {
         fetch('https://api.steamapis.com/market/apps?api_key=USh9nTgdKcpomNdTTl-Iok0OjDA')
         .then(response => response.json())
         .then(data => {
-            const randomGame = data.filter((item, index, array) => item.is_free === false ).filter(game => game.price_overview !== undefined ).filter(single => single.price_overview.final_formatted  ).filter(single => Number(single.price_overview.final_formatted.substring(1)) < 10 )
+            const randomGame = data.filter(item => item.is_free === false ).filter(game => game.price_overview !== undefined ).filter(single => single.price_overview.final_formatted  ).filter(single => Number(single.price_overview.final_formatted.substring(1)) < 10 )
             
             console.log('DATA', data, data.find(item => item.name === '7 Days to Die'))
             console.log('Context', featuredGames, data[Math.floor(Math.random() * data.length)])
