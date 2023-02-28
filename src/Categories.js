@@ -56,30 +56,32 @@ const Categories = () => {
         }
         event.target.classList.add('active-tab')
     }
+    // console.log('INSIDE CAT', categoryGames.games.filter())
 
     return (
         <div className='category'>
             <h4>BROWSER BY CATEGORY</h4>
             <div className='grid'>
-                <Link>
-                    <img alt='City & Settlement' src='https://store.steampowered.com/categories/homepageimage/category/horror?cc=us&l=english' />
+                <Link to={`/category/casual`} state={{name: 'CASUAL'}}>
+                    <img alt='casual' src='https://store.steampowered.com/categories/homepageimage/category/horror?cc=us&l=english' />
                     <div style={BackgroundStyle} className='name'>
-                        <p>HORROR</p>
+                        <p>CASUAL</p>
                     </div>
                 </Link>
-                <Link>
-                    <img alt='City & Settlement' src='https://store.steampowered.com/categories/homepageimage/category/action?cc=us&l=english' />
+                <Link to={`/category/action`} state={{name: 'ACTION'}}>
+                    <img alt='action' src='https://store.steampowered.com/categories/homepageimage/category/action?cc=us&l=english' />
                     <div style={BackgroundStyle} className='name'>
                         <p>ACTION</p>
                     </div>
                 </Link>
-                <Link>
-                    <img alt='City & Settlement' src='https://store.steampowered.com/categories/homepageimage/category/rogue_like_rogue_lite?cc=us&l=english' />
+                <Link to={`/category/freeToPlay`} state={{name: 'FREE TO PLAY'}}>
+                    <img alt='freeToPlay' src='https://store.steampowered.com/categories/homepageimage/category/rogue_like_rogue_lite?cc=us&l=english' />
                     <div style={BackgroundStyle} className='name'>
                         <p>FREE TO PLAY</p> 
                     </div>
-                </Link><Link>
-                    <img alt='City & Settlement' src='https://store.steampowered.com/categories/homepageimage/greatondeck?cc=us&l=english' />
+                </Link>
+                <Link to={`/category/adventure`} state={{name: 'ADVENTURE'}}>
+                    <img alt='adventure' src='https://store.steampowered.com/categories/homepageimage/greatondeck?cc=us&l=english' />
                     <div style={BackgroundStyle} className='name'>
                         <p>ADVENTURE</p>
                     </div>
@@ -101,13 +103,13 @@ const Categories = () => {
                     <div className='name'>PUZZLE</div>
                 </Link> */}
             </div>
-            <div className='category-tabs'>
+            {/* <div className='category-tabs'>
                 <div onClick={setTabs} className='active-tab'></div>
                 <div onClick={setTabs}></div>
                 <div onClick={setTabs}></div>
                 <div onClick={setTabs}></div>
                 <div onClick={setTabs}></div>
-            </div>
+            </div> */}
             <div className='browse'>
                 <h4>BROWSE STEAM</h4>
                 <div className='browse-grid'>
@@ -130,7 +132,7 @@ const Categories = () => {
                                         image={game.header_image}
                                     />
                                     <CardContent className='price-tag'>
-                                        <p>{game.price_overview.final_formatted}</p>
+                                        <p>{game.is_free === false ? game.price_overview.final_formatted : 'Free To Play'}</p>
                                     </CardContent>
                                 </CardActionArea>
                             </Link>    
@@ -143,7 +145,7 @@ const Categories = () => {
                 <h4>Updates and Offers</h4>
                 <div className='new-group'>
                     {categoryGames.updatedGames.map((game, index) => (
-                        <Card key={index} className={index === 0 ? `side` : index }>
+                        <Card key={index} className={index === 0 ? 'side' : index.toString() }>
                             <Link className='route-links' onClick={categoryGames.setGamePage} to={`/app/rferer`} data-appid={categoryGames.updatedGames[index].appID}>
                                 <CardActionArea>
                                     <CardMedia
@@ -153,7 +155,7 @@ const Categories = () => {
                                         image={game.header_image}
                                     />
                                     <CardContent className='new-tag'>
-                                        <p>{game.price_overview.final_formatted}</p>
+                                        <p>{game.is_free === false ? game.price_overview.final_formatted : 'Free To Play'}</p>
                                     </CardContent>
                                 </CardActionArea>
                             </Link>    
