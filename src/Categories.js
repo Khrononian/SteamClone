@@ -155,7 +155,7 @@ const Categories = () => {
                                         image={game.header_image}
                                     />
                                     <CardContent className='new-tag'>
-                                        <p>{game.is_free === false ? game.price_overview.final_formatted : 'Free To Play'}</p>
+                                        <p>{game.is_free === false || game.price_overview !== undefined || game.price_overview.final_formatted !== undefined ? game.price_overview.final_formatted : 'Free To Play'}</p>
                                     </CardContent>
                                 </CardActionArea>
                             </Link>    
