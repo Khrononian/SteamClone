@@ -80,9 +80,9 @@ const Category = () => {
         <h2>TITLES</h2>
         <div className='titles'>
           <div className='first-title'>
-            {categoryGame.filter((_, index) => index < 2).map(game => (
+            {categoryGame.filter((_, index) => index < 2).map((game, index) => (
               
-              <Card className='title-card'>
+              <Card className='title-card' key={index}>
                 <Link to={'/app/referer'} onClick={categoryContext.setGamePage} data-appid={game.appID}>
                   <CardActionArea>
                     <CardMedia
@@ -93,7 +93,7 @@ const Category = () => {
                     />
                     <CardContent className='bot'>
                       <WindowSharp />
-                      <p>{game.is_free === false ? game.price_overview.final_formatted : 'Free To Play'}</p>
+                      <p>{game.is_free === false && game.price_overview !== undefined && game.price_overview.final_formatted !== undefined ? game.price_overview.final_formatted : 'Free To Play'}</p>
                     </CardContent>
                   </CardActionArea>  
                 </Link>
@@ -101,8 +101,8 @@ const Category = () => {
             ))}
           </div>
           <div className='second-title'>
-            {categoryGame.filter((_, index) => index > 1 && index < 5).map(game => (
-              <Card className='title-card'>
+            {categoryGame.filter((_, index) => index > 1 && index < 5).map((game, index) => (
+              <Card className='title-card' key={index}>
                 <Link to={'/app/referer'} onClick={categoryContext.setGamePage} data-appid={game.appID}>
                   <CardActionArea>
                     <CardMedia
@@ -113,7 +113,7 @@ const Category = () => {
                     />
                     <CardContent className='bot'>
                       <WindowSharp />
-                      <p>{game.is_free === false ? game.price_overview.final_formatted : 'Free To Play'}</p>
+                      <p>{game.is_free === false && game.price_overview !== undefined && game.price_overview.final_formatted !== undefined ? game.price_overview.final_formatted : 'Free To Play'}</p>
                     </CardContent>
                   </CardActionArea>  
                 </Link>
@@ -121,8 +121,8 @@ const Category = () => {
             ))}
           </div>
           <div className='third-title'>
-            {categoryGame.filter((_, index) => index > 4 && index < 9).map(game => (
-              <Card className='title-card'>
+            {categoryGame.filter((_, index) => index > 4 && index < 9).map((game, index) => (
+              <Card className='title-card' key={index}>
                 <Link to={'/app/referer'} onClick={categoryContext.setGamePage} data-appid={game.appID}>
                   <CardActionArea>
                     <CardMedia
@@ -133,7 +133,7 @@ const Category = () => {
                     />
                     <CardContent className='bot'>
                       <WindowSharp />
-                      <p>{game.is_free === false ? game.price_overview.final_formatted : 'Free To Play'}</p>
+                      <p>{game.is_free === false && game.price_overview !== undefined && game.price_overview.final_formatted !== undefined ? game.price_overview.final_formatted : 'Free To Play'}</p>
                     </CardContent>
                   </CardActionArea>  
                 </Link>
@@ -141,8 +141,8 @@ const Category = () => {
             ))}
           </div>
           <div className='second-title'>
-            {categoryGame.filter((_, index) => index > 8 && index < 12).map(game => (
-              <Card className='title-card'>
+            {categoryGame.filter((_, index) => index > 8 && index < 12).map((game, index) => (
+              <Card className='title-card' key={index}>
                 <Link to={'/app/referer'} onClick={categoryContext.setGamePage} data-appid={game.appID}>
                   <CardActionArea>
                     <CardMedia
@@ -153,7 +153,7 @@ const Category = () => {
                     />
                     <CardContent className='bot'>
                       <WindowSharp />
-                      <p>{game.is_free === false ? game.price_overview.final_formatted : 'Free To Play'}</p>
+                      <p>{game.is_free === false && game.price_overview !== undefined && game.price_overview.final_formatted !== undefined ? game.price_overview.final_formatted : 'Free To Play'}</p>
                     </CardContent>
                   </CardActionArea>  
                 </Link>
@@ -161,8 +161,8 @@ const Category = () => {
             ))}
           </div>
           <div className='first-title'>
-            {categoryGame.filter((_, index) => index > 11 && index < 14).map(game => (
-              <Card className='title-card'>
+            {categoryGame.filter((_, index) => index > 11 && index < 14).map((game, index) => (
+              <Card className='title-card' key={index}>
                 <Link to={'/app/referer'} onClick={categoryContext.setGamePage} data-appid={game.appID}>
                   <CardActionArea>
                     <CardMedia
@@ -173,7 +173,7 @@ const Category = () => {
                     />
                     <CardContent className='bot'>
                       <WindowSharp />
-                      <p>{game.is_free === false ? game.price_overview.final_formatted : 'Free To Play'}</p>
+                      <p>{game.is_free === false && game.price_overview !== undefined && game.price_overview.final_formatted !== undefined ? game.price_overview.final_formatted : 'Free To Play'}</p>
                     </CardContent>
                   </CardActionArea>  
                 </Link>
@@ -183,8 +183,8 @@ const Category = () => {
         </div>
         <h2>COMING SOON</h2>
         <div className='new-titles'>
-          {incomingGames.map(game => (
-            <Card className='coming-soon'>
+          {incomingGames.map((game, index) => (
+            <Card className='coming-soon' key={index}>
               <Link to={'/app/referer'} onClick={categoryContext.setGamePage} data-appid={game.appID}>
                 <CardActionArea>
                   <CardMedia 
