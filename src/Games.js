@@ -11,46 +11,28 @@ import { WindowSharp } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 import './games.css'
 
-
 const Games = () => {
     const [featuredGames, setFeaturedGames] = useState([])
     const [favorites, setFavorites] = useState([])
     const [currentColor, setCurrentColor] = useState()
-    const [tabName, setTabName] = useState('')
-    const [tabCount, setTabCount] = useState([{
-        name: 'Fallout',
-        id: 0
-    }, {
-        name: 'RimWorld',
-        id: 1
-    }, {
-        name: 'Dark Souls',
-        id: 2
-    }])
-    const [tabTest, setTabTest] = useState([{
-        id: 0
-    }, {id: 0,}, {id: 0}, {id: 0}, {id: 0}])
+    const [tabName, setTabName] = useState([])
+    const [tabNum, setTabNum] = useState()
+    const [tabCount, setTabCount] = useState([
+        {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+    ])
 
     const topGames = useContext(Context)
 
     // useEffect(() => {
-    //     console.log('Page', topGames, topGames.games[Math.floor(Math.random() * topGames.games.length)])
-    //     // setFeaturedGames(topGames)
-    //     // for (let i = 0; i < 12; i++) {
-    //     //     setFeaturedGames(prev => prev.concat(topGames.games[Math.floor(Math.random() * topGames.games.length)]))
-    //     // }
-    //     setFeaturedGames(prev => prev.concat(topGames.games[Math.floor(Math.random() * topGames.games.length)]))
-    //     console.log('Yes', featuredGames)
-    // }, [])
+    //     console.log('TABS OUTER', tabNum)
+    // }, [tabNum])
     useEffect(() => {
-        console.log('Gamer', topGames )
-        
-        // if (!topGames.games) return
-        // else setFavorites(prev => prev.concat(
-        //     topGames.games.filter(name => name === topGames.games.find(item => item['Rimworld']))
-        // ))
-
-    }, [topGames])
+        setTabCount(prevTab => {
+            console.log(prevTab)
+            prevTab.map((tab, index) => tab.id = index)
+            console.log('New', prevTab)
+        })
+    }, [])
     // Four other fav games: Elden Ring, Dark Souls 3, Unturned, Detroit Become Human
     console.log('Counts', tabCount, topGames, topGames.games.find((item, index, array) => Number(item.price_overview.final_formatted.substring(1)) < 10 ), topGames.games.filter((item, index, array) => item.is_free === false ).filter(game => game.price_overview !== undefined ).filter(single => single.price_overview.final_formatted  ).filter(single => Number(single.price_overview.final_formatted.substring(1)) < 10 )[Math.floor(Math.random() * 50)] )
 
@@ -61,48 +43,39 @@ const Games = () => {
         for (const child of childTabs) {
             child.classList.remove('active-tab')
         }
-        for (const tab of tabCount) {
-            if (Number(event.target.dataset.count) === tab.id) {
-                console.log('Tab Name', tab.name)
-                setTabName(tab.name)
-            }
-        }
+        // for (const tab of tabCount) {
+        //     if (Number(event.target.dataset.count) === tab.id) {
+        //         console.log('Tab Name', tab.name)
+        //         // setTabName(tab.name)
+        //     }
+        // }
         event.target.classList.add('active-tab')
+        setTabNum(Number(event.target.dataset.count))
+        setTabNum((state) => {
+            console.log('TABS INNER', state)
+            setTabName(prevName => prevName.concat(state))
+            return state
+        })
     }
-
-    // const setGamePage =  (event) => {
-    //     // USE THIS TO SET THE GAME CLICKED ON(LINK) TO THE SINGLE GAME STATE
-    //     console.log('Event', event, event.target.dataset.appid)
-    //     if (topGames.singleGame.length > 1) topGames.setSingleGame(current => current.filter(game => game.appID === event.target.dataset.appid))
-    //     fetch(`https://api.steamapis.com/market/app/${ event.target.dataset.appid }?api_key=USh9nTgdKcpomNdTTl-Iok0OjDA`)
-    //     .then(response => response.json())
-    //     .then(data => topGames.setSingleGame(prev => prev.concat(data)))
-    // }
-    // USE THIS BELOW TO SET THE APP ID TO THE INDEX IN ARRAY
-    // useEffect(() => {
-    //     setTabTest(prevTab => {
-    //         console.log(prevTab)
-    //         prevTab.map((tab, index) => tab.id = index)
-    //         console.log('New', prevTab)
-    //     })
-    // }, [])
+    
+    console.log('TABS MID', tabNum)
     return (
         topGames.featuredGames[0] !== undefined ?
 
         <div className='main-games'>
             <h4>FEATURED & RECOMMENDED</h4>
             <Card className='card'>
-                <Link className='route-links' onClick={topGames.setGamePage} to={`/app/rferer`} data-appid={topGames.featuredGames[0].appID} >
+                <Link className='route-links' onClick={topGames.setGamePage} to={`/app/rferer`} data-appid={topGames.featuredGames[tabNum === undefined ? 0 : tabNum].appID} >
                     <CardActionArea>
                         <CardMedia 
                             component='img'
                             height='353'
-                            image={topGames.featuredGames[0].header_image}
+                            image={topGames.featuredGames[tabNum === undefined ? 0 : tabNum].header_image}
                         />
                         <div className='right-card'>
-                            <p>{topGames.featuredGames[0].name}</p>
+                            <p>{topGames.featuredGames[tabNum === undefined ? 0 : tabNum].name}</p>
                             <div className='card-grid'>
-                                {topGames.featuredGames[0].screenshots.filter(item => item.id < 4)
+                                {topGames.featuredGames[tabNum === undefined ? 0 : tabNum].screenshots.filter(item => item.id < 4)
                                 .map((image, key) => (
                                     <CardMedia
                                         component='img'
@@ -121,8 +94,8 @@ const Games = () => {
                                     <Typography variant='h6' fontSize='medium'>
                                         Top Seller
                                     </Typography>
-                                    <p>{topGames.featuredGames[0].is_free === true ? 'Free to Play'
-                                    : topGames.featuredGames[0].price_overview.final_formatted}</p>
+                                    <p>{topGames.featuredGames[tabNum === undefined ? 0 : tabNum].is_free === true || topGames.featuredGames[tabNum === undefined ? 0 : tabNum].price_overview === undefined || topGames.featuredGames[tabNum === undefined ? 0 : tabNum].price_overview.final_formatted === undefined ? 'Free to Play'
+                                    : topGames.featuredGames[tabNum === undefined ? 0 : tabNum].price_overview.final_formatted}</p>
                                 </div>    
                                 <div className='icons'>
                                     <WindowSharp />
