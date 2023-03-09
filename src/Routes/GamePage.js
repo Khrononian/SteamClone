@@ -28,7 +28,7 @@ const GamePage = () => {
         <div className='section'>
             <Nav />
             <SiteNav />
-            <div className='main-game'>
+            <div className='main-game' style={{ backgroundImage: `url(${singleGameData.singleGame[0].background})`, backgroundSize: 'cover' }}>
                 <div className='first-div'>
                     <h2>{singleGameData.singleGame[0].name}</h2>
                     <Button>Community Hub</Button>
@@ -38,8 +38,8 @@ const GamePage = () => {
                         <img className='main-img' src='https://cdn.cloudflare.steamstatic.com/steam/apps/312520/ss_cbd4e647d6b3bb3b311cb68fdf0cd8835d5919d7.600x338.jpg?t=1674137018' alt='Game Name' />
                         <div className='img-grid'>
                             {singleGameData.singleGame[0].screenshots.filter(item => item.id < 5)
-                            .map(image => (
-                                <img src={image.path_full} alt='Name of game' />
+                            .map((image, index) => (
+                                <img key={index} src={image.path_full} alt='Name of game' />
                             ))}
                             {/* <img src={singleGameData.singleGame[0]} alt='Rain' />
                             <img src={singleGameData.singleGame[0]} alt='Rain' />
@@ -70,8 +70,8 @@ const GamePage = () => {
                         </div>
                         <div className='tag-grid'>
                             {singleGameData.singleGame[0].genres.filter((_, index) => index !== 6 )
-                            .map(genre => (
-                                <p>{genre.description}</p>
+                            .map((genre, index) => (
+                                <p key={index}>{genre.description}</p>
                             ))}
                             
                             
@@ -92,7 +92,7 @@ const GamePage = () => {
                         <WindowSharp />
                     </div>
                     <div>
-                        <p>{singleGameData.singleGame[0].price_overview.final_formatted}</p>
+                        <p>{singleGameData.singleGame[0].is_free === true || singleGameData.singleGame[0].price_overview === undefined || singleGameData.singleGame[0].price_overview.final_formatted === undefined ? 'Free to Play' : singleGameData.singleGame[0].price_overview.final_formatted}</p>
                         <Button>Add to Cart</Button>
                     </div>
                 </div>
