@@ -1,10 +1,10 @@
 .section {
     width: 940px;
     margin: 0 auto;
+    /* background: linear-gradient(to top, transparent, rgb(28, 61, 82)); */
 }
 
 .main-game {
-    background: linear-gradient(to right, transparent, rgb(18, 41, 54));
     width: 940px;
     margin: 2rem auto 0 auto;
 }
@@ -16,16 +16,27 @@ h2 {
 .main-game .first-div {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    height: 65px;
 }
-
+.first-div button {
+    background: rgb(103 193 245 / 20%);
+    color: rgb(102 192 244);
+    padding: .3em 1.2em;
+    text-transform: unset;
+}
+.first-div button:hover {
+    background: rgb(102 192 244);
+    color: white;
+}
 .main-section {
     display: flex;
     justify-content: space-between;
     gap: 16px;
 }
-.main-section div:nth-child(2) {
+/* .main-section div:nth-child(2) {
     width: 324px;
-}
+} */
 
 .main-img {
     width: 600px;
@@ -44,6 +55,7 @@ h2 {
     width: 115px;
     height: 65px;
     margin-top: .15rem;
+    cursor: pointer;
 }
 
 .top-desc {
@@ -114,6 +126,7 @@ h2 {
 
 .bottom-grid {
     display: grid;
+    /* background: linear-gradient(to right, transparent, rgb(33, 73, 97)); */
     grid-template-columns: 600px 315px;
     margin-top: 3rem;
     gap: 14px;

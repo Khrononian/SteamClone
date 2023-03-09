@@ -97,3 +97,6 @@ h2 {
 .coming-soon img {
     width: 286px;
 }
+.coming-soon a > * {
+    pointer-events: none;
+}
