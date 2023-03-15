@@ -56,7 +56,6 @@ const Categories = () => {
         }
         event.target.classList.add('active-tab')
     }
-    // console.log('INSIDE CAT', categoryGames.games.filter())
 
     return (
         <div className='category'>
@@ -87,21 +86,6 @@ const Categories = () => {
                     </div>
                 </Link>
 
-                {/* <Link>
-                    <img alt='City & Settlement' src='https://store.steampowered.com/categories/homepageimage/category/horror?cc=us&l=english' />
-                    <div className='name'>OPEN WORLD</div>
-                </Link>
-                <Link>
-                    <img alt='City & Settlement' src='https://store.steampowered.com/categories/homepageimage/category/action?cc=us&l=english' />
-                    <div className='name'>STRATEGY</div>
-                </Link>
-                <Link>
-                    <img alt='City & Settlement' src='https://store.steampowered.com/categories/homepageimage/category/rogue_like_rogue_lite?cc=us&l=english' />
-                    <div className='name'>CO-OPERATIVE</div>
-                </Link><Link>
-                    <img alt='City & Settlement' src='https://store.steampowered.com/categories/homepageimage/greatondeck?cc=us&l=english' />
-                    <div className='name'>PUZZLE</div>
-                </Link> */}
             </div>
             {/* <div className='category-tabs'>
                 <div onClick={setTabs} className='active-tab'></div>
@@ -155,103 +139,12 @@ const Categories = () => {
                                         image={game.header_image}
                                     />
                                     <CardContent className='new-tag'>
-                                        <p>{game.is_free === false || game.price_overview !== undefined || game.price_overview.final_formatted !== undefined ? game.price_overview.final_formatted : 'Free To Play'}</p>
+                                        <p>{game.is_free === false && game.price_overview !== undefined && game.price_overview.final_formatted !== undefined ? game.price_overview.final_formatted : 'Free To Play'}</p>
                                     </CardContent>
                                 </CardActionArea>
                             </Link>    
                         </Card>
                     ))}
-                    {/* <Card className='side'>
-                        <CardActionArea>
-                            <CardMedia
-                                className='new-imgs'
-                                height='383px'
-                                component='img'
-                                image='https://cdn.akamai.steamstatic.com/steam/apps/1943950/header_292x136.jpg?t=1673553323'
-                            />
-                            <CardContent className='new-tag'>
-                                <p>Price</p>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                    <Card className='one'>
-                        <CardActionArea>
-                            <CardMedia
-                                className='new-imgs'
-                                height='173px'
-                                component='img'
-                                image='https://cdn.akamai.steamstatic.com/steam/apps/397540/header_292x136.jpg?t=1657214217'
-                            />
-                            <CardContent className='new-tag'>
-                                <p>Price</p>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                    <Card className='two'>
-                        <CardActionArea>
-                            <CardMedia
-                                className='new-imgs'
-                                height='173px'
-                                component='img'
-                                image='https://cdn.akamai.steamstatic.com/steam/apps/105600/header_292x136.jpg?t=1666290860'
-                            />
-                            <CardContent className='new-tag'>
-                                <p>Price</p>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                    <Card className='three'>
-                        <CardActionArea>
-                            <CardMedia
-                                className='new-imgs'
-                                height='173px'
-                                component='img'
-                                image='https://cdn.akamai.steamstatic.com/steam/apps/2221490/header_292x136.jpg?t=1673546006'
-                            />
-                            <CardContent className='new-tag'>
-                                <p>Price</p>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                    <Card className='four'>
-                        <CardActionArea>
-                            <CardMedia
-                                className='new-imgs'
-                                height='173px'
-                                component='img'
-                                image='https://cdn.akamai.steamstatic.com/steam/apps/851850/capsule_184x69.jpg?t=1673638283'
-                            />
-                            <CardContent className='new-tag'>
-                                <p>Price</p>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                    <Card className='five'>
-                        <CardActionArea>
-                            <CardMedia
-                                className='new-imgs'
-                                height='173px'
-                                component='img'
-                                image='https://cdn.akamai.steamstatic.com/steam/apps/1933660/capsule_184x69.jpg?t=1673672412'
-                            />
-                            <CardContent className='new-tag'>
-                                <p>Price</p>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                    <Card className='six'>
-                        <CardActionArea>
-                            <CardMedia
-                                className='new-imgs'
-                                height='173px'
-                                component='img'
-                                image='https://cdn.akamai.steamstatic.com/steam/apps/1943950/header_292x136.jpg?t=1673553323'
-                            />
-                            <CardContent className='new-tag'>
-                                <p>Price</p>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card> */}
                 </div>
             </div>
         </div>
