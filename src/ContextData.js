@@ -9,6 +9,7 @@ const ContextData = ({ children }) => {
     const [belowGames, setBelowGames] = useState([])
     const [updatedGames, setUpdatedGames] = useState([])
     const [log, setLog] = useState(false);
+    const [username, setUsername] = useState('');
 
     const setGamePage =  (event) => {
         // USE THIS TO SET THE GAME CLICKED ON(LINK) TO THE SINGLE GAME STATE
@@ -61,7 +62,7 @@ const ContextData = ({ children }) => {
     
 
     return (
-        <Context.Provider value={ { games, setGames, singleGame, setSingleGame, featuredGames, belowGames, updatedGames, log, setLog, setGamePage } }>
+        <Context.Provider value={ { games, setGames, singleGame, setSingleGame, featuredGames, belowGames, updatedGames, log, setLog, setGamePage, setUsername, username } }>
             {children}
         </Context.Provider>
     )
