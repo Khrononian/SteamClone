@@ -5,7 +5,6 @@
     align-items: center;
     width: 930px;
     margin: 5.5rem auto 0 auto;
-    padding: .3em 0 .3em .4em;
 }
 
 .btns {
@@ -17,6 +16,13 @@
     color: white;
     text-transform: initial;
     margin-right: .5em;
+    border-radius: 0;
+    font-weight: 600;
+    font-size: .85rem;
+}
+
+.btns Button:hover {
+    background: linear-gradient(to right, rgb(83, 141, 160), transparent) 
 }
 
 .btns div {

@@ -102,6 +102,11 @@
     grid-template-columns: repeat(4, 229px);
 }
 
+.price-group div {
+    border-radius: 0 !important;
+    box-shadow: 0 0 10px black !important;
+}
+
 .price-tag {
     padding: .5em !important;
     background: rgb(75, 99, 117);
@@ -126,10 +131,11 @@
     grid-template-areas: 
     'side one two three'
     'side four five six';
-    /* grid-template-columns: 378px repeat(3, 238px); */
     grid-template-columns: 385px repeat(3, 173px);
-    /* grid-template-rows: 198px 198px; */
     gap: 12px;
+}
+.new-group div {
+    border-radius: 0 !important;
 }
 
 .new-imgs {

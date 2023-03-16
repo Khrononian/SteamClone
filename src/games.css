@@ -4,22 +4,11 @@
     margin: 4rem auto 0 auto;
 }
 
-.route-links {
-    text-decoration: unset;
-    height: inherit
-}
-
-.route-links > * {
-    pointer-events: none;
-}
-
 .card {
     cursor: pointer;
+    box-shadow: 0 0 20px black !important;
+    border-radius: 0 !important;
 }
-
-/* .card a {
-    pointer-events: none;
-} */
 
 .card button {
     display: flex;
@@ -30,6 +19,14 @@
     width: 67%;
 }
 
+.route-links {
+    text-decoration: unset;
+    height: inherit;
+}
+
+.route-links > * {
+    pointer-events: none;
+}
 
 .favorites {
     display: grid;
@@ -38,7 +35,6 @@
     'first second third'
     'first second fourth';
     grid-template-columns: repeat(3, 305px);
-    /* 306 x 350 */
 }
 
 .first, .second {
@@ -62,6 +58,8 @@
 }
 .card-favs {
     cursor: pointer;
+    border-radius: 0 !important;
+    box-shadow: 0 0 10px black !important;
 }
 .card-favs a {
     text-decoration: unset;
@@ -170,6 +168,11 @@
 
 .icons {
     align-self: flex-end;
+}
+.icons img {
+    object-fit: contain;
+    height: 18.5px;
+    width: 18.5px;
 }
 
 .steam {

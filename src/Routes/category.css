@@ -14,7 +14,12 @@ h2 {
 }
 .top {
     display: flex;
+    justify-content: space-between;
     background: rgb(0 0 0 / 21%);
+}
+.top-left {
+    display: flex;
+    flex-direction: column;
 }
 .top-left img {
     width: 259px;
@@ -28,6 +33,10 @@ h2 {
     background: black;
     color: white;
     padding: .5em !important;
+}
+.bot div img {
+    width: 20px !important;
+    height: 20px !important;
 }
 .bot p {
     margin: .4rem 0;
@@ -56,6 +65,10 @@ h2 {
     padding: .25em .5em;
     border-radius: 2px;
     margin-bottom: 0;
+    cursor: pointer;
+}
+.cat-grid p:hover {
+    background: rgb(198 212 223 / 30%);
 }
 .short-desc {
     margin-top: 1rem !important;
@@ -66,9 +79,17 @@ h2 {
 .titles div {
     display: flex;
     justify-content: space-between;
+    border-radius: 0;
 }
+
 .title-card {
     margin-bottom: 1rem;
+}
+.title-card a {
+    text-decoration: none;
+}
+.title-card:hover {
+    box-shadow: 0 0 10px white;
 }
 .title-card a > * {
     pointer-events: none;
@@ -91,8 +112,14 @@ h2 {
     display: flex;
     justify-content: space-between;
 }
+.new-titles div {
+    border-radius: 0;
+}
 .comimg-soon {
     display: flex;
+}
+.coming-soon:hover {
+    box-shadow: 0 0 10px white;
 }
 .coming-soon img {
     width: 286px;
