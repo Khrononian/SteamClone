@@ -6,9 +6,9 @@ import { CardContent } from '@mui/material'
 import { CardActionArea } from '@mui/material'
 import { Typography } from '@mui/material'
 import AppleIcon from '@mui/icons-material/Apple';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { WindowSharp } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
+import SteamIcon from './SteamIcon.svg'
 import './games.css'
 
 const Games = () => {
@@ -23,9 +23,6 @@ const Games = () => {
 
     const topGames = useContext(Context)
 
-    // useEffect(() => {
-    //     console.log('TABS OUTER', tabNum)
-    // }, [tabNum])
     useEffect(() => {
         setTabCount(prevTab => {
             console.log(prevTab)
@@ -76,11 +73,10 @@ const Games = () => {
                             <p>{topGames.featuredGames[tabNum === undefined ? 0 : tabNum].name}</p>
                             <div className='card-grid'>
                                 {topGames.featuredGames[tabNum === undefined ? 0 : tabNum].screenshots.filter(item => item.id < 4)
-                                .map((image, key) => (
+                                .map((image, index) => (
                                     <CardMedia
                                         component='img'
-                                    // height='50'
-                                        key={key}
+                                        key={index}
                                         image={image.path_full}
                                     />
                                 ))
@@ -98,8 +94,9 @@ const Games = () => {
                                     : topGames.featuredGames[tabNum === undefined ? 0 : tabNum].price_overview.final_formatted}</p>
                                 </div>    
                                 <div className='icons'>
-                                    <WindowSharp />
-                                    <AppleIcon />
+                                    {topGames.featuredGames[tabNum === undefined ? 0 : tabNum].platforms.windows === true ? <WindowSharp fontSize='small' /> : null}
+                                    {topGames.featuredGames[tabNum === undefined ? 0 : tabNum].platforms.mac === true ? <AppleIcon fontSize='small' /> : null}
+                                    {topGames.featuredGames[tabNum === undefined ? 0 : tabNum].platforms.linux === true ? <img src={SteamIcon} alt='Steam Icon' /> : null}
                                 </div>
                             </CardContent>
                         </div>
