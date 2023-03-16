@@ -10,8 +10,6 @@ import './login.css'
 
 
 const Login = ({ status }, props) => {
-    
-    const [username, setUsername] = useState('');
     const loggedData = useContext(Context)
     const location = useLocation();
 
@@ -40,20 +38,20 @@ const Login = ({ status }, props) => {
             const user = userCredential.user.email
             console.log('User', userCredential.user, userCredential.user.email.substring(0, userCredential.user.email.lastIndexOf('@')))
 
-            setUsername(user.substring(0, user.lastIndexOf('@')))
+            loggedData.setUsername(user.substring(0, user.lastIndexOf('@')))
             loggedData.setLog(prevLog => !prevLog)
-            console.log('States', username)
+            console.log('States', loggedData.username)
         }).catch(error => {
             console.log(error)
         })
-        console.log('After')
+        console.log('After', loggedData.username)
     }
-    
+    console.log('AFTER AFTER', loggedData.username)
     
 
     return (
         <div >
-            <Nav user={username} />
+            <Nav />
             <div className='sign-in'>
                 <h1>SIGN IN</h1>
                 <div className='sign-form'>
