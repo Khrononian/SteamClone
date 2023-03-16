@@ -4,10 +4,12 @@ import SiteNav from '../SiteNav'
 import { Context } from '../ContextData'
 import { Button } from '@mui/material'
 import { WindowSharp } from '@mui/icons-material'
+import AppleIcon from '@mui/icons-material/Apple';
 import { Avatar } from '@mui/material'
 import { red } from '@mui/material/colors'
 import { ThumbUpAltSharp } from '@mui/icons-material'
 import { ThumbDownAltSharp } from '@mui/icons-material'
+import SteamIcon from '../SteamIcon.svg'
 import './gamepage.css'
 
 const GamePage = () => {
@@ -19,8 +21,9 @@ const GamePage = () => {
         singleGameData.setSingleGame(current => current.filter(game => game.name === ''))
     }, [])
 
-    
-    // const gameInfo = singleGameData.singleGameData.singleGame
+    const changeMainImage = (event, img) => {
+        event.target.parentElement.parentElement.querySelector('.main-img').src = img
+    }
 
     return (
         singleGameData.singleGame[0] !== undefined ?
@@ -35,17 +38,12 @@ const GamePage = () => {
                 </div>
                 <div className='main-section'>
                     <div>
-                        <img className='main-img' src='https://cdn.cloudflare.steamstatic.com/steam/apps/312520/ss_cbd4e647d6b3bb3b311cb68fdf0cd8835d5919d7.600x338.jpg?t=1674137018' alt='Game Name' />
+                        <img className='main-img' src={singleGameData.singleGame[0].screenshots[0].path_full} alt='Game Name' />
                         <div className='img-grid'>
                             {singleGameData.singleGame[0].screenshots.filter(item => item.id < 5)
                             .map((image, index) => (
-                                <img key={index} src={image.path_full} alt='Name of game' />
+                                <img onClick={(event) => changeMainImage(event, image.path_full)} key={index} src={image.path_full} alt='Name of game' />
                             ))}
-                            {/* <img src={singleGameData.singleGame[0]} alt='Rain' />
-                            <img src={singleGameData.singleGame[0]} alt='Rain' />
-                            <img src={singleGameData.singleGame[0]} alt='Rain' />
-                            <img src={singleGameData.singleGame[0]} alt='Rain' />
-                            <img src={singleGameData.singleGame[0]} alt='Rain' /> */}
                         </div>
                     </div>
                     <div>
@@ -73,13 +71,6 @@ const GamePage = () => {
                             .map((genre, index) => (
                                 <p key={index}>{genre.description}</p>
                             ))}
-                            
-                            
-                            {/* <p>Atmospheric</p>
-                            <p>Difficult</p>
-                            <p>Survival</p>
-                            <p>Platformer</p>
-                            <p>2D</p> */}
                         </div>
                     </div>
 
@@ -89,9 +80,13 @@ const GamePage = () => {
                 <div className='purchase'>
                     <div>
                         <p>Buy {singleGameData.singleGame[0].name}</p>
-                        <WindowSharp />
+                        <div className='platforms'>
+                            {singleGameData.singleGame[0].platforms.windows === true ? <WindowSharp /> : null}
+                            {singleGameData.singleGame[0].platforms.mac === true ? <AppleIcon /> : null}
+                            {singleGameData.singleGame[0].platforms.linux === true ? <img src={SteamIcon} alt='Steam Icon' /> : null}
+                        </div>
                     </div>
-                    <div>
+                    <div className='purchase-price'>
                         <p>{singleGameData.singleGame[0].is_free === true || singleGameData.singleGame[0].price_overview === undefined || singleGameData.singleGame[0].price_overview.final_formatted === undefined ? 'Free to Play' : singleGameData.singleGame[0].price_overview.final_formatted}</p>
                         <Button>Add to Cart</Button>
                     </div>
@@ -127,7 +122,7 @@ const GamePage = () => {
                 <div className='about'>
                     <p className='review-heading'>ABOUT THIS GAME</p>
                     <div>
-                        <img src='https://cdn.cloudflare.steamstatic.com/steam/apps/312520/extras/RW_SteamGIF_02.jpg?t=1674137018' alt='Game' />
+                        {/* <img src='https://cdn.cloudflare.steamstatic.com/steam/apps/312520/extras/RW_SteamGIF_02.jpg?t=1674137018' alt='Game' /> */}
                         {/* {singleGameData.singleGame[0].about_the_game.split(/[\r\n]+/g).map(line => <p>{line.replace(/^( ?<br( \/)?> ?)+|( ?<br( \/)?> ?)+$/, '')}</p>)} */}
                         {/* {singleGameData.singleGame[0].about_the_game.split(/[\r\n]+/g).map(line => <p>{line.replace(/(<([^>]+)>)/ig, '')}</p>)} */}
                         <p dangerouslySetInnerHTML={{__html: singleGameData.singleGame[0].about_the_game}} />

@@ -5,8 +5,10 @@ import { Context } from '../ContextData'
 import { WindowSharp } from '@mui/icons-material'
 import AppleIcon from '@mui/icons-material/Apple';
 import { Card, CardMedia, CardActionArea, CardContent } from '@mui/material';
-import './category.css'
 import { useLocation, Link } from 'react-router-dom'
+import SteamIcon from '../SteamIcon.svg'
+import './category.css'
+
 
 const Category = () => {
   const [categoryGame, setCategoryGames] = useState([])
@@ -47,7 +49,7 @@ const Category = () => {
           <div className='top-left'>
             <img src='https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/hero_capsule.jpg?t=1674441703' alt='Game' />
             <div className='bot'>
-              <WindowSharp />
+              <WindowSharp fontSize='small' />
               <p>$59.99</p>
             </div>
           </div>
@@ -92,7 +94,11 @@ const Category = () => {
                       image={game.header_image}
                     />
                     <CardContent className='bot'>
-                      <WindowSharp />
+                      <div>
+                        {game.platforms.windows === true ? <WindowSharp fontSize='small' /> : null}
+                        {game.platforms.mac === true ? <AppleIcon fontSize='small' /> : null}
+                        { game.platforms.linux === true ? <img src={SteamIcon} alt='Steam Icon' /> : null}
+                      </div>
                       <p>{game.is_free === false && game.price_overview !== undefined && game.price_overview.final_formatted !== undefined ? game.price_overview.final_formatted : 'Free To Play'}</p>
                     </CardContent>
                   </CardActionArea>  
@@ -112,7 +118,11 @@ const Category = () => {
                       image={game.header_image}
                     />
                     <CardContent className='bot'>
-                      <WindowSharp />
+                      <div>
+                        {game.platforms.windows === true ? <WindowSharp fontSize='small' /> : null}
+                        {game.platforms.mac === true ? <AppleIcon fontSize='small' /> : null}
+                        { game.platforms.linux === true ? <img src={SteamIcon} alt='Steam Icon' /> : null}
+                      </div>
                       <p>{game.is_free === false && game.price_overview !== undefined && game.price_overview.final_formatted !== undefined ? game.price_overview.final_formatted : 'Free To Play'}</p>
                     </CardContent>
                   </CardActionArea>  
@@ -132,7 +142,11 @@ const Category = () => {
                       image={game.header_image}
                     />
                     <CardContent className='bot'>
-                      <WindowSharp />
+                      <div>
+                        {game.platforms.windows === true ? <WindowSharp fontSize='small' /> : null}
+                        {game.platforms.mac === true ? <AppleIcon fontSize='small' /> : null}
+                        { game.platforms.linux === true ? <img src={SteamIcon} alt='Steam Icon' /> : null}
+                      </div>
                       <p>{game.is_free === false && game.price_overview !== undefined && game.price_overview.final_formatted !== undefined ? game.price_overview.final_formatted : 'Free To Play'}</p>
                     </CardContent>
                   </CardActionArea>  
@@ -152,7 +166,11 @@ const Category = () => {
                       image={game.header_image}
                     />
                     <CardContent className='bot'>
-                      <WindowSharp />
+                      <div>
+                        {game.platforms.windows === true ? <WindowSharp fontSize='small' /> : null}
+                        {game.platforms.mac === true ? <AppleIcon fontSize='small' /> : null}
+                        { game.platforms.linux === true ? <img src={SteamIcon} alt='Steam Icon' /> : null}
+                      </div>
                       <p>{game.is_free === false && game.price_overview !== undefined && game.price_overview.final_formatted !== undefined ? game.price_overview.final_formatted : 'Free To Play'}</p>
                     </CardContent>
                   </CardActionArea>  
@@ -172,7 +190,11 @@ const Category = () => {
                       image={game.header_image}
                     />
                     <CardContent className='bot'>
-                      <WindowSharp />
+                      <div>
+                        {game.platforms.windows === true ? <WindowSharp fontSize='small' /> : null}
+                        {game.platforms.mac === true ? <AppleIcon fontSize='small' /> : null}
+                        { game.platforms.linux === true ? <img src={SteamIcon} alt='Steam Icon' /> : null}
+                      </div>
                       <p>{game.is_free === false && game.price_overview !== undefined && game.price_overview.final_formatted !== undefined ? game.price_overview.final_formatted : 'Free To Play'}</p>
                     </CardContent>
                   </CardActionArea>  
@@ -194,7 +216,11 @@ const Category = () => {
                     image={game.header_image}
                   />
                   <CardContent className='bot'>
-                    <WindowSharp />
+                    <div>
+                      {game.platforms.windows === true ? <WindowSharp fontSize='small' /> : null}
+                      {game.platforms.mac === true ? <AppleIcon fontSize='small' /> : null}
+                      { game.platforms.linux === true ? <img src={SteamIcon} alt='Steam Icon' /> : null}
+                    </div>
                     <p>Coming Soon</p>
                   </CardContent>
                 </CardActionArea>
