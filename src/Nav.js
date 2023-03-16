@@ -17,7 +17,7 @@ import { red } from '@mui/material/colors'
 import { Context } from './ContextData';
 import './nav.css'
 
-const Nav = ({ status }) => {
+const Nav = ({ status, username }) => {
     const [state, setState] = useState({
         left: false
     })
@@ -30,7 +30,7 @@ const Nav = ({ status }) => {
         else setOpenSecondNav(!openSecondNav)
         console.log(event, event.target, event.nativeEvent.path)
     }
-    console.log('Nav', status, loggedData)
+    console.log('Nav', status, loggedData, username)
     const toggleDrawer = (anchor, open) => event => {
         // if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) return
         
@@ -52,7 +52,7 @@ const Nav = ({ status }) => {
                 :
                 <ListItemButton className='avatar-block'>
                     <Avatar sx={{ bgcolor: red[500], padding: '.15em' }} variant='square'>M</Avatar>
-                    <h4>UserName</h4>
+                    <h4>{loggedData.username}</h4>
                 </ListItemButton>}
                 <Divider />
                 <ListItemButton onClick={handleClick}>
@@ -90,7 +90,6 @@ const Nav = ({ status }) => {
                     <List disablePadding>
                         <ListItemButton sx={{ pl: 4 }}>
                             <ListItemText sx={{ color: 'grey' }} primary='Home' />
-                            {/* DO A COMMUNITY HOME PAGE, IF POSSIBLE */}
                         </ListItemButton>
                         <Divider />
                         <ListItemButton sx={{ pl: 4 }}>
