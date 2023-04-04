@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, createRef } from 'react'
 import Nav from '../Nav'
 import SiteNav from '../SiteNav'
 import { Context } from '../ContextData'
@@ -9,22 +9,86 @@ import { Avatar } from '@mui/material'
 import { red } from '@mui/material/colors'
 import { ThumbUpAltSharp } from '@mui/icons-material'
 import { ThumbDownAltSharp } from '@mui/icons-material'
+import { initializeApp } from 'firebase/app'
+import { getFirestore, addDoc, collection, doc, setDoc } from 'firebase/firestore'
 import SteamIcon from '../SteamIcon.svg'
 import './gamepage.css'
 
 const GamePage = () => {
-    const singleGameData = useContext(Context)
+    const [gamehype, setGameHype] = useState(false);
+    const [newDate, setNewDate] = useState('')
+    const [gameHypeClick, setGameHypeClick] = useState(false)
 
+    const textField = createRef()
+    const firebaseConfig = {
+        apiKey: "AIzaSyBCRdufWIqxKTPz_J7p1Zb05Ha9ssj5n3Y",
+        authDomain: "steam-clone-ba33d.firebaseapp.com",
+        projectId: "steam-clone-ba33d",
+        storageBucket: "steam-clone-ba33d.appspot.com",
+        messagingSenderId: "65364662879",
+        appId: "1:65364662879:web:6bed306f967850ed7e99ea",
+        measurementId: "G-JP8R3ZYNDC"
+    };
+    const app = initializeApp(firebaseConfig)
+    const db = getFirestore(app)
+
+    console.log('FIREBASE', app, db)
     useEffect(() => {
         console.log('Single Game', singleGameData)
 
         singleGameData.setSingleGame(current => current.filter(game => game.name === ''))
     }, [])
 
+    useEffect(() => {
+
+    }, [])
+
+    const singleGameData = useContext(Context)
     const changeMainImage = (event, img) => {
         event.target.parentElement.parentElement.querySelector('.main-img').src = img
     }
+    const setGameRecommended = event => {
+        // console.log('Recommend', event, event.target.innerText)
+        console.log('BUTT', event.target.parentElement)
+        const btns = event.target.parentElement.children
+        for (const btn of btns) {
+            btn.classList.remove('user-btns-click')
+        }
+        event.target.classList.add('user-btns-click')
 
+        if (event.target.innerText === 'Yes') {
+            setGameHype(true)
+            setGameHypeClick(true)
+        } else {
+            setGameHype(false)
+            setGameHypeClick(true)
+        }
+        
+    }
+
+
+
+    const submitUserReview = async () => {
+        console.log('SUBMIT', textField.current.value)
+        
+        if (gameHypeClick === false) return
+        const date = new Date()
+        const monthDay = date.toLocaleString('default', { month: 'long', day: 'numeric' })
+        
+        setNewDate(monthDay)
+
+        await setDoc(doc(db, 'Users', singleGameData.username), {
+            date: monthDay,
+            review: textField.current.value,
+            recommended: gamehype,
+        })
+
+    }
+    console.log('DATE', newDate, gameHypeClick)
+    // FOR REVIEWS, MAKE ONE FUNCTION FOR THE YES AND NO TO CHANGE THE STATE
+    // USE THE POST BUTTON TO POST  ALL THE DATA TO THE FIREBASE
+    // GET THE TEXT WHATS IN THE TEXTAREA
+    // LASTLY USE USEEFFECT TO POST THE COMMENTS INTO THE GAMEPAGE FROM FIREBASE
     return (
         singleGameData.singleGame[0] !== undefined ?
         
@@ -76,6 +140,45 @@ const GamePage = () => {
 
                 </div>
             </div>
+            {/* {singleGameData.log === true ? */}
+            <div className='user-review'>
+                <div className='user-heading'>
+                    <div>
+                        <button>Install Steam</button>
+                        <button>Play Now</button>
+                    </div>
+                    
+                </div>
+                <div className='user-text'>
+                    <h4>Write a review for {singleGameData.singleGame[0].name}</h4>
+                    <h6>Please describe what you liked or disliked about this game and whether you recommend it to others.</h6>
+                    <h6>Please remember to be polite and follow the <span>Rules and Guidelines</span>.</h6>
+                </div>
+                <div className='user-area'>
+                    <img src='https://avatars.akamai.steamstatic.com/beabee59066833a6c7a11694b29a9b2b76be4ff3_full.jpg' alt='Avatar icon' />
+                    <div>
+                        <textarea ref={textField}  rows='15' cols='100'></textarea>
+                        <div className='user-footer'>
+                            <div>
+                                <p>Do you recommend this game?</p>
+                                <div className='user-btns'>
+                                    <button onClick={setGameRecommended}>
+                                        <ThumbUpAltSharp />
+                                        Yes
+                                    </button>
+                                    <button onClick={setGameRecommended}>
+                                        <ThumbDownAltSharp />
+                                        No
+                                    </button>
+                                </div>
+                            </div>
+                            <button onClick={submitUserReview} className='user-submit'>Post review</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* // : null */}
+            {/* // } */}
             <div className='bottom-grid'>
                 <div className='purchase'>
                     <div>
