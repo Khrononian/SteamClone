@@ -8,11 +8,10 @@
 }
 
 .btns {
-    position: relative;
     display: inline-block
 }
 
-.btns Button {
+.btns button {
     color: white;
     text-transform: initial;
     margin-right: .5em;
@@ -21,17 +20,8 @@
     font-size: .85rem;
 }
 
-.btns Button:hover {
-    background: linear-gradient(to right, rgb(83, 141, 160), transparent) 
-}
-
-.btns div {
-    display: none;
-    position: absolute;
-}
-
-.btns div:hover .left {
-    display: block;
+.btns button:hover {
+    background: linear-gradient(to right, rgb(83, 141, 160), transparent);
 }
 
 .textfield {

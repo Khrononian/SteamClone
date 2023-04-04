@@ -125,6 +125,115 @@ h2 {
     color: white;
 }
 
+.user-review {
+    width: 100%;
+    padding: .1em .1em 1.5em .1em;
+    margin-top: 1.5rem;
+    background: linear-gradient(135deg,  rgba(97,100,101,0.3) 0%,rgba(226,244,255,0.3) 100%)
+}
+.user-heading {
+    padding: 1em;
+    border-bottom: 1px solid black;
+    margin-bottom: 1rem;
+}
+.user-heading div {
+    display: flex;
+    justify-content: space-between;
+    width: 220px;
+}
+.user-heading div button {
+    padding: .8em 1.3em;
+    border: 2px solid black;
+    cursor: pointer;
+    background: rgb(162, 202, 228);
+}
+.user-text > * {
+    margin: 0;
+}
+.user-text h4 {
+    color: #66c0f4;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+.user-text h6 {
+    font-size: .75rem;
+    color: #8f98a0 !important;
+}
+.user-text span {
+    color: white;
+    cursor: pointer;
+}
+.user-text span:hover {
+    color: #66c0f4
+}
+.user-area {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+.user-area img {
+    height: 160px;
+    padding-left: .5em;
+    padding-right: .5em;
+}
+.user-area textarea {
+    margin-right: .5rem;
+    background: #222b35;
+    color: white;
+}
+.user-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+.user-footer div p {
+    margin: .5rem 0 .2rem 0;
+    font-size: .8rem;
+    color: white;
+}
+.user-btns {
+    display: flex;
+    justify-content: space-between;
+    width: 120px;
+}
+.user-btns button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .2em 1.2em;
+    background: rgba( 103, 193, 245, 0.2 );
+    color: #67c1f5;
+    border-radius: 4px;
+    border-color: transparent;
+    cursor: pointer;
+}
+.user-btns button > * {
+    pointer-events: none;
+}
+.user-btns button:hover {
+    background: rgb(102 192 244);
+    color: white;
+}
+.user-btns-click {
+    background: rgb(102 192 244) !important;
+    color: white !important;
+}
+.user-btns button svg {
+    margin-right: .4rem;
+}
+.user-footer button {
+    margin-right: .5rem;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.user-submit {
+    border: 2px solid black;
+    background: rgb(162, 202, 228);
+    padding: .1em 1.5em;
+    margin-right: .5rem !important;
+}
+
 .bottom-grid {
     display: grid;
     /* background: linear-gradient(to right, transparent, rgb(33, 73, 97)); */

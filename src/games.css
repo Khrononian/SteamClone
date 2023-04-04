@@ -1,5 +1,4 @@
 .main-games {
-    /* width: 95%; */
     width: 940px;
     margin: 4rem auto 0 auto;
 }
@@ -65,13 +64,15 @@
     text-decoration: unset;
     color: unset;
 }
+.card-favs a button {
+    width: 306px;
+}
 .card-favs a > * {
     pointer-events: none;
     width: 100%;
 }
 
 .card-imgs {
-    /* height: 250px; */
     height: 195px;
     object-fit: fill !important;
 }
@@ -81,7 +82,7 @@
 }
 
 .side-card {
-    padding: .4em !important;
+    padding: 0 !important;
 }
 
 .bottom-data {
@@ -189,12 +190,6 @@
     height: 125px;
 }
 
-.deck {
-    /* width: 616px; */
-    width: 100%;
-}
-
-.index {
-    /* width: 314px; */
+.deck, .index {
     width: 100%;
 }
