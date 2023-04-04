@@ -4,14 +4,14 @@ import Firebase from '../Firebase'
 import { Context } from '../ContextData'
 import { Button } from '@mui/material'
 import { initializeApp } from "firebase/app";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth"
 import './login.css'
 
-
-const Login = ({ status }, props) => {
+const Login = ({ status }) => {
     const loggedData = useContext(Context)
     const location = useLocation();
+    const navigate = useNavigate()
 
     console.log('Log', status, location, loggedData)
     const firebaseConfig = {
@@ -24,30 +24,39 @@ const Login = ({ status }, props) => {
         measurementId: "G-JP8R3ZYNDC"
     };
     const email = useRef()
-    // const password = useRef()
     const password = 'testingtester'
     
     const app = initializeApp(firebaseConfig, 'Secondary')
     const auth = getAuth(app);
 
     const signIn = (e) => {
-
-        console.log('Test', auth.currentUser)
-        createUserWithEmailAndPassword(auth, email.current.value + '@gmail.com', password)
-        .then(userCredential => {
+        console.log('Test', auth.currentUser, email.current.value)
+        
+        const userLogData = (userCredential) => {
             const user = userCredential.user.email
             console.log('User', userCredential.user, userCredential.user.email.substring(0, userCredential.user.email.lastIndexOf('@')))
 
             loggedData.setUsername(user.substring(0, user.lastIndexOf('@')))
             loggedData.setLog(prevLog => !prevLog)
+            navigate('/')
+        }
+        console.log('AUTH', auth.currentUser, auth.currentUser.email)
+        auth.currentUser.email !== email.current.value ? createUserWithEmailAndPassword(auth, email.current.value + '@gmail.com', password)
+        .then(userCredential => {
+            userLogData(userCredential)
+
             console.log('States', loggedData.username)
         }).catch(error => {
             console.log(error)
+        }) : signInWithEmailAndPassword(auth, email.current.value + '@gmail.com', password)
+        .then(userCredential => {
+            userLogData(userCredential)
+
         })
+
         console.log('After', loggedData.username)
     }
-    console.log('AFTER AFTER', loggedData.username)
-    
+    console.log('AFTER AFTER', loggedData.username, auth.currentUser)
 
     return (
         <div >
