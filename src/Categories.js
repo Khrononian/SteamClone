@@ -9,91 +9,37 @@ import './categories.css'
 
 const Categories = () => {
     useEffect(() => {
-        
-        getRandomColor()
+        setCategoryStyles()
     }, [])
 
     const [blockColors, setBlockColors] = useState([])
     const categoryGames = useContext(Context)
 
-    const getRandomColor = () => {
-        const colors = ['blue', 'red', 'yellow', 'purple', 'green', 'cyan'];
-        const shuffled = colors.map(color => ({ color, sort: Math.random() }))
-        .sort((a, b) => a.sort - b.sort)
-        .map(({ color }) => color).splice(2, 4)
+    const setCategoryStyles = () => {
+        const categoryBlocks = [{
+            category: 'CASUAL',
+            colorName: 'yellow'
+        }, {category: 'ACTION', colorName: 'red'}, {
+            category: 'FREE TO PLAY', colorName: 'cyan'
+        }, {category: 'ADVENTURE', colorName: 'green'}]
 
-        setBlockColors(prev => prev.concat(shuffled))
-        
-        // return colors[Math.floor(Math.random() * colors.length)]
+        setBlockColors(prev => prev.concat(categoryBlocks))
     }
-    console.log(blockColors)
-    const [tabCount, setTabCount] = useState([{
-        name: 'Fallout',
-        id: 0
-    }, {
-        name: 'RimWorld',
-        id: 1
-    }, {
-        name: 'Dark Souls',
-        id: 2
-    }])
-
-    const BackgroundStyle = {
-        background: `linear-gradient(to top, ${blockColors[Math.floor(Math.random() * blockColors.length)]}, transparent)`
-    }
-
-    const setTabs = event => {
-        const childTabs = event.target.parentElement.children
-        console.log('Test', event.target, event.target.dataset)
-        for (const child of childTabs) {
-            child.classList.remove('active-tab')
-        }
-        for (const tab of tabCount) {
-            if (Number(event.target.dataset.count) === tab.id) {
-                console.log('Tab Name', tab.name)
-                // setTabName(tab.name)
-            }
-        }
-        event.target.classList.add('active-tab')
-    }
+    console.log('COLORS', blockColors)
 
     return (
         <div className='category'>
             <h4>BROWSER BY CATEGORY</h4>
             <div className='grid'>
-                <Link to={`/category/casual`} state={{name: 'CASUAL'}}>
-                    <img alt='casual' src='https://store.steampowered.com/categories/homepageimage/category/horror?cc=us&l=english' />
-                    <div style={BackgroundStyle} className='name'>
-                        <p>CASUAL</p>
-                    </div>
-                </Link>
-                <Link to={`/category/action`} state={{name: 'ACTION'}}>
-                    <img alt='action' src='https://store.steampowered.com/categories/homepageimage/category/action?cc=us&l=english' />
-                    <div style={BackgroundStyle} className='name'>
-                        <p>ACTION</p>
-                    </div>
-                </Link>
-                <Link to={`/category/freeToPlay`} state={{name: 'FREE TO PLAY'}}>
-                    <img alt='freeToPlay' src='https://store.steampowered.com/categories/homepageimage/category/rogue_like_rogue_lite?cc=us&l=english' />
-                    <div style={BackgroundStyle} className='name'>
-                        <p>FREE TO PLAY</p> 
-                    </div>
-                </Link>
-                <Link to={`/category/adventure`} state={{name: 'ADVENTURE'}}>
-                    <img alt='adventure' src='https://store.steampowered.com/categories/homepageimage/greatondeck?cc=us&l=english' />
-                    <div style={BackgroundStyle} className='name'>
-                        <p>ADVENTURE</p>
-                    </div>
-                </Link>
-
+                {blockColors.map((color, index) => (
+                    <Link key={index} to={`/category/${color.category.toLowerCase()}`} state={{name: color.category}}>
+                        <img alt={color.category.toLowerCase()} src={index !== 2 ? `https://store.steampowered.com/categories/homepageimage/category/${color.category.toLowerCase()}?cc=us&l=english` : `https://store.steampowered.com/categories/homepageimage/freetoplay?cc=us&l=english`} />
+                        <div style={{ background: `linear-gradient(to top, ${color.colorName}, transparent` }} className='name'>
+                            <p>{color.category}</p>
+                        </div>
+                    </Link>
+                ))}
             </div>
-            {/* <div className='category-tabs'>
-                <div onClick={setTabs} className='active-tab'></div>
-                <div onClick={setTabs}></div>
-                <div onClick={setTabs}></div>
-                <div onClick={setTabs}></div>
-                <div onClick={setTabs}></div>
-            </div> */}
             <div className='browse'>
                 <h4>BROWSE STEAM</h4>
                 <div className='browse-grid'>
