@@ -12,10 +12,6 @@ import SteamIcon from './SteamIcon.svg'
 import './games.css'
 
 const Games = () => {
-    const [featuredGames, setFeaturedGames] = useState([])
-    const [favorites, setFavorites] = useState([])
-    const [currentColor, setCurrentColor] = useState()
-    const [tabName, setTabName] = useState([])
     const [tabNum, setTabNum] = useState()
     const [tabCount, setTabCount] = useState([
         {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
@@ -27,7 +23,6 @@ const Games = () => {
         setTabCount(prevTab => {
             console.log(prevTab)
             prevTab.map((tab, index) => tab.id = index)
-            console.log('New', prevTab)
         })
     }, [])
     // Four other fav games: Elden Ring, Dark Souls 3, Unturned, Detroit Become Human
@@ -36,23 +31,11 @@ const Games = () => {
     // SET TABS FUNCTION WORKS
     const setTabs = event => {
         const childTabs = event.target.parentElement.children
-        console.log('Test', event.target, event.target.dataset)
         for (const child of childTabs) {
             child.classList.remove('active-tab')
         }
-        // for (const tab of tabCount) {
-        //     if (Number(event.target.dataset.count) === tab.id) {
-        //         console.log('Tab Name', tab.name)
-        //         // setTabName(tab.name)
-        //     }
-        // }
         event.target.classList.add('active-tab')
         setTabNum(Number(event.target.dataset.count))
-        setTabNum((state) => {
-            console.log('TABS INNER', state)
-            setTabName(prevName => prevName.concat(state))
-            return state
-        })
     }
     
     console.log('TABS MID', tabNum)
@@ -138,8 +121,6 @@ const Games = () => {
                                     7 Days to Die
                                 </Typography>
                                 <p>$24.99</p>
-                                
-                                {/* APP ID 251570 */}
                             </CardContent>
                         </Link>
                     </Card>
@@ -157,7 +138,6 @@ const Games = () => {
                                     Fallout 4
                                 </Typography>
                                 <p>$29.99</p>
-                                {/* APP ID 377160 */}
                             </CardContent>
                         </Link>
                     </Card>
@@ -173,7 +153,6 @@ const Games = () => {
                                 <div className='bottom-data'>
                                     <p>Unturned</p>
                                     <p>Free to Play</p>
-                                    {/* APP ID 304930 */}
                                 </div>
                                 
                             </CardContent>
@@ -191,7 +170,6 @@ const Games = () => {
                                 <div className='bottom-data'>
                                     <p>SALT & SANCTUARY</p>
                                     <p>$17.99</p>
-                                    {/* APP ID 283640 */}
                                 </div>
                             </CardContent>
                         </Link>
