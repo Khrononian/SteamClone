@@ -361,16 +361,26 @@ p.review-heading {
     gap: 24px;
 }
 
-.review-card {
+.review-card .main-review {
+    background: rgb(0 0 0 / 20%);
+    display: grid;
+    grid-template-columns: 200px auto;
+    margin-bottom: 2rem;
+    width: 600px;
+    padding: .2em 0 .25em .3em;
+}
+/* .review-card {
     background: rgb(0 0 0 / 20%);
     display: grid;
     grid-template-columns: 200px auto;
     width: 600px;
     padding: .2em 0 .25em .3em;
-}
-
+} */
 .avatar span {
     color: silver;
+}
+.avatar div {
+    /* background: unset; */
 }
 .review-info div:first-child {
     display: flex;
