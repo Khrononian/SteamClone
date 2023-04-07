@@ -10,7 +10,7 @@ import { red } from '@mui/material/colors'
 import { ThumbUpAltSharp } from '@mui/icons-material'
 import { ThumbDownAltSharp } from '@mui/icons-material'
 import { initializeApp } from 'firebase/app'
-import { getFirestore, addDoc, collection, doc, setDoc } from 'firebase/firestore'
+import { getFirestore, addDoc, collection, doc, setDoc, getDoc, getDocs } from 'firebase/firestore'
 import SteamIcon from '../SteamIcon.svg'
 import './gamepage.css'
 
@@ -18,6 +18,8 @@ const GamePage = () => {
     const [gamehype, setGameHype] = useState(false);
     const [newDate, setNewDate] = useState('')
     const [gameHypeClick, setGameHypeClick] = useState(false)
+    const [reviewPost, setReviewPost] = useState(false)
+    const [reviews, setReviews] = useState([])
 
     const textField = createRef()
     const firebaseConfig = {
@@ -40,13 +42,27 @@ const GamePage = () => {
     }, [])
 
     useEffect(() => {
+        const getReviews = async () => {
+            // const reviewBoard = doc(db, 'Users', singleGameData.username, )
+            // const userReviews = await getDoc(reviewBoard)
+            const userReviews = await getDocs(collection(db, 'Users'))
 
+            console.log('OLD METALLIC', userReviews)
+            userReviews.forEach(review => {
+                console.log('METALLIC', userReviews, review.data())
+                setReviews(prev => [...prev].concat({review: review.data().review, date: review.data().date, username: review.data().username, recommended: review.data().recommended, color: review.data().color}))
+            })  
+        }
+        
+        getReviews()
     }, [])
 
     const singleGameData = useContext(Context)
+
     const changeMainImage = (event, img) => {
         event.target.parentElement.parentElement.querySelector('.main-img').src = img
     }
+
     const setGameRecommended = event => {
         // console.log('Recommend', event, event.target.innerText)
         console.log('BUTT', event.target.parentElement)
@@ -66,8 +82,7 @@ const GamePage = () => {
         
     }
 
-
-
+    console.log('STATE', reviews)
     const submitUserReview = async () => {
         console.log('SUBMIT', textField.current.value)
         
@@ -76,14 +91,29 @@ const GamePage = () => {
         const monthDay = date.toLocaleString('default', { month: 'long', day: 'numeric' })
         
         setNewDate(monthDay)
-
+        setReviewPost(true)
         await setDoc(doc(db, 'Users', singleGameData.username), {
             date: monthDay,
             review: textField.current.value,
             recommended: gamehype,
+            username: singleGameData.username,
+            color: randomColor()
         })
 
     }
+
+    const randomColor = () => {
+        const characters = '0123456789ABCDEF';
+        const characterlength = characters.length
+        let color = '#'
+
+        for (let i = 0; i < 6; i++) {
+            color += characters[Math.floor(Math.random() * characterlength)]
+        }
+        return color
+        
+    }
+    console.log('COOLOR', randomColor())
     console.log('DATE', newDate, gameHypeClick)
     // FOR REVIEWS, MAKE ONE FUNCTION FOR THE YES AND NO TO CHANGE THE STATE
     // USE THE POST BUTTON TO POST  ALL THE DATA TO THE FIREBASE
@@ -149,12 +179,12 @@ const GamePage = () => {
                     </div>
                     
                 </div>
-                <div className='user-text'>
+                {reviewPost === false ? <div className='user-text'>
                     <h4>Write a review for {singleGameData.singleGame[0].name}</h4>
                     <h6>Please describe what you liked or disliked about this game and whether you recommend it to others.</h6>
                     <h6>Please remember to be polite and follow the <span>Rules and Guidelines</span>.</h6>
-                </div>
-                <div className='user-area'>
+                </div> : <h2>Thank you for the Reivew!</h2>}
+                {reviewPost === false ? <div className='user-area'>
                     <img src='https://avatars.akamai.steamstatic.com/beabee59066833a6c7a11694b29a9b2b76be4ff3_full.jpg' alt='Avatar icon' />
                     <div>
                         <textarea ref={textField}  rows='15' cols='100'></textarea>
@@ -175,7 +205,7 @@ const GamePage = () => {
                             <button onClick={submitUserReview} className='user-submit'>Post review</button>
                         </div>
                     </div>
-                </div>
+                </div> : null}
             </div>
             {/* // : null */}
             {/* // } */}
@@ -237,27 +267,61 @@ const GamePage = () => {
                         <div className='left-grid'>
                             <p className='review-heading'>MOST HELPFUL REVIEWS</p>
                             <div className='review-card'>
-                                <div className='avatar'>
-                                    <Avatar sx={{ bgcolor: red[500], padding: '.15em' }} variant='square'>M</Avatar>
-                                    <span>Momo</span>
-                                </div>
-                                <div className='review-info'>
-                                    <div className='top-review'>
-                                        <ThumbUpAltSharp sx={{}} />
-                                        <p>Recommended</p>
+
+                                {/* <div className='main-review'>
+                                    <div className='avatar'>
+                                        <Avatar sx={{ bgcolor: red[500], padding: '.15em' }} variant='square'>M</Avatar>
+                                        <span>Momo</span>
                                     </div>
-                                    <div className='middle-review'>
-                                        <p>POSTED: <span>Date</span></p>
-                                        <p>Text</p>
-                                    </div>
-                                    <div className='bottom-review'>
-                                        <p>Was this review helpful?</p>
-                                        <div>
-                                            <Button><ThumbUpAltSharp /> Yes</Button>
-                                            <Button><ThumbDownAltSharp /> No</Button>
+                                    <div className='review-info'>
+                                        <div className='top-review'>
+                                            <ThumbUpAltSharp sx={{}} />
+                                            <p>Recommended</p>
+                                        </div>
+                                        <div className='middle-review'>
+                                            <p>POSTED: <span>Date</span></p>
+                                            <p>Text</p>
+                                        </div>
+                                        <div className='bottom-review'>
+                                            <p>Was this review helpful?</p>
+                                            <div>
+                                                <Button><ThumbUpAltSharp /> Yes</Button>
+                                                <Button><ThumbDownAltSharp /> No</Button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
+
+                                {reviews.length !== 0 ?
+                                    reviews.map((review, index) => (
+                                        <div className='main-review' key={index}>
+                                            <div className='avatar'>
+                                                {console.log('CHECKY', review.color)}
+                                                <Avatar style={{ background: review.color }} variant='square'>{review.username.substring(0, 1).toUpperCase()}</Avatar>
+                                                <span>{`${review.username.substring(0, 1).toUpperCase()}${review.username.slice(1)}`}</span>
+                                            </div>
+                                            <div className='review-info'>
+                                                <div className='top-review'>
+                                                    {review.recommended === true ? <ThumbUpAltSharp />
+                                                    : <ThumbDownAltSharp  style={{background: 'rgba(255, 0, 0, 0.3)', color: 'red'}} />
+                                                    }
+                                                    <p>{review.recommended === true ? 'Recommended' : 'Not Recommended'}</p>
+                                                </div>
+                                                <div className='middle-review'>
+                                                    <p>POSTED: <span>{review.date}</span></p>
+                                                    <p>{review.review}</p>
+                                                </div>
+                                                <div className='bottom-review'>
+                                                    <p>Was this review helpful?</p>
+                                                    <div>
+                                                        <Button><ThumbUpAltSharp /> Yes</Button>
+                                                        <Button><ThumbDownAltSharp /> No</Button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )) : <h2>No Reviews</h2>
+                                }
                             </div>
                         </div>
                         <div className='right-grid'>
