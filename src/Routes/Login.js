@@ -41,13 +41,19 @@ const Login = ({ status }) => {
             navigate('/')
         }
         console.log('AUTH', auth.currentUser, auth.currentUser.email)
-        auth.currentUser.email !== email.current.value ? createUserWithEmailAndPassword(auth, email.current.value + '@gmail.com', password)
+        !auth.currentUser.email || auth.currentUser.email !== email.current.value ? createUserWithEmailAndPassword(auth, email.current.value + '@gmail.com', password)
         .then(userCredential => {
             userLogData(userCredential)
 
             console.log('States', loggedData.username)
         }).catch(error => {
             console.log(error)
+            // if (error.code === 'auth/email-already-in-use') {
+            //     signInWithEmailAndPassword(auth, email.current.value + '@gmail.com', password)
+            //     .then(userCredential => {
+            //     userLogData(userCredential)
+            //     })
+            // }
         }) : signInWithEmailAndPassword(auth, email.current.value + '@gmail.com', password)
         .then(userCredential => {
             userLogData(userCredential)
