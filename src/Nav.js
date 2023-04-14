@@ -15,6 +15,8 @@ import MenuIcon  from '@mui/icons-material/Menu';
 import { Avatar } from '@mui/material';
 import { red } from '@mui/material/colors'
 import { Context } from './ContextData';
+import { initializeApp } from 'firebase/app'
+import { getFirestore, doc, getDoc } from 'firebase/firestore'
 import './nav.css'
 
 const Nav = ({ status, username }) => {
@@ -23,7 +25,10 @@ const Nav = ({ status, username }) => {
     })
     const [openFirstNav, setOpenFirstNav] = useState(true)
     const [openSecondNav, setOpenSecondNav] = useState(true)
+    const [userColors, setUserColors] = useState([])
     const loggedData = useContext(Context)
+    const app = initializeApp(loggedData.firebaseConfig)
+    const db = getFirestore(app)
 
     const handleClick = (event) => {
         if (event.nativeEvent.target.outerText === 'Store') setOpenFirstNav(!openFirstNav)
@@ -36,6 +41,15 @@ const Nav = ({ status, username }) => {
         
         setState({ ...state, [anchor]: open})
     }
+
+    const getUserColor = async () => {
+        const userColor = await getDoc(doc(db, 'Users', loggedData.username))
+        const userData = userColor.data()
+        console.log('INNER USER', userColor.data())
+        return userData
+    }
+    getUserColor().then(value => console.log('OUTER USER', value))
+    console.log('USER COLOR', getUserColor())
 
     const list = anchor => (
         <Box
@@ -51,7 +65,7 @@ const Nav = ({ status, username }) => {
                 </ListItemButton>
                 :
                 <ListItemButton className='avatar-block'>
-                    <Avatar sx={{ bgcolor: red[500], padding: '.15em' }} variant='square'>M</Avatar>
+                    <Avatar sx={{ bgcolor: red[500], padding: '.15em' }} variant='square'>{`${loggedData.username.substring(0, 1).toUpperCase()}`}</Avatar>
                     <h4>{loggedData.username}</h4>
                 </ListItemButton>}
                 <Divider />
