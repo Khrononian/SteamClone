@@ -6,6 +6,7 @@ import { Button } from '@mui/material'
 import { initializeApp } from "firebase/app";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth"
+import { getFirestore, collection, doc, setDoc, getDocs } from 'firebase/firestore'
 import './login.css'
 
 const Login = ({ status }) => {
@@ -26,8 +27,21 @@ const Login = ({ status }) => {
     const email = useRef()
     const password = 'testingtester'
     
-    const app = initializeApp(firebaseConfig, 'Secondary')
+    const app = initializeApp(loggedData.firebaseConfig, 'Secondary')
+    const db = getFirestore(app)
     const auth = getAuth(app);
+
+    const randomColor = () => {
+        const characters = '0123456789ABCDEF';
+        const characterlength = characters.length
+        let color = '#'
+
+        for (let i = 0; i < 6; i++) {
+            color += characters[Math.floor(Math.random() * characterlength)]
+        }
+        return color
+        
+    }
 
     const signIn = (e) => {
         console.log('Test', auth.currentUser, email.current.value)
@@ -42,8 +56,12 @@ const Login = ({ status }) => {
         }
         console.log('AUTH', auth.currentUser, auth.currentUser.email)
         !auth.currentUser.email || auth.currentUser.email !== email.current.value ? createUserWithEmailAndPassword(auth, email.current.value + '@gmail.com', password)
-        .then(userCredential => {
+        .then(async userCredential => {
             userLogData(userCredential)
+            await setDoc(doc(db, 'Users', email.current.value), {
+                username: email.current.value,
+                color: randomColor()
+            })
 
             console.log('States', loggedData.username)
         }).catch(error => {
