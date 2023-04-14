@@ -369,18 +369,8 @@ p.review-heading {
     width: 600px;
     padding: .2em 0 .25em .3em;
 }
-/* .review-card {
-    background: rgb(0 0 0 / 20%);
-    display: grid;
-    grid-template-columns: 200px auto;
-    width: 600px;
-    padding: .2em 0 .25em .3em;
-} */
 .avatar span {
     color: silver;
-}
-.avatar div {
-    /* background: unset; */
 }
 .review-info div:first-child {
     display: flex;
@@ -432,6 +422,14 @@ p.review-heading {
 .bottom-side-review button svg {
     margin-right: .3rem;
     font-size: 1.3rem;
+}
+.main-background {
+    margin-bottom: 2rem;
+}
+
+.bottom-side-review button:hover {
+    background: rgb(102 192 244);
+    color: white;
 }
 
 .main-background {
