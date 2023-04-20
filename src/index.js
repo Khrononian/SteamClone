@@ -7,6 +7,7 @@ import ContextData from './ContextData';
 import Login from './Routes/Login';
 import GamePage from './Routes/GamePage';
 import Category from './Routes/Category';
+import SignUp from './Routes/SignUp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,6 +15,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />}/>
+        <Route path='/signup' element={<SignUp />}/>
         <Route path='/login' element={<Login />}/>
         <Route path='/app/:id' element={<GamePage />}/>
         <Route path='/category/:name' element={<Category />}/>
