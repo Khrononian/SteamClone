@@ -1,6 +1,9 @@
 html, body {
-  background: linear-gradient(to right bottom, rgb(31, 61, 78), rgb(21, 38, 49)) !important;
+  /* background: linear-gradient(to right bottom, rgb(31, 61, 78), rgb(21, 38, 49)) !important; */
   /* background: linear-gradient(to top, transparent, rgb(28, 61, 82)) !important; */
+}
+html {
+  background: linear-gradient(to right bottom, rgb(31, 61, 78), rgb(21, 38, 49)) !important;
 }
 
 h4, h5 {

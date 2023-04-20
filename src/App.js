@@ -7,6 +7,9 @@ import Categories from './Categories';
 import './App.css';
 
 const App = () => {
+  useEffect(() => {
+    document.body.style.background = 'linear-gradient(to right bottom, rgb(31, 61, 78), rgb(21, 38, 49))'
+  })
   const newContext = useContext(Context)
 
   console.log('Cont', newContext)
