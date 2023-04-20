@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export const Context = React.createContext()
 
@@ -10,7 +11,16 @@ const ContextData = ({ children }) => {
     const [updatedGames, setUpdatedGames] = useState([])
     const [log, setLog] = useState(false);
     const [username, setUsername] = useState('');
-
+    const firebaseConfig = {
+        apiKey: "AIzaSyBCRdufWIqxKTPz_J7p1Zb05Ha9ssj5n3Y",
+        authDomain: "steam-clone-ba33d.firebaseapp.com",
+        projectId: "steam-clone-ba33d",
+        storageBucket: "steam-clone-ba33d.appspot.com",
+        messagingSenderId: "65364662879",
+        appId: "1:65364662879:web:6bed306f967850ed7e99ea",
+        measurementId: "G-JP8R3ZYNDC"
+    };
+    // const navigate = useNavigate()
     const setGamePage =  (event) => {
         // USE THIS TO SET THE GAME CLICKED ON(LINK) TO THE SINGLE GAME STATE
         console.log('Event', event, event.target.dataset.appid)
@@ -19,6 +29,25 @@ const ContextData = ({ children }) => {
         fetch(`https://api.steamapis.com/market/app/${ event.target.dataset.appid }?api_key=USh9nTgdKcpomNdTTl-Iok0OjDA`)
         .then(response => response.json())
         .then(data => setSingleGame(prev => prev.concat(data)))
+    }
+    const userLogData = (userCredential) => {
+        const user = userCredential.user.email
+        console.log('User', userCredential.user, userCredential.user.email.substring(0, userCredential.user.email.lastIndexOf('@')))
+
+        setUsername(user.substring(0, user.lastIndexOf('@')))
+        setLog(prevLog => !prevLog)
+        // navigate('/')
+    }
+    const randomColor = () => {
+        const characters = '0123456789ABCDEF';
+        const characterlength = characters.length
+        let color = '#'
+
+        for (let i = 0; i < 6; i++) {
+            color += characters[Math.floor(Math.random() * characterlength)]
+        }
+        return color
+        
     }
 
     useEffect(() => {
@@ -60,18 +89,10 @@ const ContextData = ({ children }) => {
         .catch(error => console.log(error))
     }, [])
     
-    const firebaseConfig = {
-        apiKey: "AIzaSyBCRdufWIqxKTPz_J7p1Zb05Ha9ssj5n3Y",
-        authDomain: "steam-clone-ba33d.firebaseapp.com",
-        projectId: "steam-clone-ba33d",
-        storageBucket: "steam-clone-ba33d.appspot.com",
-        messagingSenderId: "65364662879",
-        appId: "1:65364662879:web:6bed306f967850ed7e99ea",
-        measurementId: "G-JP8R3ZYNDC"
-    };
+    
 
     return (
-        <Context.Provider value={ { firebaseConfig, games, setGames, singleGame, setSingleGame, featuredGames, belowGames, updatedGames, log, setLog, setGamePage, setUsername, username } }>
+        <Context.Provider value={ { firebaseConfig, games, setGames, singleGame, setSingleGame, featuredGames, belowGames, updatedGames, log, setLog, setGamePage, setUsername, username, userLogData, randomColor } }>
             {children}
         </Context.Provider>
     )
