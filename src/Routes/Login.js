@@ -4,33 +4,27 @@ import Firebase from '../Firebase'
 import { Context } from '../ContextData'
 import { Button } from '@mui/material'
 import { initializeApp } from "firebase/app";
-import { useLocation, useNavigate } from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth"
+import { useLocation, Link } from 'react-router-dom';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth"
 import { getFirestore, collection, doc, setDoc, getDocs } from 'firebase/firestore'
 import './login.css'
 
 const Login = ({ status }) => {
+    // useEffect(() => {
+    //     document.body.style.background = '#212429'
+    // }, [])
     const loggedData = useContext(Context)
     const location = useLocation();
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     console.log('Log', status, location, loggedData)
-    const firebaseConfig = {
-        apiKey: "AIzaSyBCRdufWIqxKTPz_J7p1Zb05Ha9ssj5n3Y",
-        authDomain: "steam-clone-ba33d.firebaseapp.com",
-        projectId: "steam-clone-ba33d",
-        storageBucket: "steam-clone-ba33d.appspot.com",
-        messagingSenderId: "65364662879",
-        appId: "1:65364662879:web:6bed306f967850ed7e99ea",
-        measurementId: "G-JP8R3ZYNDC"
-    };
+
+    const app = initializeApp(loggedData.firebaseConfig)
+    const db = getFirestore(app)
+    const auth = getAuth(app);
     const email = useRef()
     const password = 'testingtester'
     
-    const app = initializeApp(loggedData.firebaseConfig, 'Secondary')
-    const db = getFirestore(app)
-    const auth = getAuth(app);
-
     const randomColor = () => {
         const characters = '0123456789ABCDEF';
         const characterlength = characters.length
@@ -44,38 +38,32 @@ const Login = ({ status }) => {
     }
 
     const signIn = (e) => {
-        console.log('Test', auth.currentUser, email.current.value)
-        
+        console.log('Test', auth, auth.currentUser, email.current.value)
+        const authUser = auth.currentUser
         const userLogData = (userCredential) => {
             const user = userCredential.user.email
             console.log('User', userCredential.user, userCredential.user.email.substring(0, userCredential.user.email.lastIndexOf('@')))
 
             loggedData.setUsername(user.substring(0, user.lastIndexOf('@')))
             loggedData.setLog(prevLog => !prevLog)
-            navigate('/')
+            // navigate('/')
         }
-        console.log('AUTH', auth.currentUser, auth.currentUser.email)
-        !auth.currentUser.email || auth.currentUser.email !== email.current.value ? createUserWithEmailAndPassword(auth, email.current.value + '@gmail.com', password)
-        .then(async userCredential => {
-            userLogData(userCredential)
-            await setDoc(doc(db, 'Users', email.current.value), {
-                username: email.current.value,
-                color: randomColor()
-            })
+        onAuthStateChanged(auth, (authUser) => {
+            console.log('USER USER', authUser, authUser.currentUser)
+            authUser ? createUserWithEmailAndPassword(auth, email.current.value + '@gmail.com', password)
+            .then(async userCredential => {
+                userLogData(userCredential)
+                await setDoc(doc(db, 'Users', email.current.value.substring(0, 1).toLowerCase().slice(1)), {
+                    username: email.current.value,
+                    color: randomColor()
+                })
 
-            console.log('States', loggedData.username)
-        }).catch(error => {
-            console.log(error)
-            // if (error.code === 'auth/email-already-in-use') {
-            //     signInWithEmailAndPassword(auth, email.current.value + '@gmail.com', password)
-            //     .then(userCredential => {
-            //     userLogData(userCredential)
-            //     })
-            // }
-        }) : signInWithEmailAndPassword(auth, email.current.value + '@gmail.com', password)
-        .then(userCredential => {
-            userLogData(userCredential)
-
+                console.log('States', loggedData.username)
+            }) :
+            signInWithEmailAndPassword(auth, email.current.value + '@gmail.com', password)
+            .then(userCredential => {
+                userLogData(userCredential)
+            }).catch(error => console.log(error))
         })
 
         console.log('After', loggedData.username)
@@ -109,6 +97,12 @@ const Login = ({ status }) => {
                     </div>
                 </div>
             </div>
+            <footer>
+                <div>
+                    <Link to='/signup'><button >Join Steam</button></Link>
+                    <p>It's free and easy to use.</p>
+                </div>
+            </footer>
         </div>
     )
 }
