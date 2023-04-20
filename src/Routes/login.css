@@ -1,5 +1,6 @@
 html, body {
-    min-height: 100vh;
+    min-height: 90vh;
+    position: relative;
 }
 
 h1 {
@@ -44,14 +45,16 @@ h1 {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    text-align: center;
 }
 .sign-form div:nth-child(3) p {
-    margin: 0;
     text-align: center;
     color: gray;
     text-decoration: underline;
     cursor: pointer;
     font-size: .9rem;
+    width: 150px;
+    margin: 0 auto !important;
 }
 
 input {
@@ -92,4 +95,31 @@ input {
 .sign-form span {
     text-decoration: underline;
     cursor: pointer;
+}
+
+footer {
+    background: #202020;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1em;
+    text-align: center;
+}
+
+footer div button {
+    background: transparent;
+    border: 1px solid rgb(145, 145, 145);
+    padding: .4em 1.1em;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+}
+footer div button:hover {
+    border-color: white;;
+}
+
+footer div p {
+    color: gray;
+    margin-top: .75rem;
 }
