@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material'
 import { Drawer } from '@mui/material'
@@ -30,6 +30,18 @@ const Nav = ({ status, username }) => {
     const app = initializeApp(loggedData.firebaseConfig)
     const db = getFirestore(app)
 
+    // useEffect(() => {
+    //     if (loggedData.log === true) {
+    //         console.log('NAV CHANGE')
+    //         getUserColor()
+    //         getUserColor().then(value => {
+    //             if (value.username === loggedData.username) {
+                        // GET COLOR FROM BACKEND
+    //             }
+    //         })
+    //     }
+    // }, [loggedData.log])
+
     const handleClick = (event) => {
         if (event.nativeEvent.target.outerText === 'Store') setOpenFirstNav(!openFirstNav)
         else setOpenSecondNav(!openSecondNav)
@@ -46,10 +58,10 @@ const Nav = ({ status, username }) => {
         const userColor = await getDoc(doc(db, 'Users', loggedData.username))
         const userData = userColor.data()
         console.log('INNER USER', userColor.data())
-        return userData
+        // return userData
     }
-    getUserColor().then(value => console.log('OUTER USER', value))
-    console.log('USER COLOR', getUserColor())
+    
+    // console.log('USER COLOR', getUserColor())
 
     const list = anchor => (
         <Box
