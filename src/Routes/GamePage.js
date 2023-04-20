@@ -22,15 +22,6 @@ const GamePage = () => {
     const [mount, setMount] = useState([])
 
     const textField = createRef()
-    const firebaseConfig = {
-        apiKey: "AIzaSyBCRdufWIqxKTPz_J7p1Zb05Ha9ssj5n3Y",
-        authDomain: "steam-clone-ba33d.firebaseapp.com",
-        projectId: "steam-clone-ba33d",
-        storageBucket: "steam-clone-ba33d.appspot.com",
-        messagingSenderId: "65364662879",
-        appId: "1:65364662879:web:6bed306f967850ed7e99ea",
-        measurementId: "G-JP8R3ZYNDC"
-    };
     const singleGameData = useContext(Context)
     const app = initializeApp(singleGameData.firebaseConfig)
     const db = getFirestore(app)
