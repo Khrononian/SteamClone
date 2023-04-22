@@ -1,69 +1,35 @@
-import React, { useState, useRef, useEffect, useContext } from 'react'
+import React, { useRef, useEffect, useContext } from 'react'
 import Nav from '../Nav'
 import Firebase from '../Firebase'
 import { Context } from '../ContextData'
 import { Button } from '@mui/material'
 import { initializeApp } from "firebase/app";
-import { useLocation, Link } from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth"
+import { useLocation, Link, useNavigate } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { getFirestore, collection, doc, setDoc, getDocs } from 'firebase/firestore'
 import './login.css'
 
 const Login = ({ status }) => {
-    // useEffect(() => {
-    //     document.body.style.background = '#212429'
-    // }, [])
+    useEffect(() => {
+        document.body.style.background = '#212429'
+    }, [])
     const loggedData = useContext(Context)
     const location = useLocation();
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     console.log('Log', status, location, loggedData)
 
     const app = initializeApp(loggedData.firebaseConfig)
-    const db = getFirestore(app)
     const auth = getAuth(app);
     const email = useRef()
-    const password = 'testingtester'
-    
-    const randomColor = () => {
-        const characters = '0123456789ABCDEF';
-        const characterlength = characters.length
-        let color = '#'
 
-        for (let i = 0; i < 6; i++) {
-            color += characters[Math.floor(Math.random() * characterlength)]
-        }
-        return color
-        
-    }
-
-    const signIn = (e) => {
+    const signIn = () => {
         console.log('Test', auth, auth.currentUser, email.current.value)
-        const authUser = auth.currentUser
-        const userLogData = (userCredential) => {
-            const user = userCredential.user.email
-            console.log('User', userCredential.user, userCredential.user.email.substring(0, userCredential.user.email.lastIndexOf('@')))
-
-            loggedData.setUsername(user.substring(0, user.lastIndexOf('@')))
-            loggedData.setLog(prevLog => !prevLog)
-            // navigate('/')
-        }
-        onAuthStateChanged(auth, (authUser) => {
-            console.log('USER USER', authUser, authUser.currentUser)
-            authUser ? createUserWithEmailAndPassword(auth, email.current.value + '@gmail.com', password)
-            .then(async userCredential => {
-                userLogData(userCredential)
-                await setDoc(doc(db, 'Users', email.current.value.substring(0, 1).toLowerCase().slice(1)), {
-                    username: email.current.value,
-                    color: randomColor()
-                })
-
-                console.log('States', loggedData.username)
-            }) :
-            signInWithEmailAndPassword(auth, email.current.value + '@gmail.com', password)
-            .then(userCredential => {
-                userLogData(userCredential)
-            }).catch(error => console.log(error))
+        
+        signInWithEmailAndPassword(auth, email.current.value + '@gmail.com', 'password')
+        .then(userCredential => {
+            loggedData.userLogData(userCredential)
+            navigate('/')
         })
 
         console.log('After', loggedData.username)
@@ -83,7 +49,7 @@ const Login = ({ status }) => {
                         </div>
                         <div>
                             <p>PASSWORD</p>
-                            <input type='password' />
+                            <input type='password' placeholder='Any password works' />
                         </div>
                         <div>
                             <Button onClick={signIn}>Sign in</Button>
