@@ -1,13 +1,23 @@
-/* html, body {
-    background: #212429 !important;
-} */
-
 .signup-container {
     margin: 9rem 0 0 3rem;
+    display: flex;
+    justify-content: center;
 }
 
 .signup-heading {
-    margin: 0 0 2rem 0 !important
+    margin: 0 0 2rem 0 !important;
+}
+
+.alert {
+    background: black;
+    border: 2px solid rgb(187, 20, 53);
+    color: white;
+    width: 700px;
+    margin-bottom: 2rem;
+}
+.alert p {
+    margin: 0;
+    padding: .7em 0 .7em .7em;
 }
 
 .signup-box {
@@ -33,6 +43,9 @@
     transform: scale(1.6);
     width: 10px;
     margin-right: .5rem;
+}
+.last-box input:placeholder-shown {
+    font-style: italic;
 }
 .last-box p, .last-box span {
     font-size: .95rem;

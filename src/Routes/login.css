@@ -65,6 +65,9 @@ input {
     color: white;
     width: 100%;
 }
+input:placeholder-shown {
+    font-style: italic;
+}
 
 .sign-form button {
     background: rgb(6 191 255) !important;
