@@ -1,20 +1,30 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import Nav from '../Nav'
 import { Context } from '../ContextData'
 import { useNavigate } from 'react-router-dom'
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth"
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import { initializeApp } from 'firebase/app'
 import { getFirestore, setDoc, doc } from 'firebase/firestore'
 import '../signup.css'
 
 const SignUp = () => {
+    const [checked, setChecked] = useState(false)
+    const [visible, setVisible] = useState(false)
+
     useEffect(() => {
         document.body.style.backgroundColor = '#212429'
+        document.body.style.backgroundImage = `url('https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/acct_creation_bg.jpg')`
+        document.body.style.backgroundRepeat = 'no-repeat'
         console.log('Body', document, document.html, document.body)
         return () => {
             document.body.style.background = 'linear-gradient(to right bottom, rgb(31, 61, 78), rgb(21, 38, 49))'
         }
     }, [])
+
+    const changeStatus = () => {
+        setChecked(prev => !prev)
+    }
+
     const loggedData = useContext(Context)
     const app = initializeApp(loggedData.firebaseConfig)
     const db = getFirestore(app)
@@ -23,6 +33,10 @@ const SignUp = () => {
     const navigate = useNavigate()
 
     const createNewAccount = () => {
+        if (!checked) {
+            setVisible(prev => !prev)
+            return
+        }
         createUserWithEmailAndPassword(auth, email.current.value + '@gmail.com', 'password')
             .then(async userCredential => {
                 loggedData.userLogData(userCredential)
@@ -40,18 +54,21 @@ const SignUp = () => {
         <div className='main-signup'>
             <Nav />
             <div className='signup-container'>
-                <h1 className='signup-heading'>CREATE YOUR ACCOUNT</h1>
                 <div className='signup-form'>
+                    {visible === true ? <div className='alert'>
+                        <p>You must agree to the Steam Subscriber Agreement to continue.</p>
+                    </div> : null}
+                    <h1 className='signup-heading'>CREATE YOUR ACCOUNT</h1>
                     <div className='first-box signup-box'>
                         <label>Username</label>
                         <input ref={email} type='text'/>
                     </div>
                     <div className='middle-box signup-box'>
                         <label>Password</label>
-                        <input  type='text'/>
+                        <input type='password' placeholder='Any password works'/>
                     </div>
                     <div className='last-box signup-box'>
-                        <input type='checkbox' />
+                        <input onClick={changeStatus} type='checkbox' />
                         <p>I am 13 years of age or older and agree to the terms of the <span>Steam Subscriber Agreement</span> and the <span>Valve Privacy Policy</span></p>
                     </div>
                     <button className='signup-btn' onClick={createNewAccount}>Continue</button>
