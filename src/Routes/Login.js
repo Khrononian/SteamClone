@@ -6,7 +6,7 @@ import { Button } from '@mui/material'
 import { initializeApp } from "firebase/app";
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
-import { getFirestore, collection, doc, setDoc, getDocs } from 'firebase/firestore'
+import { getFirestore, collection, doc, setDoc, getDocs, getDoc } from 'firebase/firestore'
 import './login.css'
 
 const Login = ({ status }) => {
@@ -20,6 +20,7 @@ const Login = ({ status }) => {
     console.log('Log', status, location, loggedData)
 
     const app = initializeApp(loggedData.firebaseConfig)
+    const db = getFirestore(app)
     const auth = getAuth(app);
     const email = useRef()
 
@@ -27,8 +28,12 @@ const Login = ({ status }) => {
         console.log('Test', auth, auth.currentUser, email.current.value)
         
         signInWithEmailAndPassword(auth, email.current.value + '@gmail.com', 'password')
-        .then(userCredential => {
+        .then(async userCredential => {
+            const userData = await getDoc(doc(db, 'Users', email.current.value));
+
             loggedData.userLogData(userCredential)
+            loggedData.setUserColors('')
+            loggedData.setUserColors(userData.data().color)
             navigate('/')
         })
 
