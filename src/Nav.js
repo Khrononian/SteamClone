@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material'
 import { Drawer } from '@mui/material'
 import { Box } from '@mui/material';
@@ -16,8 +16,9 @@ import { Avatar } from '@mui/material';
 import { red } from '@mui/material/colors'
 import { Context } from './ContextData';
 import { initializeApp } from 'firebase/app'
-import { getFirestore, doc, getDoc } from 'firebase/firestore'
+import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore'
 import './nav.css'
+import { getAuth, signOut } from 'firebase/auth';
 
 const Nav = ({ status, username }) => {
     const [state, setState] = useState({
@@ -25,23 +26,31 @@ const Nav = ({ status, username }) => {
     })
     const [openFirstNav, setOpenFirstNav] = useState(true)
     const [openSecondNav, setOpenSecondNav] = useState(true)
-    const [userColors, setUserColors] = useState([])
+    const [userColors, setUserColors] = useState('')
     const loggedData = useContext(Context)
     const app = initializeApp(loggedData.firebaseConfig)
     const db = getFirestore(app)
+    const auth = getAuth()
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (loggedData.log === true) {
+            console.log('NAV CHANGE')
+            getUserColor()
+            getUserColor().then(async value => {
+                console.log('VALVE', value)
 
-    // useEffect(() => {
-    //     if (loggedData.log === true) {
-    //         console.log('NAV CHANGE')
-    //         getUserColor()
-    //         getUserColor().then(value => {
-    //             if (value.username === loggedData.username) {
-                        // GET COLOR FROM BACKEND
-    //             }
-    //         })
-    //     }
-    // }, [loggedData.log])
-
+                if (value.username.toLowerCase() === loggedData.username) {
+                    console.log('EGGY WORKS')
+                    
+                    await updateDoc(doc(db, 'Users', loggedData.username), {
+                        color: value.color
+                    })
+                    loggedData.setUserColors(value.color)
+                }
+            })
+        }
+    }, [loggedData.log])
+    console.log('TEST COLOR', userColors)
     const handleClick = (event) => {
         if (event.nativeEvent.target.outerText === 'Store') setOpenFirstNav(!openFirstNav)
         else setOpenSecondNav(!openSecondNav)
@@ -58,7 +67,17 @@ const Nav = ({ status, username }) => {
         const userColor = await getDoc(doc(db, 'Users', loggedData.username))
         const userData = userColor.data()
         console.log('INNER USER', userColor.data())
-        // return userData
+
+        return userData
+    }
+
+    const signUserOut = () => {
+        
+        signOut(auth).then(() => {
+            
+            // navigate('/')
+            loggedData.setLog(prev => !prev)
+        })
     }
     
     // console.log('USER COLOR', getUserColor())
@@ -77,7 +96,7 @@ const Nav = ({ status, username }) => {
                 </ListItemButton>
                 :
                 <ListItemButton className='avatar-block'>
-                    <Avatar sx={{ bgcolor: red[500], padding: '.15em' }} variant='square'>{`${loggedData.username.substring(0, 1).toUpperCase()}`}</Avatar>
+                    <Avatar sx={{ bgcolor: loggedData.userColors, padding: '.15em' }} variant='square'>{`${loggedData.username.substring(0, 1).toUpperCase()}`}</Avatar>
                     <h4>{loggedData.username}</h4>
                 </ListItemButton>}
                 <Divider />
@@ -134,7 +153,7 @@ const Nav = ({ status, username }) => {
                 </ListItemButton>
                 <Divider />
                 {loggedData.log === true ? <ListItemButton>
-                    <ListItemText sx={{ color: 'grey' }} primary='Logout' />
+                    <ListItemText sx={{ color: 'grey' }} onClick={signUserOut} primary='Logout' />
                 </ListItemButton> : null}
                 <Divider />
             </List>
