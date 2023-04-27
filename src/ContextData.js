@@ -11,6 +11,7 @@ const ContextData = ({ children }) => {
     const [updatedGames, setUpdatedGames] = useState([])
     const [log, setLog] = useState(false);
     const [username, setUsername] = useState('');
+    const [userColors, setUserColors] = useState('')
     const firebaseConfig = {
         apiKey: "AIzaSyBCRdufWIqxKTPz_J7p1Zb05Ha9ssj5n3Y",
         authDomain: "steam-clone-ba33d.firebaseapp.com",
@@ -92,7 +93,7 @@ const ContextData = ({ children }) => {
     
 
     return (
-        <Context.Provider value={ { firebaseConfig, games, setGames, singleGame, setSingleGame, featuredGames, belowGames, updatedGames, log, setLog, setGamePage, setUsername, username, userLogData, randomColor } }>
+        <Context.Provider value={ { firebaseConfig, games, setGames, singleGame, setSingleGame, featuredGames, belowGames, updatedGames, log, setLog, setGamePage, setUsername, username, userLogData, randomColor, userColors, setUserColors } }>
             {children}
         </Context.Provider>
     )
