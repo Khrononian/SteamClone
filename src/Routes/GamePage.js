@@ -40,10 +40,10 @@ const GamePage = () => {
             console.log('OLD METALLIC', userReviews)
             userReviews.forEach(review => {
                 console.log('METALLIC', userReviews, review.data())
-                setReviews(prev => [...prev].concat({review: review.data().review, date: review.data().date, username: review.data().username, recommended: review.data().recommended, color: review.data().color}))
+                setReviews(prev => [...prev].concat({review: review.data().review, date: review.data().date, username: review.data().username, recommended: review.data().recommended, color: review.data().color, count: review.data().count}))
                 
                 if (review.data().date === new Date().toLocaleString('default', { month: 'long', day: 'numeric' })) {
-                    setMount(prev => [...prev].concat({review: review.data().review, date: review.data().date, username: review.data().username, recommended: review.data().recommended, color: review.data().color}))
+                    setMount(prev => [...prev].concat({review: review.data().review, date: review.data().date, username: review.data().username, recommended: review.data().recommended, color: review.data().color, count: review.data().count}))
                 }
             })  
         }
@@ -86,33 +86,19 @@ const GamePage = () => {
         
         setNewDate(monthDay)
         setReviewPost(true)
-        // await setDoc(doc(db, 'Users', singleGameData.username), {
-        //     date: monthDay,
-        //     review: textField.current.value,
-        //     recommended: gamehype,
-        //     username: singleGameData.username,
-        //     color: randomColor()
-        // })
+
         await updateDoc(doc(db, 'Users', singleGameData.username), {
             date: monthDay,
             review: textField.current.value,
             recommended: gamehype,
+            count: 0
         })
     }
 
-    const randomColor = () => {
-        const characters = '0123456789ABCDEF';
-        const characterlength = characters.length
-        let color = '#'
-
-        for (let i = 0; i < 6; i++) {
-            color += characters[Math.floor(Math.random() * characterlength)]
-        }
-        return color
-        
+    const setReviewCount = () => {
+        // USE STATE TO ADD THE NUMBER INTO THE BACKEND
+        // USE GET DOC FOR THE CLICKED BUTTON THEN UPDATE FROM THERE
     }
-    console.log('COOLOR', randomColor())
-    console.log('DATE', newDate, gameHypeClick)
 
     return (
         singleGameData.singleGame[0] !== undefined ?
@@ -254,31 +240,36 @@ const GamePage = () => {
                             <div className='review-card'>
                                 {reviews.length !== 0 ?
                                     reviews.map((review, index) => (
-                                        <div className='main-review' key={index}>
-                                            <div className='avatar'>
-                                                {console.log('CHECKY', review.color)}
-                                                <Avatar style={{ background: review.color }} variant='square'>{review.username.substring(0, 1).toUpperCase()}</Avatar>
-                                                <span>{`${review.username.substring(0, 1).toUpperCase()}${review.username.slice(1)}`}</span>
-                                            </div>
-                                            <div className='review-info'>
-                                                <div className='top-review'>
-                                                    {review.recommended === true ? <ThumbUpAltSharp />
-                                                    : <ThumbDownAltSharp  style={{background: 'rgba(255, 0, 0, 0.3)', color: 'red'}} />
-                                                    }
-                                                    <p>{review.recommended === true ? 'Recommended' : 'Not Recommended'}</p>
+                                        <div>
+                                            {review.recommended !== undefined ? 
+                                            <div className='main-review' key={index}>
+                                                <div className='avatar'>
+                                                    {console.log('CHECKY', review.color)}
+                                                    <Avatar style={{ background: review.color }} variant='square'>{review.username.substring(0, 1).toUpperCase()}</Avatar>
+                                                    <span>{`${review.username.substring(0, 1).toUpperCase()}${review.username.slice(1)}`}</span>
                                                 </div>
-                                                <div className='middle-review'>
-                                                    <p>POSTED: <span>{review.date}</span></p>
-                                                    <p>{review.review}</p>
-                                                </div>
-                                                <div className='bottom-review'>
-                                                    <p>Was this review helpful?</p>
-                                                    <div>
-                                                        <Button><ThumbUpAltSharp /> Yes</Button>
-                                                        <Button><ThumbDownAltSharp /> No</Button>
+                                                <div className='review-info'>
+                                                    <div className='top-review'>
+                                                        {review.recommended === true ? <ThumbUpAltSharp />
+                                                        : <ThumbDownAltSharp  style={{background: 'rgba(255, 0, 0, 0.3)', color: 'red'}} />
+                                                        }
+                                                        <p>{review.recommended === true ? 'Recommended' : 'Not Recommended'}</p>
+                                                    </div>
+                                                    <div className='middle-review'>
+                                                        <p>POSTED: <span>{review.date}</span></p>
+                                                        <p>{review.review}</p>
+                                                    </div>
+                                                    <div className='bottom-review'>
+                                                        <p>Was this review helpful?</p>
+                                                        <div>
+                                                            <Button><ThumbUpAltSharp /> Yes</Button>
+                                                            <Button><ThumbDownAltSharp /> No</Button>
+                                                        </div>
+                                                        <p>{review.count} people found this review helpful</p>
                                                     </div>
                                                 </div>
                                             </div>
+                                            : null}
                                         </div>
                                     )) : <h2>No Reviews</h2>
                                 }
