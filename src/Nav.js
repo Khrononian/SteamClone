@@ -31,8 +31,11 @@ const Nav = ({ status, username }) => {
     const app = initializeApp(loggedData.firebaseConfig)
     const db = getFirestore(app)
     const auth = getAuth()
-    const navigate = useNavigate()
+    
     useEffect(() => {
+        const favicon = document.getElementById('favicon')
+        favicon.href = 'https://cdn2.iconfinder.com/data/icons/gaming-platforms-logo-shapes/250/steam_logo-64.png'
+
         if (loggedData.log === true) {
             console.log('NAV CHANGE')
             getUserColor()
