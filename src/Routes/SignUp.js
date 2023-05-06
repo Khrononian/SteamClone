@@ -43,7 +43,8 @@ const SignUp = () => {
                 console.log('FIRE', userCredential)
                 await setDoc(doc(db, 'Users', email.current.value.toLowerCase()), {
                     username: email.current.value,
-                    color: loggedData.randomColor()
+                    color: loggedData.randomColor(),
+                    count: 0
                 })
                 navigate('/')
                 console.log('States', loggedData.username)
