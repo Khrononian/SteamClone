@@ -426,6 +426,9 @@ p.review-heading {
 .main-background {
     margin-bottom: 2rem;
 }
+.review-btn > * {
+    pointer-events: none;
+}
 
 .bottom-side-review button:hover {
     background: rgb(102 192 244);
