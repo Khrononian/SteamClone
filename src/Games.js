@@ -45,7 +45,7 @@ const Games = () => {
         <div className='main-games'>
             <h4>FEATURED & RECOMMENDED</h4>
             <Card className='card'>
-                <Link className='route-links' onClick={topGames.setGamePage} to={`/app/rferer`} data-appid={topGames.featuredGames[tabNum === undefined ? 0 : tabNum].appID} >
+                <Link className='route-links' onClick={topGames.setGamePage} to={`/app/${topGames.featuredGames[tabNum === undefined ? 0 : tabNum].name}`} data-appid={topGames.featuredGames[tabNum === undefined ? 0 : tabNum].appID} >
                     <CardActionArea>
                         <CardMedia 
                             component='img'
@@ -108,7 +108,7 @@ const Games = () => {
                 <h4>FAVORITE GAMES</h4>
                 <div className='favorites'>
                     <Card className='first card-favs'>
-                        <Link to={`/app/rferer`} onClick={topGames.setGamePage} data-appid='251570'> 
+                        <Link to={`/app/7 Days to Die`} onClick={topGames.setGamePage} data-appid='251570'> 
                             <CardActionArea>
                                 <CardMedia
                                     className='card-imgs'
@@ -125,7 +125,7 @@ const Games = () => {
                         </Link>
                     </Card>
                     <Card className='second card-favs'>
-                        <Link to={`/app/rferer`} onClick={topGames.setGamePage} data-appid='377160'> 
+                        <Link to={`/app/Fallout 4`} onClick={topGames.setGamePage} data-appid='377160'> 
                             <CardActionArea>
                                 <CardMedia
                                     className='card-imgs'
@@ -142,7 +142,7 @@ const Games = () => {
                         </Link>
                     </Card>
                     <Card className='third card-favs'>
-                        <Link to={`/app/rferer`} onClick={topGames.setGamePage} data-appid='304930'> 
+                        <Link to={`/app/Unturned`} onClick={topGames.setGamePage} data-appid='304930'> 
                             <CardActionArea>
                                 <CardMedia
                                     component='img'
@@ -159,7 +159,7 @@ const Games = () => {
                         </Link>
                     </Card>
                     <Card className='fourth card-favs'>
-                        <Link to={`/app/rferer`} onClick={topGames.setGamePage} data-appid='283640'> 
+                        <Link to={`/app/Salt & Sanctuary`} onClick={topGames.setGamePage} data-appid='283640'> 
                             <CardActionArea>
                                 <CardMedia
                                     component='img'

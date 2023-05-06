@@ -85,7 +85,7 @@ const Category = () => {
             {categoryGame.filter((_, index) => index < 2).map((game, index) => (
               
               <Card className='title-card' key={index}>
-                <Link to={'/app/referer'} onClick={categoryContext.setGamePage} data-appid={game.appID}>
+                <Link to={`/app/${categoryGame[index].name}`} onClick={categoryContext.setGamePage} data-appid={game.appID}>
                   <CardActionArea>
                     <CardMedia
                       className='title-img'
@@ -109,7 +109,7 @@ const Category = () => {
           <div className='second-title'>
             {categoryGame.filter((_, index) => index > 1 && index < 5).map((game, index) => (
               <Card className='title-card' key={index}>
-                <Link to={'/app/referer'} onClick={categoryContext.setGamePage} data-appid={game.appID}>
+                <Link to={`/app/${categoryGame[index].name}`} onClick={categoryContext.setGamePage} data-appid={game.appID}>
                   <CardActionArea>
                     <CardMedia
                       className='title-img'
@@ -133,7 +133,7 @@ const Category = () => {
           <div className='third-title'>
             {categoryGame.filter((_, index) => index > 4 && index < 9).map((game, index) => (
               <Card className='title-card' key={index}>
-                <Link to={'/app/referer'} onClick={categoryContext.setGamePage} data-appid={game.appID}>
+                <Link to={`/app/${categoryGame[index].name}`} onClick={categoryContext.setGamePage} data-appid={game.appID}>
                   <CardActionArea>
                     <CardMedia
                       className='title-img'
@@ -157,7 +157,7 @@ const Category = () => {
           <div className='second-title'>
             {categoryGame.filter((_, index) => index > 8 && index < 12).map((game, index) => (
               <Card className='title-card' key={index}>
-                <Link to={'/app/referer'} onClick={categoryContext.setGamePage} data-appid={game.appID}>
+                <Link to={`/app/${categoryGame[index].name}`} onClick={categoryContext.setGamePage} data-appid={game.appID}>
                   <CardActionArea>
                     <CardMedia
                       className='title-img'
@@ -181,7 +181,7 @@ const Category = () => {
           <div className='first-title'>
             {categoryGame.filter((_, index) => index > 11 && index < 14).map((game, index) => (
               <Card className='title-card' key={index}>
-                <Link to={'/app/referer'} onClick={categoryContext.setGamePage} data-appid={game.appID}>
+                <Link to={`/app/${categoryGame[index].name}`} onClick={categoryContext.setGamePage} data-appid={game.appID}>
                   <CardActionArea>
                     <CardMedia
                       className='title-img'
@@ -207,7 +207,7 @@ const Category = () => {
         <div className='new-titles'>
           {incomingGames.map((game, index) => (
             <Card className='coming-soon' key={index}>
-              <Link to={'/app/referer'} onClick={categoryContext.setGamePage} data-appid={game.appID}>
+              <Link to={`/app/${categoryGame[index].name}`} onClick={categoryContext.setGamePage} data-appid={game.appID}>
                 <CardActionArea>
                   <CardMedia 
                     className='soon-img'
@@ -227,7 +227,6 @@ const Category = () => {
               </Link>
             </Card>
           ))}
-          
         </div>
       </div>
     </div>
