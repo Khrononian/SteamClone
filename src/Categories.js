@@ -54,7 +54,7 @@ const Categories = () => {
                 <div className='price-group'>
                     {categoryGames.belowGames.map((game, index) => (
                         <Card key={index}>
-                            <Link className='route-links' onClick={categoryGames.setGamePage} to={`/app/rferer`} data-appid={categoryGames.belowGames[index].appID}>
+                            <Link className='route-links' onClick={categoryGames.setGamePage} to={`/app/${categoryGames.belowGames[index].name}`} data-appid={categoryGames.belowGames[index].appID}>
                                 <CardActionArea>
                                     <CardMedia
                                         className='price-imgs'
@@ -76,7 +76,7 @@ const Categories = () => {
                 <div className='new-group'>
                     {categoryGames.updatedGames.map((game, index) => (
                         <Card key={index} className={index === 0 ? 'side' : index.toString() }>
-                            <Link className='route-links' onClick={categoryGames.setGamePage} to={`/app/rferer`} data-appid={categoryGames.updatedGames[index].appID}>
+                            <Link className='route-links' onClick={categoryGames.setGamePage} to={`/app/${categoryGames.updatedGames[index].name}`} data-appid={categoryGames.updatedGames[index].appID}>
                                 <CardActionArea>
                                     <CardMedia
                                         className='new-imgs'
