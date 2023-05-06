@@ -9,7 +9,7 @@ import { Avatar } from '@mui/material'
 import { ThumbUpAltSharp } from '@mui/icons-material'
 import { ThumbDownAltSharp } from '@mui/icons-material'
 import { initializeApp } from 'firebase/app'
-import { getFirestore, addDoc, collection, doc, setDoc, updateDoc, getDocs } from 'firebase/firestore'
+import { getFirestore, addDoc, collection, doc, setDoc, updateDoc, getDocs, getDoc } from 'firebase/firestore'
 import SteamIcon from '../SteamIcon.svg'
 import './gamepage.css'
 
@@ -91,13 +91,20 @@ const GamePage = () => {
             date: monthDay,
             review: textField.current.value,
             recommended: gamehype,
-            count: 0
         })
     }
 
-    const setReviewCount = () => {
-        // USE STATE TO ADD THE NUMBER INTO THE BACKEND
-        // USE GET DOC FOR THE CLICKED BUTTON THEN UPDATE FROM THERE
+    const getReviewCount = async (event) => {
+        const userReview = await getDoc(doc(db, 'Users', event.target.dataset.username))
+
+        console.log('USER DAT', userReview.data(), event.target, event.target.dataset.username, event.target.innerText)
+        
+        if (event.target.innerText === 'Yes') await updateDoc(doc(db, 'Users', event.target.dataset.username), {
+            count: userReview.data().count + 1
+        })
+        else await updateDoc(doc(db, 'Users', event.target.dataset.username), {
+            count: userReview.data().count - 1
+        })
     }
 
     return (
@@ -148,7 +155,6 @@ const GamePage = () => {
 
                 </div>
             </div>
-            {/* {singleGameData.log === true ? */}
             <div className='user-review'>
                 <div className='user-heading'>
                     <div>
@@ -240,11 +246,10 @@ const GamePage = () => {
                             <div className='review-card'>
                                 {reviews.length !== 0 ?
                                     reviews.map((review, index) => (
-                                        <div>
+                                        <div key={index}>
                                             {review.recommended !== undefined ? 
-                                            <div className='main-review' key={index}>
+                                            <div className='main-review' >
                                                 <div className='avatar'>
-                                                    {console.log('CHECKY', review.color)}
                                                     <Avatar style={{ background: review.color }} variant='square'>{review.username.substring(0, 1).toUpperCase()}</Avatar>
                                                     <span>{`${review.username.substring(0, 1).toUpperCase()}${review.username.slice(1)}`}</span>
                                                 </div>
@@ -262,8 +267,8 @@ const GamePage = () => {
                                                     <div className='bottom-review'>
                                                         <p>Was this review helpful?</p>
                                                         <div>
-                                                            <Button><ThumbUpAltSharp /> Yes</Button>
-                                                            <Button><ThumbDownAltSharp /> No</Button>
+                                                            <Button onClick={getReviewCount} data-username={review.username} className='review-btn'><ThumbUpAltSharp /> Yes</Button>
+                                                            <Button onClick={getReviewCount} data-username={review.username} className='review-btn'><ThumbDownAltSharp /> No</Button>
                                                         </div>
                                                         <p>{review.count} people found this review helpful</p>
                                                     </div>
