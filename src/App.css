@@ -1,7 +1,102 @@
 html {
   background-color: inherit !important;
+  background: no-repeat;
 }
 
 h4, h5 {
   color: white;
+}
+
+@media screen and (min-width: 140px) {
+  /* NAV */
+  .SiteNav {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 3.75rem;
+    width: 100%;
+  }
+  .SiteNav .btns {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: .8rem;
+  }
+  .SiteNav .btns button {
+    justify-content: flex-start;
+  }
+  .textfield {
+    width: 95%;
+    margin: 0 auto;
+  }
+  /* GAMES */
+  .main-games {
+    width: 100%;
+  }
+  .right-card {
+    width: 100%;
+    height: fit-content;
+  }
+  .card button {
+    display: flex;
+    flex-direction: column;
+  }
+  .card img {
+    width: 100%;
+    background: center;
+  }
+  .right-card p {
+    margin: .5rem;
+  }
+  .card-data {
+    padding: 0 0 .3em 0 !important;
+  }
+  .game-info h5, .game-info h6 {
+    display: none;
+  }
+  .card-grid {
+    display: none;
+  }
+  .icons img{
+    width: 20px;
+  }
+
+  .steam {
+    grid-template-columns: auto;
+  }
+
+  .favorites {
+    display: flex;
+    flex-direction: column;
+  }
+  .first a button, .second a button {
+    width: 100% !important;
+  }
+  .first a div, .second a div {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .third, .fourth {
+    display: none;
+  }
+  /* CATEGORY */
+  .category {
+    width: 100%;
+  }
+  .grid {
+    justify-content: unset;
+    overflow-x: auto;
+  }
+  .browse-grid {
+    grid-template-columns: auto auto;
+  }
+  .browse-grid button {
+    padding: .4em !important;
+  }
+  .price-group {
+    overflow-x: auto;
+  }
+  .new-group {
+    display: flex;
+    flex-direction: column;
+  }
 }
