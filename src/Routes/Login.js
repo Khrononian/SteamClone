@@ -1,15 +1,16 @@
-import React, { useRef, useEffect, useContext } from 'react'
+import React, { useRef, useEffect, useContext, useState } from 'react'
 import Nav from '../Nav'
-import Firebase from '../Firebase'
 import { Context } from '../ContextData'
 import { Button } from '@mui/material'
 import { initializeApp } from "firebase/app";
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
-import { getFirestore, collection, doc, setDoc, getDocs, getDoc } from 'firebase/firestore'
+import { getFirestore, doc, getDoc } from 'firebase/firestore'
 import './login.css'
 
 const Login = ({ status }) => {
+    const [visible, setVisible] = useState(false);
+
     useEffect(() => {
         document.body.style.background = '#212429'
     }, [])
@@ -35,7 +36,7 @@ const Login = ({ status }) => {
             loggedData.setUserColors('')
             loggedData.setUserColors(userData.data().color)
             navigate('/')
-        })
+        }).catch(() => setVisible(true))
 
         console.log('After', loggedData.username)
     }
@@ -45,12 +46,15 @@ const Login = ({ status }) => {
         <div >
             <Nav />
             <div className='sign-in'>
+                {visible === true ? <div className='alert center'>
+                    <p>User was not found. Try again.</p>
+                </div> : null}
                 <h1>SIGN IN</h1>
                 <div className='sign-form'>
                     <div>
                         <div>
                             <p className='colors'>SIGN IN WITH ACCOUNT NAME</p>
-                            <input ref={email} type='text' />
+                            <input className={visible === true ? 'input-alert' : null} ref={email} type='text' />
                         </div>
                         <div>
                             <p>PASSWORD</p>
