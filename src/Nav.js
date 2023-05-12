@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from '@mui/material'
 import { Drawer } from '@mui/material'
 import { Box } from '@mui/material';
@@ -8,12 +8,10 @@ import { ListItemButton } from '@mui/material';
 import { ListItemText } from '@mui/material';
 import { Collapse } from '@mui/material';
 import { Divider } from '@mui/material';
-// import ListItemIcon from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import MenuIcon  from '@mui/icons-material/Menu';
 import { Avatar } from '@mui/material';
-import { red } from '@mui/material/colors'
 import { Context } from './ContextData';
 import { initializeApp } from 'firebase/app'
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore'
@@ -61,8 +59,6 @@ const Nav = ({ status, username }) => {
     }
     console.log('Nav', status, loggedData, username)
     const toggleDrawer = (anchor, open) => event => {
-        // if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) return
-        
         setState({ ...state, [anchor]: open})
     }
 
@@ -75,15 +71,10 @@ const Nav = ({ status, username }) => {
     }
 
     const signUserOut = () => {
-        
         signOut(auth).then(() => {
-            
-            // navigate('/')
             loggedData.setLog(prev => !prev)
         })
     }
-    
-    // console.log('USER COLOR', getUserColor())
 
     const list = anchor => (
         <Box
