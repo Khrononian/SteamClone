@@ -429,7 +429,10 @@ p.review-heading {
 .review-btn > * {
     pointer-events: none;
 }
-
+.active-button {
+    background: rgb(102 192 244) !important;
+    color: white !important;
+}
 .bottom-side-review button:hover {
     background: rgb(102 192 244);
     color: white;

@@ -56,6 +56,9 @@ h1 {
     width: 150px;
     margin: 0 auto !important;
 }
+.center {
+    margin: 0 auto;
+}
 
 input {
     background: #383838;
@@ -67,6 +70,9 @@ input {
 }
 input:placeholder-shown {
     font-style: italic;
+}
+.input-alert {
+    border: 2px solid rgb(187, 20, 53);
 }
 
 .sign-form button {
