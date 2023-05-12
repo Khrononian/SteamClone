@@ -20,7 +20,6 @@ const GamePage = () => {
     const [reviewPost, setReviewPost] = useState(false)
     const [reviews, setReviews] = useState([])
     const [mount, setMount] = useState([])
-
     const textField = createRef()
     const singleGameData = useContext(Context)
     const app = initializeApp(singleGameData.firebaseConfig)
@@ -50,8 +49,6 @@ const GamePage = () => {
         getReviews()
         
     }, [])
-
-    
 
     const changeMainImage = (event, img) => {
         event.target.parentElement.parentElement.querySelector('.main-img').src = img
@@ -96,6 +93,12 @@ const GamePage = () => {
 
     const getReviewCount = async (event) => {
         const userReview = await getDoc(doc(db, 'Users', event.target.dataset.username))
+        const children = event.target.parentElement.children
+        
+        for (const child of children) {
+            child.classList.remove('active-button')
+        }
+        event.target.classList.add('active-button')
 
         console.log('USER DAT', userReview.data(), event.target, event.target.dataset.username, event.target.innerText)
         
@@ -103,7 +106,7 @@ const GamePage = () => {
             count: userReview.data().count + 1
         })
         else await updateDoc(doc(db, 'Users', event.target.dataset.username), {
-            count: userReview.data().count - 1
+            count: userReview.data().count === 0 ? 0 : userReview.data().count - 1
         })
     }
 
@@ -232,9 +235,6 @@ const GamePage = () => {
                 <div className='about'>
                     <p className='review-heading'>ABOUT THIS GAME</p>
                     <div>
-                        {/* <img src='https://cdn.cloudflare.steamstatic.com/steam/apps/312520/extras/RW_SteamGIF_02.jpg?t=1674137018' alt='Game' /> */}
-                        {/* {singleGameData.singleGame[0].about_the_game.split(/[\r\n]+/g).map(line => <p>{line.replace(/^( ?<br( \/)?> ?)+|( ?<br( \/)?> ?)+$/, '')}</p>)} */}
-                        {/* {singleGameData.singleGame[0].about_the_game.split(/[\r\n]+/g).map(line => <p>{line.replace(/(<([^>]+)>)/ig, '')}</p>)} */}
                         <p dangerouslySetInnerHTML={{__html: singleGameData.singleGame[0].about_the_game}} />
                     </div>
                 </div>
