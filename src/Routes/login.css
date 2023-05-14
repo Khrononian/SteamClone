@@ -1,5 +1,5 @@
 html, body {
-    min-height: 90vh;
+    /* min-height: 100vh; */
     position: relative;
 }
 
@@ -13,7 +13,7 @@ h1 {
 }
 
 .sign-in {
-    width: 75%;
+    width: 90%;
     margin: 6rem auto 0 auto;
     height: 100%;
 }
@@ -27,8 +27,12 @@ h1 {
     margin: 0 auto;
 }
 
+.sign-form div:has(div) {
+    width: 300px !important;
+}
 .sign-form div:first-child {
-    width: 380px;
+    /* width: 90%; */
+    max-width: 380px;
 }
 .sign-form div p:first-child {
     margin: .5rem 0 0 0;
@@ -66,7 +70,9 @@ input {
     border-radius: 1px;
     padding: .8em .5em;
     color: white;
+    /* width: 95%; */
     width: 100%;
+    max-width: 330px !important;
 }
 input:placeholder-shown {
     font-style: italic;
@@ -93,8 +99,10 @@ input:placeholder-shown {
 
 .sign-form img {
     margin: 0 auto;
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    max-height: 200px;
     border-radius: 10px;
 }
 
@@ -108,10 +116,9 @@ input:placeholder-shown {
 
 footer {
     background: #202020;
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    left: 0;
-    right: 0;
+    width: 100%;
     padding: 1em;
     text-align: center;
 }
