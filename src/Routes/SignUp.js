@@ -72,7 +72,9 @@ const SignUp = () => {
                         <input onClick={changeStatus} type='checkbox' />
                         <p>I am 13 years of age or older and agree to the terms of the <span>Steam Subscriber Agreement</span> and the <span>Valve Privacy Policy</span></p>
                     </div>
-                    <button className='signup-btn' onClick={createNewAccount}>Continue</button>
+                    <div className='signup-btn-contain'>
+                        <button className='signup-btn' onClick={createNewAccount}>Continue</button>
+                    </div>
                 </div>
             </div>
         </div>
