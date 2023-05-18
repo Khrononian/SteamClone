@@ -101,11 +101,17 @@ h2 {
     width: inherit;
 }
 .first-title a img {
-    width: 462px;
+    width: 100%;
     height: 215.92px;
+    max-width: 462px
+}
+.second-title a img {
+    width: 100%;
+    max-width: 299.53px;
 }
 .third-title a img {
-    width: 223px;
+    width: 100%;
+    max-width: 223px
 }
 
 .new-titles {

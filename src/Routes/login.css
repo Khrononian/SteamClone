@@ -31,7 +31,6 @@ h1 {
     width: 300px !important;
 }
 .sign-form div:first-child {
-    /* width: 90%; */
     max-width: 380px;
 }
 .sign-form div p:first-child {
@@ -70,7 +69,6 @@ input {
     border-radius: 1px;
     padding: .8em .5em;
     color: white;
-    /* width: 95%; */
     width: 100%;
     max-width: 330px !important;
 }
