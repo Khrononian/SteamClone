@@ -133,26 +133,28 @@ const GamePage = () => {
                     </div>
                     <div>
                         <img className='side-img' src={singleGameData.singleGame[0].header_image} alt='Main pic' />
-                        <p className='top-desc'>{singleGameData.singleGame[0].short_description}</p>
-                        <div className='reviews bottom'>
-                            <p>RECENT REVIEWS: <span>VERY POSITIVE</span></p>
-                            <p>ALL REVIEWS: <span>VERY POSITIVE</span></p>
-                        </div>
-                        <div className='date bottom'>
-                            <p>RELEASE DATE: <span>{singleGameData.singleGame[0].release_date.date}</span></p>
-                        </div>
-                        <div className='dev-pub bottom'>
-                            <p>DEVELOPER: <span>{singleGameData.singleGame[0].developers[0]}</span></p>
-                            <p>PUBLISHER: <span>{singleGameData.singleGame[0].publishers.length > 1 ? `${singleGameData.singleGame[0].publishers[0]}, ${singleGameData.singleGame[0].publishers[1]}` : singleGameData.singleGame[0].publishers[0]}</span></p>
-                        </div>
-                        <div className='tags bottom'>
-                            <p>Popular user-defined tags for this proudct:</p>
-                        </div>
-                        <div className='tag-grid'>
-                            {singleGameData.singleGame[0].genres.filter((_, index) => index !== 6 )
-                            .map((genre, index) => (
-                                <p key={index}>{genre.description}</p>
-                            ))}
+                        <div>
+                            <p className='top-desc'>{singleGameData.singleGame[0].short_description}</p>
+                            <div className='reviews bottom'>
+                                <p>RECENT REVIEWS: <span>VERY POSITIVE</span></p>
+                                <p>ALL REVIEWS: <span>VERY POSITIVE</span></p>
+                            </div>
+                            <div className='date bottom'>
+                                <p>RELEASE DATE: <span>{singleGameData.singleGame[0].release_date.date}</span></p>
+                            </div>
+                            <div className='dev-pub bottom'>
+                                <p>DEVELOPER: <span>{singleGameData.singleGame[0].developers[0]}</span></p>
+                                <p>PUBLISHER: <span>{singleGameData.singleGame[0].publishers.length > 1 ? `${singleGameData.singleGame[0].publishers[0]}, ${singleGameData.singleGame[0].publishers[1]}` : singleGameData.singleGame[0].publishers[0]}</span></p>
+                            </div>
+                            <div className='tags bottom'>
+                                <p>Popular user-defined tags for this proudct:</p>
+                            </div>
+                            <div className='tag-grid'>
+                                {singleGameData.singleGame[0].genres.filter((_, index) => index !== 6 )
+                                .map((genre, index) => (
+                                    <p key={index}>{genre.description}</p>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
@@ -238,7 +240,7 @@ const GamePage = () => {
                         <p dangerouslySetInnerHTML={{__html: singleGameData.singleGame[0].about_the_game}} />
                     </div>
                 </div>
-                <div className='reviews'>
+                <div className='reviews-steam'>
                     <p className='review-heading'>CUSTOMER REVIEWS</p>
                     <div className='review-block'>
                         <div className='left-grid'>
