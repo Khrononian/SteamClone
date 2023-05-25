@@ -30,7 +30,7 @@ const GamePage = () => {
         console.log('Single Game', singleGameData)
 
         singleGameData.setSingleGame(current => current.filter(game => game.name === ''))
-    }, [])
+    }, )
 
     useEffect(() => {
         const getReviews = async () => {
