@@ -1,7 +1,6 @@
 .section {
     width: 940px;
     margin: 0 auto;
-    /* background: linear-gradient(to top, transparent, rgb(28, 61, 82)); */
 }
 
 .main-game {
@@ -34,9 +33,6 @@ h2 {
     justify-content: space-between;
     gap: 16px;
 }
-/* .main-section div:nth-child(2) {
-    width: 324px;
-} */
 
 .main-img {
     width: 600px;
@@ -92,7 +88,6 @@ h2 {
 }
 
 .bottom span {
-    /* margin-left: .8rem; */
     width: auto;
     margin: 0 auto;
     position: absolute;
@@ -101,8 +96,6 @@ h2 {
 
 .tag-grid {
     display: grid;
-    /* grid-template-columns: repeat(5, minmax(62px, 100px)); */
-    /* grid-template-columns: repeat(6, min-content); */
     grid-template-columns: repeat(6, minmax(auto, max-content));
     color: rgb(102 192 244);
     gap: 2px;
@@ -171,10 +164,11 @@ h2 {
     justify-content: space-between;
     margin-top: 1rem;
 }
-.user-area img {
-    height: 160px;
-    padding-left: .5em;
-    padding-right: .5em;
+.avatar-user {
+    margin-top: 3.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2em;
 }
 .user-area textarea {
     margin-right: .5rem;
