@@ -9,7 +9,7 @@ import { Avatar } from '@mui/material'
 import { ThumbUpAltSharp } from '@mui/icons-material'
 import { ThumbDownAltSharp } from '@mui/icons-material'
 import { initializeApp } from 'firebase/app'
-import { getFirestore, addDoc, collection, doc, setDoc, updateDoc, getDocs, getDoc } from 'firebase/firestore'
+import { getFirestore, collection, doc, updateDoc, getDocs, getDoc } from 'firebase/firestore'
 import SteamIcon from '../SteamIcon.svg'
 import './gamepage.css'
 
@@ -48,7 +48,7 @@ const GamePage = () => {
         }
         getReviews()
         
-    }, [])
+    }, )
 
     const changeMainImage = (event, img) => {
         event.target.parentElement.parentElement.querySelector('.main-img').src = img

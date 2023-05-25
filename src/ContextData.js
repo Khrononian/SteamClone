@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 export const Context = React.createContext()
 
@@ -88,7 +87,7 @@ const ContextData = ({ children }) => {
             }
         })
         .catch(error => console.log(error))
-    }, [])
+    }, )
     
     
 
