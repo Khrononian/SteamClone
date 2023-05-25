@@ -56,7 +56,6 @@ const GamePage = () => {
 
     const setGameRecommended = event => {
         // console.log('Recommend', event, event.target.innerText)
-        console.log('BUTT', event.target.parentElement)
         const btns = event.target.parentElement.children
         for (const btn of btns) {
             btn.classList.remove('user-btns-click')
@@ -173,8 +172,9 @@ const GamePage = () => {
                     <h6>Please describe what you liked or disliked about this game and whether you recommend it to others.</h6>
                     <h6>Please remember to be polite and follow the <span>Rules and Guidelines</span>.</h6>
                 </div> : <h2>Thank you for the Reivew!</h2>}
-                {reviewPost === false ? <div className='user-area'>
-                    <img src='https://avatars.akamai.steamstatic.com/beabee59066833a6c7a11694b29a9b2b76be4ff3_full.jpg' alt='Avatar icon' />
+                {reviewPost === false && singleGameData.log === true ? <div className='user-area'>
+                    {/* <img src='https://avatars.akamai.steamstatic.com/beabee59066833a6c7a11694b29a9b2b76be4ff3_full.jpg' alt='Avatar icon' /> */}
+                    <Avatar className='avatar-user' style={{ background: singleGameData.userColors }} variant='square'>{singleGameData.username.substring(0, 1).toUpperCase()}</Avatar>
                     <div>
                         <textarea ref={textField}  rows='15' cols='100'></textarea>
                         <div className='user-footer'>
