@@ -30,7 +30,7 @@ const GamePage = () => {
         console.log('Single Game', singleGameData)
 
         singleGameData.setSingleGame(current => current.filter(game => game.name === ''))
-    }, )
+    }, [])
 
     useEffect(() => {
         const getReviews = async () => {
@@ -48,7 +48,7 @@ const GamePage = () => {
         }
         getReviews()
         
-    }, )
+    }, [])
 
     const changeMainImage = (event, img) => {
         event.target.parentElement.parentElement.querySelector('.main-img').src = img

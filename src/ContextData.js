@@ -87,7 +87,7 @@ const ContextData = ({ children }) => {
             }
         })
         .catch(error => console.log(error))
-    }, )
+    }, [])
     
     
 

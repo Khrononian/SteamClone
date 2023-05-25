@@ -1,9 +1,6 @@
 import React from 'react'
 import { Button } from '@mui/material'
-import { ButtonGroup } from '@mui/material';
-import { TextField } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
-
 import './sitenav.css'
 
 const SiteNav = () => {

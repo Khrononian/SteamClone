@@ -33,7 +33,7 @@ const Category = () => {
           setIncomingGames(prev => prev.concat(games))
       })
     }
-  }, )
+  }, [])
 
   console.log('INSIDE PAGE', categoryContext, categoryGame, location)
 
