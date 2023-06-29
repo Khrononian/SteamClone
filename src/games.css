@@ -64,9 +64,6 @@
     text-decoration: unset;
     color: unset;
 }
-.card-favs a button {
-    width: 306px;
-}
 .card-favs a > * {
     pointer-events: none;
     width: 100%;
