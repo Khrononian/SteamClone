@@ -26,10 +26,10 @@ const Games = () => {
         })
     }, [])
     // Four other fav games: Elden Ring, Dark Souls 3, Unturned, Detroit Become Human
-    console.log('Counts', tabCount, topGames, topGames.games.find((item, index, array) => Number(item.price_overview.final_formatted.substring(1)) < 10 ), topGames.games.filter((item, index, array) => item.is_free === false ).filter(game => game.price_overview !== undefined ).filter(single => single.price_overview.final_formatted  ).filter(single => Number(single.price_overview.final_formatted.substring(1)) < 10 )[Math.floor(Math.random() * 50)] )
 
     // SET TABS FUNCTION WORKS
     const setTabs = event => {
+        console.log('Tab event', event)
         const childTabs = event.target.parentElement.children
         for (const child of childTabs) {
             child.classList.remove('active-tab')
@@ -38,7 +38,6 @@ const Games = () => {
         setTabNum(Number(event.target.dataset.count))
     }
     
-    console.log('TABS MID', tabNum)
     return (
         topGames.featuredGames[0] !== undefined ?
 
